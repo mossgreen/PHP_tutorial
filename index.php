@@ -37,6 +37,24 @@
 		<div id="fore-flower"></div>
 	</div>
 
+	<div class="container-fluid">
+		<!-- left side bar -->
+		<div class="col-md-2">
+			Left side bar here
+		</div>	
+		<!-- main content -->
+		<div class="col-md-8">
+			main body
+		</div>
+
+		<!-- right side bar -->
+		<div class="col-md-2">
+			Right side bar
+		</div>
+	</div>
+
+
+
 	<p>
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate perferendis obcaecati iste, culpa est eum, facere dolore nam mollitia, repudiandae eaque consequuntur quibusdam et laudantium dolorum, illo possimus ab incidunt.
 	</p>

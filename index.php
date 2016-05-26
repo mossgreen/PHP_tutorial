@@ -34,25 +34,11 @@
 	<div id="headerWrapper">
 		<div id="back-flower"></div>
 		<div id="logotext"></div>
-		<div id="for-flower"></div>
+		<div id="fore-flower"></div>
 	</div>
 
 	<p>
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate perferendis obcaecati iste, culpa est eum, facere dolore nam mollitia, repudiandae eaque consequuntur quibusdam et laudantium dolorum, illo possimus ab incidunt.
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, numquam aliquam, recusandae cumque aliquid ut itaque amet culpa a molestiae, tempora consectetur ea voluptatum suscipit voluptas nisi eveniet nesciunt explicabo.		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate perferendis obcaecati iste, culpa est eum, facere dolore nam mollitia, repudiandae eaque consequuntur quibusdam et laudantium dolorum, illo possimus ab incidunt.
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, numquam aliquam, recusandae cumque aliquid ut itaque amet culpa a molestiae, tempora consectetur ea voluptatum suscipit voluptas nisi eveniet nesciunt explicabo.		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate perferendis obcaecati iste, culpa est eum, facere dolore nam mollitia, repudiandae eaque consequuntur quibusdam et laudantium dolorum, illo possimus ab incidunt.
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, numquam aliquam, recusandae cumque aliquid ut itaque amet culpa a molestiae, tempora consectetur ea voluptatum suscipit voluptas nisi eveniet nesciunt explicabo.		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate perferendis obcaecati iste, culpa est eum, facere dolore nam mollitia, repudiandae eaque consequuntur quibusdam et laudantium dolorum, illo possimus ab incidunt.
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, numquam aliquam, recusandae cumque aliquid ut itaque amet culpa a molestiae, tempora consectetur ea voluptatum suscipit voluptas nisi eveniet nesciunt explicabo.		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate perferendis obcaecati iste, culpa est eum, facere dolore nam mollitia, repudiandae eaque consequuntur quibusdam et laudantium dolorum, illo possimus ab incidunt.
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, numquam aliquam, recusandae cumque aliquid ut itaque amet culpa a molestiae, tempora consectetur ea voluptatum suscipit voluptas nisi eveniet nesciunt explicabo.		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate perferendis obcaecati iste, culpa est eum, facere dolore nam mollitia, repudiandae eaque consequuntur quibusdam et laudantium dolorum, illo possimus ab incidunt.
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, numquam aliquam, recusandae cumque aliquid ut itaque amet culpa a molestiae, tempora consectetur ea voluptatum suscipit voluptas nisi eveniet nesciunt explicabo.		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate perferendis obcaecati iste, culpa est eum, facere dolore nam mollitia, repudiandae eaque consequuntur quibusdam et laudantium dolorum, illo possimus ab incidunt.
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, numquam aliquam, recusandae cumque aliquid ut itaque amet culpa a molestiae, tempora consectetur ea voluptatum suscipit voluptas nisi eveniet nesciunt explicabo.
 	</p>
 </body>
 </html>

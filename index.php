@@ -74,7 +74,7 @@
 
 				<div class="col-md-3">
 					<h4>Boys Hoodie</h4>
-					<img src="images/products/men4.png" alt="Levis Jeans" class="img-thumb" />
+					<img src="images/products/boys1.png" alt="Boys Hoodie" class="img-thumb" />
 					<p class="list-price text-danger">List Price: <s>$24.99</s></p>
 					<p class="price">Our Price:$19.99</p>
 					<button class="btn btn-sm btn-success" type="button" data-toggle="model" data-target="#details-1"> Details</button>
@@ -90,7 +90,7 @@
 
 				<div class="col-md-3">
 					<h4>Purse</h4>
-					<img src="images/products/men4.png" alt="Purse" class="img-thumb" />
+					<img src="images/products/women5.png" alt="Purse" class="img-thumb" />
 					<p class="list-price text-danger">List Price: <s>$204.99</s></p>
 					<p class="price">Our Price:$199.99</p>
 					<button class="btn btn-sm btn-success" type="button" data-toggle="model" data-target="#details-1"> Details</button>
@@ -98,7 +98,7 @@
 
 				<div class="col-md-3">
 					<h4>Women's Shirt</h4>
-					<img src="images/products/men4.png" alt="Women's Shirt" class="img-thumb" />
+					<img src="images/products/women3.png" alt="Women's Shirt" class="img-thumb" />
 					<p class="list-price text-danger">List Price: <s>$54.99</s></p>
 					<p class="price">Our Price:$19.99</p>
 					<button class="btn btn-sm btn-success" type="button" data-toggle="model" data-target="#details-1"> Details</button>

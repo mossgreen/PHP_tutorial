@@ -137,6 +137,7 @@
 				</button>
 				<h4 class="modal-title text-center">Levis Jeans</h4>
 			</div>
+
 			<div class="modal-body">
 				<div class="container-fluid">
 					<div class="row">
@@ -145,9 +146,20 @@
 								<img src="images/products/men4.png" alt="Levis Jeans" class="details img-responsive ">
 							</div>
 						</div>
-						<div class="col-sm-6"></div>
+						<div class="col-sm-6">
+							<h4>Details</h4>
+							<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod impedit dignissimos illo quae eos, nisi ipsum nihil nobis rerum! Maxime molestias delectus culpa, porro vitae nulla qui esse perferendis aliquam?</p>
+						</div>
+						<hr>
+						<p>Price: $34.99</p>
+						<p>Brand: Levis </p>
+
 					</div>
 				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-default" data-dismiss="modal"> close </button>
+				<button class="btn btn-warning" type="submit" ><span class="glyphicon  glyphicon-shopping-cart"></span>	Add To Cart</button>
 			</div>
 		</div>
 	</div>

@@ -53,7 +53,7 @@
 					<img src="images/products/men4.png" alt="Levis Jeans" class="img-thumb" />
 					<p class="list-price text-danger">List Price: <s>$54.99</s></p>
 					<p class="price">Our Price:$134.99</p>
-					<button class="btn btn-sm btn-success" type="button" data-toggle="model" data-target="#details-1"> Details</button>
+					<button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#details-1"> Details</button>
 				</div>
 
 				<div class="col-md-3">
@@ -61,7 +61,7 @@
 					<img src="images/products/men4.png" alt="Levis Jeans" class="img-thumb" />
 					<p class="list-price text-danger">List Price: <s>$24.99</s></p>
 					<p class="price">Our Price:$19.99</p>
-					<button class="btn btn-sm btn-success" type="button" data-toggle="model" data-target="#details-1"> Details</button>
+					<button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#details-1"> Details</button>
 				</div>
 
 				<div class="col-md-3">
@@ -69,7 +69,7 @@
 					<img src="images/products/women6.png" alt="Levis Jeans" class="img-thumb" />
 					<p class="list-price text-danger">List Price: <s>$59.99</s></p>
 					<p class="price">Our Price:$49.99</p>
-					<button class="btn btn-sm btn-success" type="button" data-toggle="model" data-target="#details-1"> Details</button>
+					<button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#details-1"> Details</button>
 				</div>
 
 				<div class="col-md-3">
@@ -77,7 +77,7 @@
 					<img src="images/products/boys1.png" alt="Boys Hoodie" class="img-thumb" />
 					<p class="list-price text-danger">List Price: <s>$24.99</s></p>
 					<p class="price">Our Price:$19.99</p>
-					<button class="btn btn-sm btn-success" type="button" data-toggle="model" data-target="#details-1"> Details</button>
+					<button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#details-1"> Details</button>
 				</div>
 
 				<div class="col-md-3">
@@ -85,7 +85,7 @@
 					<img src="images/products/girls3.png" alt="girls dress" class="img-thumb" />
 					<p class="list-price text-danger">List Price: <s>$54.99</s></p>
 					<p class="price">Our Price:$199.99</p>
-					<button class="btn btn-sm btn-success" type="button" data-toggle="model" data-target="#details-1"> Details</button>
+					<button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#details-1"> Details</button>
 				</div>
 
 				<div class="col-md-3">
@@ -93,7 +93,7 @@
 					<img src="images/products/women5.png" alt="Purse" class="img-thumb" />
 					<p class="list-price text-danger">List Price: <s>$204.99</s></p>
 					<p class="price">Our Price:$199.99</p>
-					<button class="btn btn-sm btn-success" type="button" data-toggle="model" data-target="#details-1"> Details</button>
+					<button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#details-1"> Details</button>
 				</div>
 
 				<div class="col-md-3">
@@ -101,7 +101,7 @@
 					<img src="images/products/women3.png" alt="Women's Shirt" class="img-thumb" />
 					<p class="list-price text-danger">List Price: <s>$54.99</s></p>
 					<p class="price">Our Price:$19.99</p>
-					<button class="btn btn-sm btn-success" type="button" data-toggle="model" data-target="#details-1"> Details</button>
+					<button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#details-1"> Details</button>
 				</div>
 
 				<div class="col-md-3">
@@ -109,7 +109,7 @@
 					<img src="images/products/women7.png" alt="Woman's shirt" class="img-thumb" />
 					<p class="list-price text-danger">List Price: <s>$59.99</s></p>
 					<p class="price">Our Price:$49.99</p>
-					<button class="btn btn-sm btn-success" type="button" data-toggle="model" data-target="#details-1"> Details</button>
+					<button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#details-1"> Details</button>
 				</div>
 			</div>
 		</div>
@@ -127,6 +127,30 @@
 	</p>
 
 	<footer class="text-center" id="footer">&copy; CopyRight 2013-2015 moss'shop</footer>
+
+	<!-- Details Modal -->
+	<div class="modal fade details-1" id="details-1" tabindex="-1" role="dialog" arial-labelledby="details-1" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-header">
+				<button class="close" type="button" data-dismiss="modal" aria-label="close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title text-center">Levis Jeans</h4>
+			</div>
+			<div class="modal-body">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="center-block">
+								<img src="images/products/men4.png" alt="Levis Jeans" class="details img-responsive ">
+							</div>
+						</div>
+						<div class="col-sm-6"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<script type="text/javascript">
 		

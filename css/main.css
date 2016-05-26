@@ -14,3 +14,10 @@ body{
 	background-position: top center;
 	background-attachment: fixed;
 }
+
+#logotext{
+	position: absolute;
+	width: 100%;
+	height: 180px;
+	background-image: url(../images/headerlogo/text.png);
+}

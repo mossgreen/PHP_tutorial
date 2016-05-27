@@ -1,20 +1,13 @@
 <?php 
 	include 'includes/head.php'; 
 	include 'includes/navigation.php';
-
+	include 'includes/headerfull.php';
 
 ?>
 	<!-- top nav ba -->
 	
 
-	<!-- Header -->
-	<div id="headerWrapper">
-		<div id="back-flower"></div>
-		<div id="logotext"></div>
-		<div id="fore-flower"></div>
-	</div>
-
-	<div class="container-fluid">
+	
 		<!-- left side bar -->
 		<div class="col-md-2">
 			Left side bar here

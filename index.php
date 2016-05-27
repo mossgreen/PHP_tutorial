@@ -157,21 +157,29 @@
 								<form action="add_cart.php" method="post">
 									<div class="form-group">
 										<div class="row">
-											<div class="col-xs-3">
+											<div class="col-xs-4">
 												<label for="quantity">
 													Quantity:
 												</label>
-												<input type="text" name="quantity" class="form-control" id="quantity">										
 											</div>
-											<div class="col-xs-9"></div>
+											
+											<div class="col-xs-4">
+												<input type="text" name="quantity" class="form-control" id="quantity">
+											</div>
+											<div class="col-xs-4">
+												<p>(Available: 3)</p>	
+											</div>
 										</div>
-										<p>Available: 3</p>
+										
 									</div>
 									<br> <br>
 									<div class="form-group">
 										<div class="row">
-											<div class="col-xs-3">
+											<div class="col-xs-4">
 												<label for="size">Size: </label>
+												
+											</div>
+											<div class="col-xs-4">
 												<select name="size" id="size" class="form-control">
 													<option value=""></option>
 													<option value="M">M</option>
@@ -179,7 +187,7 @@
 													<option value="L">L</option>
 												</select>
 											</div>
-											<div class="col-xs-9"></div>
+											<div class="col-xs-4"></div>
 										</div>
 									</div>
 								</form>

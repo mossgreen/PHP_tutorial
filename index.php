@@ -150,7 +150,7 @@
 							<div class="col-sm-6">
 								<h4>Details</h4>
 								<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod impedit dignissimos illo quae eos, nisi ipsum nihil nobis rerum! Maxime molestias delectus culpa, porro vitae nulla qui esse perferendis aliquam?</p>
-								
+
 								<hr>
 								<p>Price: $34.99</p>
 								<p>Brand: Levis </p>
@@ -165,7 +165,7 @@
 										<p>Available: 3</p>
 									</div>
 									<div class="form-group">
-										<label for="size"></label>
+									<label for="size">Size: </label>
 										<select name="size" id="size" class="form-control">
 											<option value=""></option>
 											<option value="M"></option>

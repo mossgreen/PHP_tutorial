@@ -150,30 +150,31 @@
 							<div class="col-sm-6">
 								<h4>Details</h4>
 								<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod impedit dignissimos illo quae eos, nisi ipsum nihil nobis rerum! Maxime molestias delectus culpa, porro vitae nulla qui esse perferendis aliquam?</p>
-							</div>
-							<hr>
-							<p>Price: $34.99</p>
-							<p>Brand: Levis </p>
-							<form action="add_cart.php" method="post">
-								<div class="form-group">
-									<div class="col-xs-3">
-										<label for="quantity">
-											Quantity:
-										</label>
-										<input type="text" name="quantity" class="form-control" id="quantity">										
+								
+								<hr>
+								<p>Price: $34.99</p>
+								<p>Brand: Levis </p>
+								<form action="add_cart.php" method="post">
+									<div class="form-group">
+										<div class="col-xs-3">
+											<label for="quantity">
+												Quantity:
+											</label>
+											<input type="text" name="quantity" class="form-control" id="quantity">										
+										</div>
+										<p>Available: 3</p>
 									</div>
-									<p>Available: 3</p>
-								</div>
-								<div class="form-group">
-									<label for="size"></label>
-									<select name="size" id="size" class="form-control">
-										<option value=""></option>
-										<option value="M"></option>
-										<option value="S"></option>
-										<option value="L"></option>
-									</select>
-								</div>
-							</form>
+									<div class="form-group">
+										<label for="size"></label>
+										<select name="size" id="size" class="form-control">
+											<option value=""></option>
+											<option value="M"></option>
+											<option value="S"></option>
+											<option value="L"></option>
+										</select>
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>

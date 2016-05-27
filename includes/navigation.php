@@ -12,7 +12,11 @@ $pquery = $db -> query($sql);
 		<ul class="nav navbar-nav">
 
 			<?php while($parent = mysqli_fetch_assoc($pquery)): ?>
-				<?php $parent_id = $parent['id']; ?>
+				<?php 
+				$parent_id = $parent['id']; 
+				$sql2 = "SELECT * FROM categories WHERE parent == '$parent_id'";
+				$cquery = $db -> query($sql2);
+				?>
 
 
 
@@ -20,10 +24,9 @@ $pquery = $db -> query($sql);
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $parent['category']; ?><span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Shirts</a></li>
-						<li><a href="#">Pants</a></li>
-						<li><a href="#">Shoes</a></li>
-						<li><a href="#">Accessories</a></li>
+					<?php while($child = mysqli_fetch_assoc($cquery)): ?>
+						<li><a href="#"><?php echo $child['category']; ?></a></li>
+					<?php endwhile; ?>
 					</ul>
 				</li>
 				

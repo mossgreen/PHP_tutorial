@@ -10,7 +10,7 @@
 
 	
 
-	<script type="text/javascript">
+	<script>
 		
 		jQuery(window).scroll(function(){
 			var vscroll = jQuery(this).scrollTop();
@@ -29,8 +29,8 @@
 			});
 		});
 
-		function detailsmodal(){
-			alert("yay. it is here.");
+				function detailsmodal(){
+			alert("yay. it is here.")
 		}
 
 	</script>

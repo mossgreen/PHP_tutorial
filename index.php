@@ -23,7 +23,14 @@ $featured = $db -> query($sql);
 				<img src="<?php echo $product['image']; ?>" alt="<?php echo $product['title']; ?>" class="img-thumb" />
 				<p class="list-price text-danger">List Price: <s>$<?php echo $product['list_price']; ?></s></p>
 				<p class="price">Our Price:$<?php echo $product['price']; ?></p>
-				<button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#details-1"> Details</button>
+				<button class="btn btn-sm btn-success" type="button" onclick="detailsmodal()" > Details</button>
+<!-- 
+				<script>
+					
+					function detailsmodal(){
+						alert("yay. it is here.")
+					}
+				</script> -->
 			</div>
 		<?php endwhile; ?>
 

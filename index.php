@@ -28,6 +28,13 @@ $featured = $db -> query($sql);
 			</div>
 		<?php endwhile; ?>
 
+<!-- 	<script>
+		
+		function detailsmodal(id){
+			alert(id);
+		}
+	</script> -->
+
 	</div>
 </div>
 

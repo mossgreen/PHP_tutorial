@@ -33,7 +33,7 @@
 												Quantity:
 											</label>
 										</div>
-										
+
 										<div class="col-xs-4">
 											<input type="text" name="quantity" class="form-control" id="quantity">
 										</div>
@@ -41,14 +41,14 @@
 											<p>(Available: 3)</p>	
 										</div>
 									</div>
-									
+
 								</div>
 								<br> <br>
 								<div class="form-group">
 									<div class="row">
 										<div class="col-xs-4">
 											<label for="size">Size: </label>
-											
+
 										</div>
 										<div class="col-xs-4">
 											<select name="size" id="size" class="form-control">
@@ -73,4 +73,4 @@
 		</div>
 	</div>
 </div>
-<?php ob_get_clean(); ?>
+<?php echo ob_get_clean(); ?>

@@ -30,12 +30,17 @@
 		});
 
 		function detailsmodal(id){
+
+			
+
 			var data = {"id":id};
+			alert(id);
 			jQuery.ajax({
 				url: <?php echo BASEURL; ?> + 'includes/detailsmodal.php', 
 				method:"post",
 				data:date,
 				success:function(){
+					alert('success');
 					jQuery('body').append(data);
 					jQuery('#details-modal').modal('toggle');
 				},

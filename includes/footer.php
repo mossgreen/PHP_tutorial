@@ -29,8 +29,8 @@
 			});
 		});
 
-				function detailsmodal(){
-			alert("yay. it is here.")
+		function detailsmodal(id){
+			alert(id)
 		}
 
 	</script>

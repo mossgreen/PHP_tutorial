@@ -29,6 +29,10 @@
 			});
 		});
 
+		function detailsmodal(){
+			alert("yay. it is here.");
+		}
+
 	</script>
 </body>
 </html>

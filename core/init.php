@@ -5,6 +5,7 @@
 		die();
 	}
 
+	define('BASEURL', '/tutorial/');
 
 
 

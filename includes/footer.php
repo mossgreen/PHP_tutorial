@@ -30,7 +30,20 @@
 		});
 
 		function detailsmodal(id){
-			alert(id)
+			var data = {"id":id};
+			jQuery.ajax({
+				url: <?php echo BASEURL; ?> + 'includes/detailsmodal.php', 
+				method:"post",
+				data:date,
+				success:function(){
+					jQuery('body').append(data);
+					jQuery('#details-modal').modal('toggle');
+				},
+				error:function(){
+					alert("error message.");
+				}
+
+			});
 		}
 
 	</script>

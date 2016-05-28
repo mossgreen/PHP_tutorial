@@ -16,7 +16,8 @@ $featured = $db -> query($sql);
 			Featured Products
 		</h2>
 		<?php while($product = mysqli_fetch_assoc($featured)) : ?>
-			<?php var_dump($product); ?>  
+			<!-- for debug ->
+			<?php var_dump($product); ?>  -->  
 			<div class="col-md-3">
 				<h4><?php echo $product['title']; ?></h4>
 				<img src="<?php echo $product['image']; ?>" alt="<?php echo $product['title']; ?>" class="img-thumb" />
@@ -24,7 +25,7 @@ $featured = $db -> query($sql);
 				<p class="price">Our Price:$134.99</p>
 				<button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#details-1"> Details</button>
 			</div>
-		<?php endwhile(); ?>
+		<?php endwhile; ?>
 
 	</div>
 </div>

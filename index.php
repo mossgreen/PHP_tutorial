@@ -16,13 +16,13 @@ $featured = $db -> query($sql);
 			Featured Products
 		</h2>
 		<?php while($product = mysqli_fetch_assoc($featured)) : ?>
-			<!-- for debug ->
-			<?php var_dump($product); ?>  -->  
+			<!-- for debug -> -->
+			<!-- <?php var_dump($product); ?>    -->  
 			<div class="col-md-3">
 				<h4><?php echo $product['title']; ?></h4>
 				<img src="<?php echo $product['image']; ?>" alt="<?php echo $product['title']; ?>" class="img-thumb" />
 				<p class="list-price text-danger">List Price: <s>$<?php echo $product['list_price']; ?></s></p>
-				<p class="price">Our Price:$134.99</p>
+				<p class="price">Our Price:$<?php echo $product['price']; ?></p>
 				<button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#details-1"> Details</button>
 			</div>
 		<?php endwhile; ?>

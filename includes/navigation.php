@@ -14,7 +14,7 @@ $pquery = $db -> query($sql);
 			<?php while($parent = mysqli_fetch_assoc($pquery)): ?>
 				<?php 
 				$parent_id = $parent['id']; 
-				$sql2 = "SELECT * FROM categories WHERE parent == '$parent_id'";
+				$sql2 = "SELECT * FROM categories WHERE parent = '$parent_id'";
 				$cquery = $db -> query($sql2);
 				?>
 

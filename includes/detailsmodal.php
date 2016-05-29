@@ -1,10 +1,15 @@
 <?php 
-require_once '../core/init.php'
+require_once '../core/init.php';
 $id = $_POST['id'];
 $id = (int)$id;
-$sql = "SELECT * FROM products WHERE id='$id' "
+$sql = "SELECT * FROM products WHERE id='$id' ";
 $result = $db -> query($sql);
 $product = mysqli_fetch_assoc($result);
+$brand_id = $product['brand'];
+$sql = "SELECT brand FROM brand WHERE id='$brand_id'";
+$brand_query = $db -> query($sql);
+$brand = mysqli_fetch_assoc($brand_query);
+
 ?>
 
 <!-- Details Modal -->
@@ -16,7 +21,7 @@ $product = mysqli_fetch_assoc($result);
 				<button class="close" type="button" data-dismiss="modal" aria-label="close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title text-center">Levis Jeans</h4>
+				<h4 class="modal-title text-center"><?php echo $product['title']; ?></h4>
 			</div>
 
 			<div class="modal-body">
@@ -24,16 +29,16 @@ $product = mysqli_fetch_assoc($result);
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="center-block">
-								<img src="images/products/men4.png" alt="Levis Jeans" class="details img-responsive ">
+								<img src="<?php echo $product['image']; ?>" alt="<?php echo $product['title']; ?>" class="details img-responsive ">
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<h4>Details</h4>
-							<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod impedit dignissimos illo quae eos, nisi ipsum nihil nobis rerum! Maxime molestias delectus culpa, porro vitae nulla qui esse perferendis aliquam?</p>
+							<p><?php echo $product['description']; ?></p>
 
 							<hr>
-							<p>Price: $34.99</p>
-							<p>Brand: Levis </p>
+							<p>Price: $<?php echo $product['price']; ?></p>
+							<p>Brand: <?php echo $brand['brand']; ?> </p>
 							<form action="add_cart.php" method="post">
 								<div class="form-group">
 									<div class="row">

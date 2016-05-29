@@ -8,7 +8,6 @@
 
 	<footer class="text-center" id="footer">&copy; CopyRight 2013-2015 moss'shop</footer>
 
-	
 
 	<script>
 		
@@ -30,24 +29,19 @@
 		});
 
 		function detailsmodal(id){
-
-			
-
 			var data = {"id":id};
-			alert(id);
 			jQuery.ajax({
-				url: <?php echo BASEURL; ?> + 'includes/detailsmodal.php', 
+				url: <?=BASEURL;?> + 'includes/detailsmodal.php', 
 				method:"post",
-				data:date,
-				success:function(){
-					alert('success');
+				data:data,
+				success:function(data){
+					
 					jQuery('body').append(data);
 					jQuery('#details-modal').modal('toggle');
 				},
 				error:function(){
 					alert("error message.");
 				}
-
 			});
 		}
 

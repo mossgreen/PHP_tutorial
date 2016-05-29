@@ -1,5 +1,5 @@
 <!-- Details Modal -->
-<?php echo ob_start(); ?>
+<?php ob_start(); ?>
 <div class="modal fade details-1" id="details-modal" tabindex="-1" role="dialog" arial-labelledby="details-1" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">

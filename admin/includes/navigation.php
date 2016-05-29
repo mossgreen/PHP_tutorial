@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="contianer">
-		<a href="index.php" class="navbar-brand">moss's shop Admin</a>
+		<a href="/index.php" class="navbar-brand">moss's shop Admin</a>
 		<ul class="nav navbar-nav">
 
 	 

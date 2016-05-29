@@ -24,7 +24,7 @@ $size_array = explode(',',$sizestring);
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<h4 class="modal-title text-center"><?php echo $product['title']; ?></h4>
-				<?php var_dump(size_array); ?>
+				<?php var_dump($size_array); ?>
 			</div>
 
 			<div class="modal-body">

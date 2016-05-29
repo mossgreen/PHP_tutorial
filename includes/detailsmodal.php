@@ -55,7 +55,7 @@ $size_array = explode(',',$sizestring);
 											<input type="text" name="quantity" class="form-control" id="quantity">
 										</div>
 										<div class="col-xs-4">
-											<p>(Available: 3)</p>	
+											<p> </p>	
 										</div>
 									</div>
 
@@ -70,9 +70,15 @@ $size_array = explode(',',$sizestring);
 										<div class="col-xs-4">
 											<select name="size" id="size" class="form-control">
 												<option value=""></option>
-												<option value="M">M</option>
-												<option value="S">S</option>
-												<option value="L">L</option>
+												<?php foreach ($size_array as $string) {
+													$string_array = explode(':', $string);
+													$size = $string_array[0];
+													$quantity = $string_array[1];
+
+
+													echo '<option value="'.$size.'">'.$size.' ('.$quantity.'Available)</option>';
+												} ?>
+												
 											</select>
 										</div>
 										<div class="col-xs-4"></div>

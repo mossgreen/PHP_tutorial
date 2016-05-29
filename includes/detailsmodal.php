@@ -9,11 +9,12 @@ $brand_id = $product['brand'];
 $sql = "SELECT brand FROM brand WHERE id='$brand_id'";
 $brand_query = $db -> query($sql);
 $brand = mysqli_fetch_assoc($brand_query);
-
+$sizestring = $product['sizes'];
 ?>
 
 <!-- Details Modal -->
 <?php ob_start(); ?>
+
 <div class="modal fade details-1" id="details-modal" tabindex="-1" role="dialog" arial-labelledby="details-1" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -22,6 +23,7 @@ $brand = mysqli_fetch_assoc($brand_query);
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<h4 class="modal-title text-center"><?php echo $product['title']; ?></h4>
+				<?php echo sizestring; ?>
 			</div>
 
 			<div class="modal-body">

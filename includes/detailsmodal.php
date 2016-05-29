@@ -23,7 +23,7 @@ $sizestring = $product['sizes'];
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<h4 class="modal-title text-center"><?php echo $product['title']; ?></h4>
-				<?php echo sizestring; ?>
+				<?php echo $sizestring; ?>
 			</div>
 
 			<div class="modal-body">

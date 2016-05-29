@@ -1,3 +1,12 @@
+<?php 
+require_once '../core/init.php'
+$id = $_POST['id'];
+$id = (int)$id;
+$sql = "SELECT * FROM products WHERE id='$id' "
+$result = $db -> query($sql);
+$product = mysqli_fetch_assoc($result);
+?>
+
 <!-- Details Modal -->
 <?php ob_start(); ?>
 <div class="modal fade details-1" id="details-modal" tabindex="-1" role="dialog" arial-labelledby="details-1" aria-hidden="true">

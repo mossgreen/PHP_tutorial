@@ -10,6 +10,7 @@ $sql = "SELECT brand FROM brand WHERE id='$brand_id'";
 $brand_query = $db -> query($sql);
 $brand = mysqli_fetch_assoc($brand_query);
 $sizestring = $product['sizes'];
+$size_array = explode(',',$sizestring);
 ?>
 
 <!-- Details Modal -->
@@ -23,7 +24,7 @@ $sizestring = $product['sizes'];
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<h4 class="modal-title text-center"><?php echo $product['title']; ?></h4>
-				<?php echo $sizestring; ?>
+				<?php var_dump(size_array); ?>
 			</div>
 
 			<div class="modal-body">

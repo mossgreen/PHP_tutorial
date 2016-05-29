@@ -20,11 +20,11 @@ $size_array = explode(',',$sizestring);
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button class="close" type="button" data-dismiss="modal" aria-label="close">
+				<button class="close" type="button"  onclick="closeModal()" aria-label="close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<h4 class="modal-title text-center"><?php echo $product['title']; ?></h4>
-				<?php var_dump($size_array); ?>
+				
 			</div>
 
 			<div class="modal-body">
@@ -90,10 +90,21 @@ $size_array = explode(',',$sizestring);
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-default" data-dismiss="modal"> close </button>
+				<button class="btn btn-default" onclick="closeModal()"> close </button>
 				<button class="btn btn-warning" type="submit" ><span class="glyphicon  glyphicon-shopping-cart"></span>	Add To Cart</button>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script>
+	
+	function closeModal(){
+		jQuery('#details-modal').modal('hide');
+		setTimeout(function(){
+			jQuery('#details-modal').remove();
+			jQuery('modal-backdrop').remove();
+		},500);
+	}
+</script>
 <?php echo ob_get_clean(); ?>

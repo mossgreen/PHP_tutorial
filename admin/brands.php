@@ -25,7 +25,7 @@ $result = $db -> query($sql);
 			<td><a href="brands.php?delete=1" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove-sign"></span> </a></td>
 		</tr> 
 
-	<?php endwhile(); ?>
+	<?php endwhile; ?>
 	</tbody>
 </table>
 <?php 

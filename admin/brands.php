@@ -10,18 +10,23 @@ $results = $db -> query($sql);
 $errors = array();
 //if add form is submited
 if(isset($_POST['add_submit'])){
+	$brand = $_POST['brand'];
 	//check if brand is blank
 	if($_POST['brand'] == ''){
 		$errors[] .= 'You must enter a brand!';
 	}
 	//check if brand exists in database
+	$sql = "SELECT * FROM brand WHERE brand = '$brand'";
+	$result = $db -> query($sql);
+	$count = mysqli_num_rows($result);
+	echo $count;
 
 	//dispaly errors
 	if(!empty($errors)){
 		echo display_errors($errors);
 	}else{
 		// add brand to database
-		
+
 	}
 
 }

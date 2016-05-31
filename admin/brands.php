@@ -19,7 +19,10 @@ if(isset($_POST['add_submit'])){
 	$sql = "SELECT * FROM brand WHERE brand = '$brand'";
 	$result = $db -> query($sql);
 	$count = mysqli_num_rows($result);
-	echo $count;
+	if($count > 0){
+		$errors[] .= $brand.' already exist, please choose another brand.';
+
+	}
 
 	//dispaly errors
 	if(!empty($errors)){

@@ -65,8 +65,21 @@ if(isset($_POST['add_submit'])){
 <div class="text-center">
 	<form class="form-inline" action="brands.php<?=((isset($_GET['edit']))?'?edit='.$edit_id:''); ?>" method="post">
 		<div class="form-group">
+
+			<?php 
+
+			$brand_value = '';
+			if(isset($_GET['edit'])){
+				$brand_value = $eBrand['brand'];
+			}else{
+				if(isset($_POST['brand'])){
+					$brand_value = sanitize($_POST['brand']);
+				}
+			} 
+
+			?>
 			<label for="brand"> <?php echo ((isset($_GET['edit']))?'Edit':'Add A') ?> Brand:</label>
-			<input type="text" name="brand" id="brand" class="form-control" value="<?php echo ((isset($_POST['brand']))?$_POST['brand']:''); ?>">
+			<input type="text" name="brand" id="brand" class="form-control" value="<?php echo $brand_value; ?>">
 
 			<?php if(isset($_GET['edit'])): ?>
 				<a href="brand.php" class="btn btn-default">Cancel</a>

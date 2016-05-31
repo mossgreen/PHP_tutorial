@@ -15,7 +15,7 @@ $results = $db -> query($sql);
 	<form action="brands.php" method="post" class="form-inline">
 		<div class="form-group">
 			<label for="brand">Add A Brand:</label>
-			<input type="text" name="brand" id="brand" class="form-control" value="<?php echo $_POST['brand']; ?>">
+			<input type="text" name="brand" id="brand" class="form-control" value="<?php echo ((isset($_POST['brand']))?$_POST['brand']:''); ?>">
 			<input type="submit" name="add_submit" value="Add Brand" class="btn   btn-success">
 		</div>
 

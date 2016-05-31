@@ -10,7 +10,7 @@ $results = $db -> query($sql);
 $errors = array();
 //if add form is submited
 if(isset($_POST['add_submit'])){
-	$brand = $_POST['brand'];
+	$brand = sanitize($_POST['brand']);
 	//check if brand is blank
 	if($_POST['brand'] == ''){
 		$errors[] .= 'You must enter a brand!';

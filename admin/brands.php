@@ -29,6 +29,9 @@ if(isset($_POST['add_submit'])){
 		echo display_errors($errors);
 	}else{
 		// add brand to database
+		$sql = "INSERT INTO brand (brand) VALUES ('$brand')";
+		$db -> query($sql);
+		header('Location: brands.php');
 
 	}
 

@@ -13,7 +13,10 @@ $errors = array();
 if(isset($_GET['delete']) && !empty($_GET['delete'])){
 	$delete_id = (int)$_GET['delete'];
 	$delete_id = sanitize($delete_id);
-	echo $delete_id;
+	
+	$sql = "DELETE FROM brand WHERE id = '$delete_id'";
+	$db -> query($sql);
+	header('Location: brands.php');
 
 }
 

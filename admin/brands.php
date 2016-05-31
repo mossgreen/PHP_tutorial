@@ -14,6 +14,15 @@ if(isset($_POST['add_submit'])){
 	if($_POST['brand'] == ''){
 		$errors[] .= 'You must enter a brand!';
 	}
+	//check if brand exists in database
+
+	//dispaly errors
+	if(!empty($errors)){
+		echo display_errors($errors);
+	}else{
+		// add brand to database
+		
+	}
 
 }
 

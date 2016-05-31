@@ -9,6 +9,14 @@ $results = $db -> query($sql);
 
 $errors = array();
 
+//edit brand
+if(isset($_GET['edit']) && !empty($_GET['edit'])){
+	$edit_id = (int)$_GET['edit'];
+	$edit_id = sanitize($edit_id);
+	echo $edit_id;
+
+}
+
 //DElete brand
 if(isset($_GET['delete']) && !empty($_GET['delete'])){
 	$delete_id = (int)$_GET['delete'];

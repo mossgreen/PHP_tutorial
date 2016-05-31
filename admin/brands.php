@@ -9,6 +9,18 @@ $results = $db -> query($sql);
 
 ?>
 <h2 class="text-center">Brands</h2>
+<hr>
+<!-- Brand form -->
+<div>
+	<form action="brands.php" method="post" class="form-inline">
+		<div class="form-group">
+			<label for="brand">Add A Brand:</label>
+			<input type="text" name="brand" id="brand" class="form-control" value="<?php echo $_POST['brand']; ?>">
+			<input type="submit" name="add_submit" value="Add Brand" class="btn   btn-success">
+		</div>
+
+	</form>
+</div>
 
 <table class="table table-bordered table-striped table-auto">
 	<thead>
@@ -18,14 +30,14 @@ $results = $db -> query($sql);
 	</thead>
 	<tbody>
 
-	<?php while($brand = mysqli_fetch_assoc($results)): ?>
-		<tr>
-			<td><a href="brands.php?edit= <?php echo $brand['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span> </a></td>
-			<td><?php echo $brand['brand']; ?></td>
-			<td><a href="brands.php?delete=<?php echo $brand['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove-sign"></span> </a></td>
-		</tr> 
+		<?php while($brand = mysqli_fetch_assoc($results)): ?>
+			<tr>
+				<td><a href="brands.php?edit= <?php echo $brand['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span> </a></td>
+				<td><?php echo $brand['brand']; ?></td>
+				<td><a href="brands.php?delete=<?php echo $brand['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove-sign"></span> </a></td>
+			</tr> 
 
-	<?php endwhile; ?>
+		<?php endwhile; ?>
 	</tbody>
 </table>
 <?php 

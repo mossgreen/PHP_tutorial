@@ -54,7 +54,7 @@ if(isset($_POST['add_submit'])){
 
 <hr>
 
-<table class="table table-bordered table-striped table-auto">
+<table class="table table-bordered table-striped table-auto table-condensed">
 	<thead>
 		<th></th>
 		<th>Brands</th>

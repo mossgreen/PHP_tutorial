@@ -13,7 +13,9 @@ $errors = array();
 if(isset($_GET['edit']) && !empty($_GET['edit'])){
 	$edit_id = (int)$_GET['edit'];
 	$edit_id = sanitize($edit_id);
-	echo $edit_id;
+	$sql2 = "SELECT * FROM brand WHERE id='$edit_id";
+	$edit_result = $db -> query($sql2);
+	$eBrand = mysqli_fet($edit_result);
 
 }
 
@@ -62,7 +64,7 @@ if(isset($_POST['add_submit'])){
 <hr>
 <!-- Brand form -->
 <div class="text-center">
-	<form action="brands.php" method="post" class="form-inline">
+	<form action="brands.php <?php echo ((isset($_GET['edit']))?'?edit='.$edit_id:''); ?>" method="post" class="form-inline">
 		<div class="form-group">
 			<label for="brand">Add A Brand:</label>
 			<input type="text" name="brand" id="brand" class="form-control" value="<?php echo ((isset($_POST['brand']))?$_POST['brand']:''); ?>">

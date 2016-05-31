@@ -8,6 +8,15 @@ $sql = "SELECT * FROM brand ORDER BY brand";
 $results = $db -> query($sql);
 
 $errors = array();
+
+//DElete brand
+if(isset($_GET['delete']) && !empty($_GET['delete'])){
+	$delete_id = (int)$_GET['delete'];
+	$delete_id = sanitize($delete_id);
+	echo $delete_id;
+
+}
+
 //if add form is submited
 if(isset($_POST['add_submit'])){
 	$brand = sanitize($_POST['brand']);

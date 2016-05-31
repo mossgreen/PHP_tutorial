@@ -38,6 +38,9 @@ if(isset($_POST['add_submit'])){
 	}
 	//check if brand exists in database
 	$sql = "SELECT * FROM brand WHERE brand = '$brand'";
+	if(isset($_GET['edit'])){
+		$sql = "SELECT * FROM band WHERE band = '$brand' AND id != $edit_id";
+	}
 	$result = $db -> query($sql);
 	$count = mysqli_num_rows($result);
 	if($count > 0){
@@ -51,6 +54,9 @@ if(isset($_POST['add_submit'])){
 	}else{
 		// add brand to database
 		$sql = "INSERT INTO brand (brand) VALUES ('$brand')";
+		if(isset($_GET['edit'])){
+			$sql = "UPDATE brand SET brand = '$brand' WHERE id = $edit_id";
+		}
 		$db -> query($sql);
 		header('Location: brands.php');
 

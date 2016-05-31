@@ -13,10 +13,9 @@ $errors = array();
 if(isset($_GET['edit']) && !empty($_GET['edit'])){
 	$edit_id = (int)$_GET['edit'];
 	$edit_id = sanitize($edit_id);
-	$sql2 = "SELECT * FROM brand WHERE id='$edit_id";
+	$sql2 = "SELECT * FROM brand WHERE id = $edit_id" ;
 	$edit_result = $db -> query($sql2);
-	$eBrand = mysqli_fet($edit_result);
-
+	$eBrand =  mysqli_fetch_assoc($edit_result);
 }
 
 //DElete brand
@@ -64,9 +63,9 @@ if(isset($_POST['add_submit'])){
 <hr>
 <!-- Brand form -->
 <div class="text-center">
-	<form action="brands.php <?php echo ((isset($_GET['edit']))?'?edit='.$edit_id:''); ?>" method="post" class="form-inline">
+	<form class="form-inline" action="brands.php<?=((isset($_GET['edit']))?'?edit='.$edit_id:''); ?>" method="post">
 		<div class="form-group">
-			<label for="brand">Add A Brand:</label>
+			<label for="brand"> <?php echo ((isset($_GET['edit']))?'Edit':'Add A') ?> Brand:</label>
 			<input type="text" name="brand" id="brand" class="form-control" value="<?php echo ((isset($_POST['brand']))?$_POST['brand']:''); ?>">
 			<input type="submit" name="add_submit" value="Add Brand" class="btn   btn-success">
 		</div>

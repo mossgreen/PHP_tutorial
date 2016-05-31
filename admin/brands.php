@@ -7,11 +7,21 @@ include 'includes/navigation.php';
 $sql = "SELECT * FROM brand ORDER BY brand";
 $results = $db -> query($sql);
 
+$errors = array();
+//if add form is submited
+if(isset($_POST['add_submit'])){
+	//check if brand is blank
+	if($_POST['brand'] == ''){
+		$errors[] .= 'You must enter a brand!';
+	}
+
+}
+
 ?>
 <h2 class="text-center">Brands</h2>
 <hr>
 <!-- Brand form -->
-<div>
+<div class="text-center">
 	<form action="brands.php" method="post" class="form-inline">
 		<div class="form-group">
 			<label for="brand">Add A Brand:</label>
@@ -21,6 +31,8 @@ $results = $db -> query($sql);
 
 	</form>
 </div>
+
+<hr>
 
 <table class="table table-bordered table-striped table-auto">
 	<thead>

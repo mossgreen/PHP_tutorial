@@ -64,6 +64,7 @@ if(isset($_POST['add_submit'])){
 
 }
 
+
 ?>
 <h2 class="text-center">Brands</h2>
 <hr>

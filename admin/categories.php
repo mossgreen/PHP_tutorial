@@ -26,11 +26,11 @@ $result  = $db -> query($sql);
 			<?php  while($parent = mysqli_fetch_assoc($result)): ?>
 
 					<tr class="bg-primary">
-						<td>Shirts</td>
-						<td>Men</td>
+						<td><?php echo $parent['category']; ?></td>
+						<td>Parent</td>
 						<td>
-							<a href="categries.php?edit=1" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-							<a href="categries.php?delete=1" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove-sign"></span></a>
+							<a href="categries.php?edit=<?php echo $parent['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+							<a href="categries.php?delete=<?php echo $parent['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove-sign"></span></a>
 						</td>
 					</tr>
 

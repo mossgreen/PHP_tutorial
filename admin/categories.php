@@ -11,7 +11,7 @@ $errors = array();
 if(isset($_POST) && !empty($_POST)){
 	$parent = sanitize($_POST['parent']);
 	$category = sanitize($_POST['category']);
-	$sqlform = "SELECT * FROM categories WHERE category = '$category' AND parent='$PARENT'";
+	$sqlform = "SELECT * FROM categories WHERE category = '$category' AND parent='$parent'";
 	$fresult = $db -> query($sqlform);
 	$count = mysqli_num_rows($fresult);
 	//if category is blank
@@ -31,7 +31,7 @@ if(isset($_POST) && !empty($_POST)){
 		<script>
 
 			jQuery('document').ready(function(){
-				jQuery('#errors').html(<?php echo $display ?>)
+				jQuery('#errors').html('<?php echo $display ?>');
 			})
 		</script>
 
@@ -52,12 +52,8 @@ if(isset($_POST) && !empty($_POST)){
 		<!-- category table -->
 		<form class="form" action="categories.php" method="post">
 			<legend>Add A Category</legend>
-			<div id="errors">
-				
-
-			</div>
+			<div id="errors"> </div>
 			<div class="form-group">
-				
 				<label for="parent">Parent</label>
 				<select name="parent" id="parent" class="form-control">
 					<option value="0">Parent</option>

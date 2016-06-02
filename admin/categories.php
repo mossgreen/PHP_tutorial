@@ -7,6 +7,19 @@ include 'includes/navigation.php';
 $sql = "SELECT * FROM categories WHERE parent = 0";
 $result  = $db -> query($sql);
 $errors = array();
+
+//delete category
+if(isset($_GET['delete'])&& !empty($_GET['delete'])){
+	$delete_id = (int)$_GET['delte'];
+	$delete_id = sanitize($delete_id);
+	$dsql = "DELETE FROM categories WHERE id='$delete_id";
+	$db -> query($dsql);
+	header('Location: categories.php');
+}
+
+
+
+
 //process form
 if(isset($_POST) && !empty($_POST)){
 	$parent = sanitize($_POST['parent']);
@@ -22,7 +35,7 @@ if(isset($_POST) && !empty($_POST)){
 
 	//if exist in the database
 	if($count >0){
-		$errors[] = $category.'already exist. Please choose a new category.';
+		$errors[] = $category.' already exist. Please choose a new category.';
 	}
  //display errors or update database
 	if(!empty($errors)){
@@ -38,6 +51,9 @@ if(isset($_POST) && !empty($_POST)){
 		<?php
 	}else{
 			//update database
+		$updatesql = "INSERT INTO categories (category, parent) VALUES ('$category', '$parent') ";
+		$db -> query($updatesql);
+		header('Location: categories.php');
 	}
 }
 

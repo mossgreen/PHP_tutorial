@@ -8,6 +8,14 @@ $sql = "SELECT * FROM categories WHERE parent = 0";
 $result  = $db -> query($sql);
 $errors = array();
 
+//Edite Category
+if(isset($_GET['edit']) && !empty($_GET['edit'])){
+	$edit_id = (int)$_GET['edit'];
+	$edit_id = sanitize($edit_id);
+	$edit_sql = "SELECT * FROM categories WHERE id = '$edit_id";
+	$edit_result = $db -> query($edit_sql);
+	$category = mysqli_fetch_asso
+}
 
 //delete category
 if(isset($_GET['delete']) && !empty($_GET['delete'])){
@@ -78,8 +86,8 @@ if(isset($_POST) && !empty($_POST)){
 	<!-- form -->
 	<div class="col-md-6">
 		<!-- category table -->
-		<form class="form" action="categories.php" method="post">
-			<legend>Add A Category</legend>
+		<form class="form" action="categories.php<?php echo ((isset($_GET['edit']))?'?edit='.$edit_id:''); ?>" method="post">
+			<legend><?php echo ((isset($_GET['edit'])?'Edit':'Add A')); ?> Category</legend>
 			<div id="errors"> </div>
 			<div class="form-group">
 				<label for="parent">Parent</label>

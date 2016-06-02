@@ -12,7 +12,7 @@ $errors = array();
 if(isset($_GET['edit']) && !empty($_GET['edit'])){
 	$edit_id = (int)$_GET['edit'];
 	$edit_id = sanitize($edit_id);
-	$edit_sql = "SELECT * FROM categories WHERE id = '$edit_id";
+	$edit_sql = "SELECT * FROM categories WHERE id = '$edit_id'";
 	$edit_result = $db -> query($edit_sql);
 	$category = mysqli_fetch_assoc($edit_result);
 }
@@ -106,7 +106,7 @@ if(isset($_GET['edit'])){
 			</div>
 			<div class="form-group">
 				<label for="category">Category</label>
-				<input type="text" class="form-control" id="category" name="category" value="<? php echo $category_value; ?>">
+				<input type="text" class="form-control" id="category" name="category" value="<?php echo $category_value; ?>">
 			</div>
 			<div class="form-group">
 				<input type="submit" value="Add Category" class="btn btn-success">

@@ -7,6 +7,7 @@ include 'includes/navigation.php';
 $sql = "SELECT * FROM categories WHERE parent = 0";
 $result  = $db -> query($sql);
 $errors = array();
+$category = '';
 
 //Edite Category
 if(isset($_GET['edit']) && !empty($_GET['edit'])){
@@ -14,7 +15,7 @@ if(isset($_GET['edit']) && !empty($_GET['edit'])){
 	$edit_id = sanitize($edit_id);
 	$edit_sql = "SELECT * FROM categories WHERE id = '$edit_id'";
 	$edit_result = $db -> query($edit_sql);
-	$category = mysqli_fetch_assoc($edit_result);
+	$edit_category = mysqli_fetch_assoc($edit_result);
 }
 
 //delete category
@@ -79,7 +80,11 @@ if(isset($_POST) && !empty($_POST)){
 
 $category_value = '';
 if(isset($_GET['edit'])){
-	$category_value = $category['category'];
+	$category_value = $edit_category['category'];
+}else{
+	if(isset($_POST)){
+		$category_value = $category;
+	}
 }
 
 
@@ -109,7 +114,7 @@ if(isset($_GET['edit'])){
 				<input type="text" class="form-control" id="category" name="category" value="<?php echo $category_value; ?>">
 			</div>
 			<div class="form-group">
-				<input type="submit" value="Add Category" class="btn btn-success">
+				<input type="submit" value="<?= ((isset($_GET['edit']))?'Edit ':'Add A ');?> Category" class="btn btn-success">
 			</div>
 		</form>
 

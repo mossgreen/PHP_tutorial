@@ -77,6 +77,12 @@ if(isset($_POST) && !empty($_POST)){
 	}
 }
 
+$category_value = '';
+if(isset($_GET['edit'])){
+	$category_value = $category['category'];
+}
+
+
 ?>
 
 <h2 class="text-center">Categories</h2>
@@ -100,7 +106,7 @@ if(isset($_POST) && !empty($_POST)){
 			</div>
 			<div class="form-group">
 				<label for="category">Category</label>
-				<input type="text" class="form-control" id="category" name="category">
+				<input type="text" class="form-control" id="category" name="category" value="<? php echo $category_value; ?>">
 			</div>
 			<div class="form-group">
 				<input type="submit" value="Add Category" class="btn btn-success">

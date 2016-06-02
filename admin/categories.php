@@ -8,9 +8,11 @@ $sql = "SELECT * FROM categories WHERE parent = 0";
 $result  = $db -> query($sql);
 
 ?>
+
 <h2 class="text-center">Categories</h2>
 
 <div class="row">
+
 	<!-- form -->
 	<div class="col-md-6">
 		<!-- category table -->
@@ -21,7 +23,7 @@ $result  = $db -> query($sql);
 				<select name="parent" id="parent" class="form-control">
 					<option value="0">Parent</option>
 					<?php while($parent = mysqli_fetch_assoc($result)): ?>
-						<option value="<?=$parent['id'];?>"><?=parent['category'];?></option>
+						<option value="<?=$parent['id'];?>"><?=$parent['category'];?></option>
 					<?php  endwhile; ?>
 				</select>
 			</div>

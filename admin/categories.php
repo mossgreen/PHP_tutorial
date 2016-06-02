@@ -17,6 +17,7 @@ $result  = $db -> query($sql);
 	<div class="col-md-6">
 		<!-- category table -->
 		<form class="form" action="categories.php" method="post">
+		<legend>Add A Category</legend>
 			<div class="form-group">
 				
 				<label for="parent">Parent</label>
@@ -26,6 +27,13 @@ $result  = $db -> query($sql);
 						<option value="<?=$parent['id'];?>"><?=$parent['category'];?></option>
 					<?php  endwhile; ?>
 				</select>
+			</div>
+			<div class="form-group">
+				<label for="Category">Category</label>
+				<input type="text" class="form-control" id="category" name="category">
+			</div>
+			<div class="form-group">
+				<input type="text" value="Add Category" class="btn btn-success">
 			</div>
 		</form>
 
@@ -41,7 +49,7 @@ $result  = $db -> query($sql);
 			</thead>
 			<tbody>
 				<?php  
-					
+
 				$sql = "SELECT * FROM categories WHERE parent = 0";
 				$result  = $db -> query($sql);
 

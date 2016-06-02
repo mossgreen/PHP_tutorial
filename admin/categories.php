@@ -30,6 +30,8 @@ $result  = $db -> query($sql);
 		</form>
 
 	</div>
+
+	<!-- category table -->
 	<div class="col-md-6">
 		<table class="table table-bordered">
 			<thead>
@@ -38,8 +40,13 @@ $result  = $db -> query($sql);
 				<th></th>
 			</thead>
 			<tbody>
-				<?php  while($parent = mysqli_fetch_assoc($result)):
-				$parent_id = $parent['id'];
+				<?php  
+					
+				$sql = "SELECT * FROM categories WHERE parent = 0";
+				$result  = $db -> query($sql);
+
+				while($parent = mysqli_fetch_assoc($result)):
+					$parent_id = $parent['id'];
 				$sql2 = "SELECT * FROM categories WHERE parent = '$parent_id'";
 				$cresult = $db -> query($sql2);
 				?>

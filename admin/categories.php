@@ -8,9 +8,10 @@ $sql = "SELECT * FROM categories WHERE parent = 0";
 $result  = $db -> query($sql);
 $errors = array();
 
+
 //delete category
 if(isset($_GET['delete'])&& !empty($_GET['delete'])){
-	$delete_id = (int)$_GET['delte'];
+	$delete_id = (int)$_GET['delete'];
 	$delete_id = sanitize($delete_id);
 	$dsql = "DELETE FROM categories WHERE id='$delete_id";
 	$db -> query($dsql);
@@ -105,7 +106,7 @@ if(isset($_POST) && !empty($_POST)){
 
 				while($parent = mysqli_fetch_assoc($result)):
 					$parent_id = $parent['id'];
-				
+
 				$sql2 = "SELECT * FROM categories WHERE parent = '$parent_id'";
 				$cresult = $db -> query($sql2);
 				?>

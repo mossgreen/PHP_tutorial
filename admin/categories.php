@@ -10,10 +10,21 @@ $errors = array();
 
 
 //delete category
-if(isset($_GET['delete'])&& !empty($_GET['delete'])){
+if(isset($_GET['delete']) && !empty($_GET['delete'])){
 	$delete_id = (int)$_GET['delete'];
 	$delete_id = sanitize($delete_id);
-	$dsql = "DELETE FROM categories WHERE id='$delete_id";
+
+	$sql = "SELECT * FROM categories WHERE id = '$delete_id'";
+	$result = $db -> query($sql);
+	$category = mysqli_fetch_assoc($result);
+	if($category['parent'] == 0){
+		$sql = "DELETE FROM categories WHERE Parent = '$delete_id'";
+		$db -> query($sql);
+	}
+
+
+
+	$dsql = "DELETE FROM categories WHERE id='$delete_id'";
 	$db -> query($dsql);
 	header('Location: categories.php');
 }
@@ -80,7 +91,7 @@ if(isset($_POST) && !empty($_POST)){
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="Category">Category</label>
+				<label for="category">Category</label>
 				<input type="text" class="form-control" id="category" name="category">
 			</div>
 			<div class="form-group">
@@ -105,7 +116,7 @@ if(isset($_POST) && !empty($_POST)){
 				$result  = $db -> query($sql);
 
 				while($parent = mysqli_fetch_assoc($result)):
-					$parent_id = $parent['id'];
+					$parent_id = (int)$parent['id'];
 
 				$sql2 = "SELECT * FROM categories WHERE parent = '$parent_id'";
 				$cresult = $db -> query($sql2);
@@ -115,8 +126,8 @@ if(isset($_POST) && !empty($_POST)){
 					<td><?php echo $parent['category']; ?></td>
 					<td >Parent</td>
 					<td>
-						<a href="categries.php?edit=<?php echo $parent['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-						<a href="categries.php?delete=<?php echo $parent['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove-sign"></span></a>
+						<a href="categories.php?edit=<?php echo $parent['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+						<a href="categories.php?delete=<?php echo $parent['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove-sign"></span></a>
 					</td>
 				</tr>
 				<?php while($child = mysqli_fetch_assoc($cresult)): ?>
@@ -125,8 +136,8 @@ if(isset($_POST) && !empty($_POST)){
 						<td><?php echo $child['category']; ?></td>
 						<td><?php echo $parent['category']; ?></td>
 						<td>
-							<a href="categries.php?edit=<?php echo $child['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-							<a href="categries.php?delete=<?php echo $child['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove-sign"></span></a>
+							<a href="categories.php?edit=<?php echo $child['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+							<a href="categories.php?delete=<?php echo $child['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove-sign"></span></a>
 						</td>
 					</tr>
 

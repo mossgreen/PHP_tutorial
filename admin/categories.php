@@ -11,8 +11,21 @@ $result  = $db -> query($sql);
 <h2 class="text-center">Categories</h2>
 
 <div class="row">
+	<!-- form -->
 	<div class="col-md-6">
-		
+		<!-- category table -->
+		<form class="form" action="categories.php" method="post">
+			<div class="form-group">
+				
+				<label for="parent">Parent</label>
+				<select name="parent" id="parent" class="form-control">
+					<option value="0">Parent</option>
+					<?php while($parent = mysqli_fetch_assoc($result)): ?>
+						<option value="<?=$parent['id'];?>"><?=parent['category'];?></option>
+					<?php  endwhile; ?>
+				</select>
+			</div>
+		</form>
 
 	</div>
 	<div class="col-md-6">
@@ -23,24 +36,39 @@ $result  = $db -> query($sql);
 				<th></th>
 			</thead>
 			<tbody>
-			<?php  while($parent = mysqli_fetch_assoc($result)): ?>
+				<?php  while($parent = mysqli_fetch_assoc($result)):
+				$parent_id = $parent['id'];
+				$sql2 = "SELECT * FROM categories WHERE parent = '$parent_id'";
+				$cresult = $db -> query($sql2);
+				?>
 
-					<tr class="bg-primary">
+				<tr class="bg-primary">
+					<td><?php echo $parent['category']; ?></td>
+					<td>Parent</td>
+					<td>
+						<a href="categries.php?edit=<?php echo $parent['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+						<a href="categries.php?delete=<?php echo $parent['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove-sign"></span></a>
+					</td>
+				</tr>
+				<?php while($child = mysqli_fetch_assoc($cresult)): ?>
+
+					<tr class="bg-info">
 						<td><?php echo $parent['category']; ?></td>
-						<td>Parent</td>
+						<td><?php echo $parent['category']; ?></td>
 						<td>
-							<a href="categries.php?edit=<?php echo $parent['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-							<a href="categries.php?delete=<?php echo $parent['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove-sign"></span></a>
+							<a href="categries.php?edit=<?php echo $child['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+							<a href="categries.php?delete=<?php echo $child['id']; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove-sign"></span></a>
 						</td>
 					</tr>
 
 				<?php endwhile; ?>
-			</tbody>
+			<?php endwhile; ?>
+		</tbody>
 
 
-		</table>
-		
-	</div>
+	</table>
+
+</div>
 
 
 

@@ -8,6 +8,7 @@ $sql = "SELECT * FROM categories WHERE parent = 0";
 $result  = $db -> query($sql);
 $errors = array();
 $category = '';
+$post_parent = '';
 
 //Edite Category
 if(isset($_GET['edit']) && !empty($_GET['edit'])){
@@ -43,9 +44,9 @@ if(isset($_GET['delete']) && !empty($_GET['delete'])){
 
 //process form
 if(isset($_POST) && !empty($_POST)){
-	$parent = sanitize($_POST['parent']);
+	$post_parent = sanitize($_POST['parent']);
 	$category = sanitize($_POST['category']);
-	$sqlform = "SELECT * FROM categories WHERE category = '$category' AND parent='$parent'";
+	$sqlform = "SELECT * FROM categories WHERE category = '$category' AND parent='$post_parent'";
 	$fresult = $db -> query($sqlform);
 	$count = mysqli_num_rows($fresult);
 	//if category is blank
@@ -79,11 +80,14 @@ if(isset($_POST) && !empty($_POST)){
 }
 
 $category_value = '';
+$parent_value = 0;
 if(isset($_GET['edit'])){
 	$category_value = $edit_category['category'];
+	$parent_value= $edit_category['parent'];
 }else{
 	if(isset($_POST)){
 		$category_value = $category;
+		$parent_value = $post_parent;
 	}
 }
 

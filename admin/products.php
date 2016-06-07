@@ -26,17 +26,16 @@ if(isset($_GET['featured'])) {
 	</thead>
 	<tbody>
 		<?php while($product = mysqli_fetch_assoc($presults)): 
-			$childID = $product['categories'];
-			$catSql = "SELECT * FROM categories WHERE id=$childID";
-			$result = $db -> query($catSql);
-			$child = mysqli_fetch_assoc($result);
-			$parentID = $child['parent'];
-			$pSql = "SELECT * FROM categories WHERE id= '$parentID' ";
-			$presult = $db -> query($pSql);
-			$parent = mysqli_fetch_assoc($presult);
-			$category = $parent['category'].'~'.$child['category'];
+		$childID = $product['categories'];
+		$catSql = "SELECT * FROM categories WHERE id=$childID";
+		$result = $db -> query($catSql);
+		$child = mysqli_fetch_assoc($result);
+		$parentID = $child['parent'];
+		$pSql = "SELECT * FROM categories WHERE id= '$parentID' ";
+		$presult = $db -> query($pSql);
+		$parent = mysqli_fetch_assoc($presult);
+		$category = $parent['category'].'~'.$child['category'];
 		?>
-
 		<tr>
 			<td>
 				<a href="products.php?edit=<?=$product['id']?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>

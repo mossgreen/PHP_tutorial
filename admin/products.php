@@ -22,10 +22,11 @@ $presults = $db -> query($sql);
 
 			<tr>
 				<td>
-					<a href="" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+					<a href="products.php?edit=<?=$product['id']?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+					<a href="products.php?delete=<?=$product['id']?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove"></span></a>
 				</td>
-				<td></td>
-				<td></td>
+				<td><?=$product['title'];?></td>
+				<td><?=money($product['price']);?></td>
 				<td></td>
 				<td></td>
 				<td></td>

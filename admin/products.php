@@ -14,6 +14,10 @@ if(isset($_GET['featured'])) {
 ?>
 
 <h2 class="text-center">Products</h2>
+<a href="products.php?add=1" class="btn btn-success pull-right" id="add-product-btn">
+	Add Product
+</a>
+<div class="clearfix"></div>
 <hr>
 <table class="table table-bordered table-condensed table-striped">
 	<thead>

@@ -71,11 +71,9 @@ if(isset($_POST) && !empty($_POST)){
 <?php
 	}else{
 			//update database
-
-		echo "string";
 		$updatesql = "INSERT INTO categories (category, parent) VALUES ('$category', '$post_parent') ";
 		if(isset($_GET['edit'])){
-			$updatesql = "UPDATE categories SET category = '$category' parent = '$post_parent' WHERE id ='$edit_id'";
+			$updatesql = "UPDATE categories SET category = '$category', parent = '$post_parent' WHERE id ='$edit_id'";
 		}
 		$db -> query($updatesql);
 		header('Location: categories.php');

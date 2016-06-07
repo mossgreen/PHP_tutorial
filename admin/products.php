@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/tutorial/core/init.php';;
 include 'includes/head.php';
 include 'includes/navigation.php';
 if (isset($_GET['add'])) {
-	$brandQuery = $db -> query("SELECT * FROM brand");
+	$brandQuery = $db -> query("SELECT * FROM brand ORDER BY brand");
 
 	?>
 	<h2 class="text-center">Add A New Product</h2>
@@ -16,9 +16,9 @@ if (isset($_GET['add'])) {
 		<div class="form-group col-md-3">
 			<label for="brand">brand*:</label>
 			<select class="form-control" id="brand" name="brand">
-				<option value="" <?=((isset($_POST['brand'] && $_POST['brand'] == ''))?'':'');?>></option>
+				<option value="" <?=((isset($_POST['brand']) && $_POST['brand'] == '')?' selected':'');?>></option>
 				<?php while($brand = mysqli_fetch_assoc($brandQuery)): ?>
-					<option value="<?=$brand['id'];?>" <?=((isset($_POST['brand'] && $_POST['brand'] == $brand['id']))?' selected':'');?>><?=$brand['brand'];?></option>
+					<option value="<?=$brand['id'];?>" <?=((isset($_POST['brand']) && $_POST['brand'] == $brand['id'])?' selected':'');?>><?=$brand['brand'];?></option>
 				<?php endwhile; ?>
 			</select>
 		</div>

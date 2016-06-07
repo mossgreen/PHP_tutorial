@@ -1,5 +1,4 @@
 <?php 
-
 require_once $_SERVER['DOCUMENT_ROOT'].'/tutorial/core/init.php';
 include 'includes/head.php';
 include 'includes/navigation.php';
@@ -73,7 +72,7 @@ if(isset($_POST) && !empty($_POST)){
 		<?php
 	}else{
 			//update database
-		$updatesql = "INSERT INTO categories (category, parent) VALUES ('$category', '$parent') ";
+		$updatesql = "INSERT INTO categories (category, parent) VALUES ('$category', '$post_parent') ";
 		$db -> query($updatesql);
 		header('Location: categories.php');
 	}
@@ -83,7 +82,7 @@ $category_value = '';
 $parent_value = 0;
 if(isset($_GET['edit'])){
 	$category_value = $edit_category['category'];
-	$parent_value= $edit_category['parent'];
+	// $parent_value= $edit_category['parent'];
 }else{
 	if(isset($_POST)){
 		$category_value = $category;
@@ -105,11 +104,12 @@ if(isset($_GET['edit'])){
 			<legend class="text-center"><?php echo ((isset($_GET['edit'])?'Edit':'Add A')); ?> Category</legend>
 			<div id="errors"> </div>
 			<div class="form-group">
-				<label for="parent">Parent</label>
+				<label for="parent">Parent</label><?php echo "haha"; ?>
 				<select name="parent" id="parent" class="form-control">
-					<option value="0">Parent</option>
+
+					<option value="0"<?=(($parent_value == 0)?' selected="selected"':'');?>>Parent</option>
 					<?php while($parent = mysqli_fetch_assoc($result)): ?>
-						<option value="<?=$parent['id'];?>"><?=$parent['category'];?></option>
+						<option value="<?php  echo $parent['id'];?>"<?php echo (($parent_value == $parent['id'])?' selected="selected"':'');?><?=$parent['category'];?></option>
 					<?php  endwhile; ?>
 				</select>
 			</div>

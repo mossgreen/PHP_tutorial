@@ -4,6 +4,13 @@ include 'includes/head.php';
 include 'includes/navigation.php';
 $sql = "SELECT * FROM products WHERE deleted = 0";
 $presults = $db -> query($sql);
+if(isset($_GET['featured'])) {
+	$id = (int)$_GET['id'];
+	$featured = (int)$_GET['featured'];
+	$featuredSql = "UPDATE products SET featured = '$featured' WHERE id=$id ";
+	$db -> query($featuredSql);
+	header('Location: products.php');
+}
 ?>
 
 <h2 class="text-center">Products</h2>
@@ -28,7 +35,13 @@ $presults = $db -> query($sql);
 				<td><?=$product['title'];?></td>
 				<td><?=money($product['price']);?></td>
 				<td></td>
-				<td></td>
+				<td>
+					<a href="products.php?featured=<?=(($product['featured'] == 0)?'1':'0');?>&id=<?=$product['id'];?>" class="btn btn-xs btn-default ">
+						<span class="glyphicon glyphicon-<?=(($product['featured'] == 1)?'minus':'plus');?>">
+						</span>
+					</a>
+					&nbsp <?=(($product['featured'] == 1)?'Featured product':'');?>
+				</td>
 				<td></td>
 			</tr>
 		<?php endwhile; ?>

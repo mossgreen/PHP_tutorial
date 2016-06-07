@@ -30,16 +30,10 @@ if(isset($_GET['delete']) && !empty($_GET['delete'])){
 		$sql = "DELETE FROM categories WHERE Parent = '$delete_id'";
 		$db -> query($sql);
 	}
-
-
-
 	$dsql = "DELETE FROM categories WHERE id='$delete_id'";
 	$db -> query($dsql);
 	header('Location: categories.php');
 }
-
-
-
 
 //process form
 if(isset($_POST) && !empty($_POST)){
@@ -82,19 +76,16 @@ $category_value = '';
 $parent_value = 0;
 if(isset($_GET['edit'])){
 	$category_value = $edit_category['category'];
-	// $parent_value= $edit_category['parent'];
+	$parent_value= $edit_category['parent'];
 }else{
 	if(isset($_POST)){
 		$category_value = $category;
 		$parent_value = $post_parent;
 	}
 }
-
-
 ?>
 
 <h2 class="text-center">Categories</h2>
-
 <div class="row">
 
 	<!-- form -->
@@ -104,12 +95,14 @@ if(isset($_GET['edit'])){
 			<legend class="text-center"><?php echo ((isset($_GET['edit'])?'Edit':'Add A')); ?> Category</legend>
 			<div id="errors"> </div>
 			<div class="form-group">
-				<label for="parent">Parent</label><?php echo "haha"; ?>
+				<label for="parent">Parent</label>
 				<select name="parent" id="parent" class="form-control">
-
-					<option value="0"<?=(($parent_value == 0)?' selected="selected"':'');?>>Parent</option>
+					<option value="0" <?php echo (($parent_value == 0)?' selected="selected"':'');?> >Parent</option>
 					<?php while($parent = mysqli_fetch_assoc($result)): ?>
-						<option value="<?php  echo $parent['id'];?>"<?php echo (($parent_value == $parent['id'])?' selected="selected"':'');?><?=$parent['category'];?></option>
+						<option value="<?php  echo $parent['id'];?>" <?php echo (($parent_value == $parent['id'])?' selected="selected"':'');?>> 
+							<?=$parent['category'];?>
+						</option>
+
 					<?php  endwhile; ?>
 				</select>
 			</div>

@@ -39,11 +39,14 @@ if(isset($_GET['delete']) && !empty($_GET['delete'])){
 if(isset($_POST) && !empty($_POST)){
 	$post_parent = sanitize($_POST['parent']);
 	$category = sanitize($_POST['category']);
-	$sqlform = "SELECT * FROM categories WHERE category = '$category' AND parent='$post_parent'";
+	$sqlform = "SELECT * FROM categories WHERE category ='$category' AND parent='$post_parent'";
+	if(isset($_GET['edit'])){
+		$id = $edit_category['id'];
+		$sqlform = "SELECT * FROM categories WHER category = '$category' AND parent ='$post_parent' AND id !='$id'";
+	}
 	$fresult = $db -> query($sqlform);
 	$count = mysqli_num_rows($fresult);
 	//if category is blank
-
 	if($category ==''){
 		$errors[] .= 'The category cannot be left blank.';
 	}
@@ -55,7 +58,9 @@ if(isset($_POST) && !empty($_POST)){
  //display errors or update database
 	if(!empty($errors)){
 		//display errors
-		$display = display_errors($errors); ?>
+		$display = display_errors($errors); 
+
+?>
 		<script>
 
 			jQuery('document').ready(function(){
@@ -63,10 +68,15 @@ if(isset($_POST) && !empty($_POST)){
 			})
 		</script>
 
-		<?php
+<?php
 	}else{
 			//update database
+
+		echo "string";
 		$updatesql = "INSERT INTO categories (category, parent) VALUES ('$category', '$post_parent') ";
+		if(isset($_GET['edit'])){
+			$updatesql = "UPDATE categories SET category = '$category' parent = '$post_parent' WHERE id ='$edit_id'";
+		}
 		$db -> query($updatesql);
 		header('Location: categories.php');
 	}

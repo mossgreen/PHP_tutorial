@@ -10,7 +10,7 @@ if (isset($_GET['add'])) {
 		$errors = array();
 		if (!empty($_POST['sizes'])) {
 			$sizeString = sanitize($_POST['sizes']);
-			$sizeString = rtrim($sizeString,','); echo $sizeString;
+			$sizeString = rtrim($sizeString,','); 
 			$sizesArray = explode(',',$sizeString);
 			$sArray = array();
 			$qArray = array();
@@ -19,12 +19,36 @@ if (isset($_GET['add'])) {
 				$sArray[] = $s[0];
 				$qArray[] = $s[1];		}
 			}else{ $sizesArray = array(); }
-			
+
 			$required = array('title', 'brand','price','parent','child','sizes');
 			foreach($required as $field){
 				if($_POST[$field] == ''){
 					$errors[] = 'All Fields With and Astrisk are required.';
+					break;
+				}
+			}
 
+			if(!empty($_FILES)){
+				var_dump($_FILES);
+				$photo = $_FILES['photo'];
+				$name = $photo['name'];
+				$nameArray = explode('.',$name);
+				$fileName = $nameArray[0];
+				$fileExt = $nameArray[1];
+				$mime = explode('/',$photo['type']);
+				$mimeType = $mime[0];
+				$mimeExt = $mime[1];
+				$tmpLoc = $photo['tmp_name'];
+				$fileSize = $photo['size'];
+				$allowed = array('png','jpg','jpeg','gif');
+				if($mimeType != 'image'){
+					$errors[] = 'The file must be an image.';
+				}
+				if(!in_array($fileExt, $allowed)){
+					$errors[] = 'The file extension must be a png, jpg, jpeg, or git.';
+				}
+				if($fileSize > 25000000){
+					
 				}
 			}
 			if(!empty($errors)){

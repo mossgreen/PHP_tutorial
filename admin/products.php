@@ -19,6 +19,7 @@ if (isset($_GET['add'])) {
 				$sArray[] = $s[0];
 				$qArray[] = $s[1];		}
 			}else{ $sizesArray = array(); }
+			
 			$required = array('title', 'brand','price','parent','child','sizes');
 			foreach($required as $field){
 				if($_POST[$field] == ''){

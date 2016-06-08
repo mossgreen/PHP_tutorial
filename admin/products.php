@@ -60,7 +60,9 @@ if (isset($_GET['add'])) {
 		</div>
 		<div class="form-group col-md-6">
 			<label for="description">Description:</label>
-			<textarea name="description" id="description" cols="30" rows="6" class="form-control"><?=((isset($_POST['description']))?<?=sanitize($_POST['description']);?>:'');?></textarea>
+			<textarea name="description" id="description" cols="30" rows="6" class="form-control">
+				<?=((isset($_POST['description']))?'':'');?>
+			</textarea>
 		</div>
 	</form>
 	<?php }else{

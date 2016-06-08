@@ -39,11 +39,11 @@ if (isset($_GET['add'])) {
 		</div>
 		<div class="form-group col-md-3">
 			<label for="price">Price*:</label>
-			<input type="text" id="price" name="price" class="form-control" value="<?=((isset($_POST['price']))?$_POST['price']:'');?>">
+			<input type="text" id="price" name="price" class="form-control" value="<?=((isset($_POST['price']))?sanitize($_POST['price']):'');?>">
 		</div>
 		<div class="form-group col-md-3">
 			<label for="list_price">List Price*:</label>
-			<input type="text" id="list_price" name="list_price" class="form-control" value="<?=((isset($_POST['list_price']))?$_POST['list_price']:'');?>">
+			<input type="text" id="list_price" name="list_price" class="form-control" value="<?=((isset($_POST['list_price']))?sanitize($_POST['list_price']):'');?>">
 		</div>
 		<div class="form-group col-md-3">
 			<label>Quantity & Sizes*:</label>
@@ -61,7 +61,7 @@ if (isset($_GET['add'])) {
 		<div class="form-group col-md-6">
 			<label for="description">Description:</label>
 			<textarea name="description" id="description" cols="30" rows="6" class="form-control">
-				<?=((isset($_POST['description']))?'':'');?>
+				<?=((isset($_POST['description']))?sanitize($_POST['description']):'');?>
 			</textarea>
 		</div>
 	</form>

@@ -7,6 +7,7 @@ if (isset($_GET['add'])) {
 	$parentQuery = $db -> query("SELECT * FROM categories WHERE parent = 0 ORDER BY category");
 	$sizesArray = array();
 	if ($_POST) {
+		$errors = array();
 		if (!empty($_POST['sizes'])) {
 			$sizeString = sanitize($_POST['sizes']);
 			$sizeString = rtrim($sizeString,','); echo $sizeString;
@@ -18,6 +19,18 @@ if (isset($_GET['add'])) {
 				$sArray[] = $s[0];
 				$qArray[] = $s[1];		}
 			}else{ $sizesArray = array(); }
+			$required = array('title', 'brand','price','parent','child','sizes');
+			foreach($required as $field){
+				if($_POST[$field] == ''){
+					$errors[] = 'All Fields With and Astrisk are required.';
+
+				}
+			}
+			if(!empty($errors)){
+				echo display_errors($errors);
+			}else{
+				//upload file and insert into database
+			}
 		}
 		?>
 		<h2 class="text-center">Add A New Product</h2>
@@ -56,7 +69,7 @@ if (isset($_GET['add'])) {
 				<input type="text" id="price" name="price" class="form-control" value="<?=((isset($_POST['price']))?sanitize($_POST['price']):'');?>">
 			</div>
 			<div class="form-group col-md-3">
-				<label for="list_price">List Price*:</label>
+				<label for="list_price">List Price:</label>
 				<input type="text" id="list_price" name="list_price" class="form-control" value="<?=((isset($_POST['list_price']))?sanitize($_POST['list_price']):'');?>">
 			</div>
 			<div class="form-group col-md-3">
@@ -95,7 +108,7 @@ if (isset($_GET['add'])) {
 					</div>
 					<div class="modal-body">
 						<div class="container-fluid">
-							<?php for($i =1;$i <= 12;$i++):?>
+							<?php for($i =1; $i <= 12;$i++):?>
 								<div class="form-group col-md-4">
 									<lable for="size<?=$i;?>">Size:</lable>
 									<input type="text" name="size<?=$i;?>" id="size<?=$i;?>" value="<?=((!empty($sArray[$i-1]))?$sArray[$i-1]:'');?>" class="form-control">

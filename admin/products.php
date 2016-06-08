@@ -49,9 +49,9 @@ if (isset($_GET['add'])) {
 			<label>Quantity & Sizes*:</label>
 			<button class=" form-control btn btn-default" onclick="jQuery('#sizeModal').modal('toggle');return false;">Quantity & Sizes</button>
 		</div>
-		<div class="form-group col-md-3" >
+		<div class="form-group col-md-3">
 			<label for="sizes">Sizes & Qty preview</label>
-			<input type="text" name="size" id="size" value="<?=((isset($_POST['seizes']))?$_POST['sizes']):'';?>"></input>
+			<input type="text" name="size" id="size" class="form-control" value="<?=((isset($_POST['sizes']))?$_POST['sizes']:'');?>" readonly>
 		</div>
 	</form>
 	<?php }else{

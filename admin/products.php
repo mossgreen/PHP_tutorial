@@ -49,14 +49,14 @@ if (isset($_GET['add'])) {
 				$tmpLoc = $photo['tmp_name'];
 				$fileSize = $photo['size'];
 				$allowed = array('png','jpg','jpeg','gif');
-				$uploadName = md5(microtime).'.'.$fileExt;
-				$uploadPath = BASEURL.'/tutorial/images/products';
+				$uploadName = md5(microtime()).'.'.$fileExt;
+				$uploadPath = BASEURL.'images/products';
 				$dbpath = 'tutorial/images/images/products'.$uploadName;
 				if($mimeType != 'image'){
 					$errors[] = 'The file must be an image.';
 				}
 				if(!in_array($fileExt, $allowed)){
-					$errors[] = 'The file extension must be a png, jpg, jpeg, or git.';
+					$errors[] = 'The file extension must be a png, jpg, jpeg, or gif.';
 				}
 				if($fileSize > 1000000){
 					$errors[] = 'The files size must be under 1 MB.';
@@ -128,7 +128,7 @@ if (isset($_GET['add'])) {
 			</div>
 			<div class="form-group col-md-6">
 				<label for="description">Description:</label>
-				<textarea name="description" id="description" cols="30" rows="6" class="form-control">
+				<textarea name="description" id="description"   rows="6" class="form-control">
 					<?=((isset($_POST['description']))?sanitize($_POST['description']):'');?>
 				</textarea>
 			</div>

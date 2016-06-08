@@ -5,6 +5,14 @@ include 'includes/navigation.php';
 if (isset($_GET['add'])) {
 	$brandQuery = $db -> query("SELECT * FROM brand ORDER BY brand");
 	$parentQuery = $db -> query("SELECT * FROM categories WHERE parent = 0 ORDER BY category")
+	$sizesArray = array();
+	if ($_POST) {
+		if (!empty($_POST['sizes'])) {
+			$sizeString = sanitize($_POST['sizes']);
+			$sizeString = rtrim($sizeString,','); echo "string";
+			$sizesArray = explode(',',$sizeString);
+		}
+	}
 	?>
 	<h2 class="text-center">Add A New Product</h2>
 	<hr>
@@ -90,7 +98,7 @@ if (isset($_GET['add'])) {
 								<lable for="qty<?=$i;?>">Quantify:</lable>
 								<input type="number" name="qty<?=$i;?>" id="qty<?=$i;?>" value="" min="0" class="form-control">
 							</div>
-							
+
 						<?php endfor; ?>
 					</div>
 				</div>

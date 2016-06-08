@@ -73,14 +73,26 @@ if (isset($_GET['add'])) {
 
 	<!-- Modal -->
 	<div class="modal fade" id="sizesModal" tabindex="-1" role="dialog" aria-labelledby="sizesModalLabel">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog modal-lg"  >
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					<h4 class="modal-title" id="sizesModalLabel">Size & Quantity </h4>
 				</div>
 				<div class="modal-body">
-					...
+					<div class="container-fluid">
+						<?php for($i =1;$i <= 12;$i++):?>
+							<div class="form-group col-md-4">
+								<lable for="size<?=$i;?>">Size:</lable>
+								<input type="text" name="size<?=$i;?>" id="size<?=$i;?>" value="" class="form-control">
+							</div>
+							<div class="form-group col-md-2">
+								<lable for="qty<?=$i;?>">Quantify:</lable>
+								<input type="number" name="qty<?=$i;?>" id="qty<?=$i;?>" value="" min="0" class="form-control">
+							</div>
+							
+						<?php endfor; ?>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

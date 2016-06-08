@@ -3,6 +3,11 @@
 	<br><br>
 
 	<script type="text/javascript">
+function updatesizes(){
+	alert("updateSizes");
+}
+
+
 		function get_child_options(){
 			var parentID = jQuery('#parent').val();
 			jQuery.ajax({

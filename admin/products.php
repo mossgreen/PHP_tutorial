@@ -64,7 +64,32 @@ if (isset($_GET['add'])) {
 				<?=((isset($_POST['description']))?sanitize($_POST['description']):'');?>
 			</textarea>
 		</div>
+		<div class="col-md-3 pull-right">
+			<input type="submit" value="Add Product" class="form-control btn btn-success pull-right">
+		</div>
+		<div class="clearfix"></div>
+
 	</form>
+
+	<!-- Modal -->
+	<div class="modal fade" id="sizesModal" tabindex="-1" role="dialog" aria-labelledby="sizesModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="sizesModalLabel">Size & Quantity </h4>
+				</div>
+				<div class="modal-body">
+					...
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" onclick="updateSizes();jQuery('#sizesModal').modal('toggle');return false;">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<?php }else{
 
 

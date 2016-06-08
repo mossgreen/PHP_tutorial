@@ -14,7 +14,7 @@ if (isset($_GET['add'])) {
 			$sArray = array();
 			$qArray = array();
 			foreach ($sizesArray as $ss ) {
-				$s = explode(';', $ss);
+				$s = explode(':', $ss);
 				$sArray[] = $s[0];
 				$qArray[] = $s[1];		}
 		}else{ $sizesArray = array(); }

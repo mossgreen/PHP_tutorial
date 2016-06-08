@@ -11,7 +11,13 @@ if (isset($_GET['add'])) {
 			$sizeString = sanitize($_POST['sizes']);
 			$sizeString = rtrim($sizeString,','); echo $sizeString;
 			$sizesArray = explode(',',$sizeString);
-		}
+			$sArray = array();
+			$qArray = array();
+			foreach ($sizesArray as $ss ) {
+				$s = explode(';', $ss);
+				$sArray[] = $s[0];
+				$qArray[] = $s[1];		}
+		}else{ $sizesArray = array(); }
 	}
 	?>
 	<h2 class="text-center">Add A New Product</h2>
@@ -92,11 +98,11 @@ if (isset($_GET['add'])) {
 						<?php for($i =1;$i <= 12;$i++):?>
 							<div class="form-group col-md-4">
 								<lable for="size<?=$i;?>">Size:</lable>
-								<input type="text" name="size<?=$i;?>" id="size<?=$i;?>" value="" class="form-control">
+								<input type="text" name="size<?=$i;?>" id="size<?=$i;?>" value="<?=((!empty($sArray[$i-1]))?$sArray[$i - 1]:'');?>" class="form-control">
 							</div>
 							<div class="form-group col-md-2">
 								<lable for="qty<?=$i;?>">Quantify:</lable>
-								<input type="number" name="qty<?=$i;?>" id="qty<?=$i;?>" value="" min="0" class="form-control">
+								<input type="number" name="qty<?=$i;?>" id="qty<?=$i;?>" value="<?=((!empty($qArray[$i - 1]))?$qArray[$i - 1]:'');?>" min="0" class="form-control">
 							</div>
 
 						<?php endfor; ?>

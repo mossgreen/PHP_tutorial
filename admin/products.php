@@ -4,12 +4,12 @@ include 'includes/head.php';
 include 'includes/navigation.php';
 if (isset($_GET['add'])) {
 	$brandQuery = $db -> query("SELECT * FROM brand ORDER BY brand");
-	$parentQuery = $db -> query("SELECT * FROM categories WHERE parent = 0 ORDER BY category")
+	$parentQuery = $db -> query("SELECT * FROM categories WHERE parent = 0 ORDER BY category");
 	$sizesArray = array();
 	if ($_POST) {
 		if (!empty($_POST['sizes'])) {
 			$sizeString = sanitize($_POST['sizes']);
-			$sizeString = rtrim($sizeString,','); echo "string";
+			$sizeString = rtrim($sizeString,','); echo $sizeString;
 			$sizesArray = explode(',',$sizeString);
 		}
 	}

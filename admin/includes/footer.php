@@ -3,9 +3,9 @@
 	<br><br>
 
 	<script type="text/javascript">
-function updatesizes(){
-	alert("updateSizes");
-}
+	function updateSizes(){
+			alert("updateSizes");
+		}
 
 
 		function get_child_options(){

@@ -47,7 +47,7 @@ if (isset($_GET['add'])) {
 		</div>
 		<div class="form-group col-md-3">
 			<label>Quantity & Sizes*:</label>
-			<button class=" form-control btn btn-default" onclick="jQuery('#sizeModal').modal('toggle');return false;">Quantity & Sizes</button>
+			<button class=" form-control btn btn-default" onclick="jQuery('#sizesModal').modal('toggle');return false;">Quantity & Sizes</button>
 		</div>
 		<div class="form-group col-md-3">
 			<label for="sizes">Sizes & Qty preview</label>

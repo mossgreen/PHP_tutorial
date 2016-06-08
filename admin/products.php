@@ -47,8 +47,11 @@ if (isset($_GET['add'])) {
 				if(!in_array($fileExt, $allowed)){
 					$errors[] = 'The file extension must be a png, jpg, jpeg, or git.';
 				}
-				if($fileSize > 25000000){
-					
+				if($fileSize > 1000000){
+					$errors[] = 'The files size must be under 1 MB.';
+				}
+				if($_fileExt != $mimeExt && ($mimeExt == 'jpeg' && $fileExt != 'jgp')){
+					$errors[] = 'File extension does not match the file.';
 				}
 			}
 			if(!empty($errors)){

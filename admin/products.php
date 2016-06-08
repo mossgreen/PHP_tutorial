@@ -48,18 +48,19 @@ if (isset($_GET['add'])) {
 				$mimeExt = $mime[1];
 				$tmpLoc = $photo['tmp_name'];
 				$fileSize = $photo['size'];
-				$allowed = array('png','jpg','jpeg','gif');
+				$allowed = array('png','jpg','jpeg','gif','PNG');
 				$uploadName = md5(microtime()).'.'.$fileExt;
-				$uploadPath = BASEURL.'images/products';
-				$dbpath = 'tutorial/images/images/products'.$uploadName;
+				$uploadPath = BASEURL.'images/products'.$uploadName;
+				$dbpath = 'tutorial/images/products'.$uploadName;
 				if($mimeType != 'image'){
 					$errors[] = 'The file must be an image.';
 				}
+
 				if(!in_array($fileExt, $allowed)){
 					$errors[] = 'The file extension must be a png, jpg, jpeg, or gif.';
 				}
-				if($fileSize > 1000000){
-					$errors[] = 'The files size must be under 1 MB.';
+				if($fileSize > 25000000){
+					$errors[] = 'The files size must be under 25 MB.';
 				}
 				if($fileExt != $mimeExt && ($mimeExt == 'jpeg' && $fileExt != 'jgp')){
 					$errors[] = 'File extension does not match the file.';

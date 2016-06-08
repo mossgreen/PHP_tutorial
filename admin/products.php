@@ -58,6 +58,10 @@ if (isset($_GET['add'])) {
 			<label for="photo">Product Photo:</label>
 			<input type="file" class="form-control" name="photo" id="photo">
 		</div>
+		<div class="form-group col-md-6">
+			<label for="description">Description:</label>
+			<textarea name="description" id="description" cols="30" rows="6" class="form-control"><?=((isset($_POST['description']))?<?=sanitize($_POST['description']);?>:'');?></textarea>
+		</div>
 	</form>
 	<?php }else{
 

@@ -51,7 +51,7 @@ if (isset($_GET['add'])) {
 		</div>
 		<div class="form-group col-md-3">
 			<label for="sizes">Sizes & Qty preview</label>
-			<input type="text" name="size" id="size" class="form-control" value="<?=((isset($_POST['sizes']))?$_POST['sizes']:'');?>" readonly>
+			<input type="text" name="sizes" id="sizes" class="form-control" value="<?=((isset($_POST['sizes']))?$_POST['sizes']:'');?>" readonly>
 		</div>
 
 		<div class="form-group col-md-6">

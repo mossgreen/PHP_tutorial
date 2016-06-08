@@ -4,7 +4,6 @@
 
 	<script type="text/javascript">
 		function updateSizes(){
-			alert("updateSizes");
 			var sizeString = '';
 			for(var i =1; i <= 12; i++){
 				if(jQuery('#size'+i) != ''){

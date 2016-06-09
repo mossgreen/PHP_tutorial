@@ -71,7 +71,9 @@ if (isset($_GET['add'])) {
 			}else{
 				//upload file and insert into database
 				move_uploaded_file($tmpLoc, $uploadPath);
-				$insertSql = "INSERT INTO products ('title','price','list_price','brand','categories','sizes','image') VALUES('$title','$list_price', '$brand','$categories', '$sizes','$dbpath')";
+				$insertSql = "INSERT INTO products ('title','price','list_price','brand','categories','sizes','image') VALUES('$title',‘price','$list_price', '$brand','$categories', '$sizes','$dbpath')";
+				$db -> query($insertSql);
+				header('Location: products.php');
 			}
 		}
 		?>

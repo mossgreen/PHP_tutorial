@@ -157,9 +157,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 			</div>
 			<div class="form-group col-md-6">
 				<label for="description">Description:</label>
-				<textarea name="description" id="description"   rows="6" class="form-control" placeholder="Describe  here...">
-					<?=$description;?>
-				</textarea>
+				<textarea name="description" id="description"   rows="6" class="form-control" placeholder="Describe  here..."><?=$description;?></textarea>
 			</div>
 			<div class="form-group  pull-right">
 				<a href="products.php" class="btn btn-default">Cancel</a>

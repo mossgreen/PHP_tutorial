@@ -2,10 +2,13 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/tutorial/core/init.php';;
 include 'includes/head.php';
 include 'includes/navigation.php';
-if (isset($_GET['add'])) {
+if (isset($_GET['add']) || isset($_GET['edit'])) {
 	$brandQuery = $db -> query("SELECT * FROM brand ORDER BY brand");
 	$parentQuery = $db -> query("SELECT * FROM categories WHERE parent = 0 ORDER BY category");
 	$sizesArray = array();
+	if(isset($_GET['edit'])){
+		$edit_id = (int)$_GET['edit'];
+	}
 	if ($_POST) {
 		$title = sanitize($_POST['title']);
 		$brand = sanitize($_POST['brand']);
@@ -78,9 +81,9 @@ if (isset($_GET['add'])) {
 			}
 		}
 		?>
-		<h2 class="text-center">Add A New Product</h2>
+		<h2 class="text-center"><?=((isset($_GET['edit']))?'Edit ':'Add A New ');?>Product</h2>
 		<hr>
-		<form action="products.php?add=1" method="POST" enctype="multipart/form-data">
+		<form action="products.php?<?=((isset($_GET['edit']))?'edit='.$edit_id:'add=1');?>" method="POST" enctype="multipart/form-data">
 			<div class="form-group col-md-3">
 				<label for="title">Title*:</label>
 				<input class="form-control" type="text" name="title" id="title" value="<?=((isset($_POST['title']))?sanitize($_POST['title']):'');?>">
@@ -136,8 +139,9 @@ if (isset($_GET['add'])) {
 					<?=((isset($_POST['description']))?sanitize($_POST['description']):'');?>
 				</textarea>
 			</div>
-			<div class="col-md-3 pull-right">
-				<input type="submit" value="Add Product" class="form-control btn btn-success pull-right">
+			<div class="form-group  pull-right">
+			<a href="products.php" class="btn btn-default">Cancel</a>
+				<input type="submit" value="<?=((isset($_GET['edit']))?'Edit':'Add');?> Product" class=" btn btn-success  ">
 			</div>
 			<div class="clearfix"></div>
 

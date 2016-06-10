@@ -7,12 +7,15 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 	$parentQuery = $db -> query("SELECT * FROM categories WHERE parent = 0 ORDER BY category");
 	$title = ((isset($_POST['title']) && $_POST['title'] != '')?sanitize($_POST['title']):'');
 	$brand = ((isset($_POST['brand']) && !empty($_POST['brand']))?sanitize($_POST['brand']):'');
+	$parent = ((isset($_POST['parent']) && !empty($_POST['parent']))?sanitize($_POST['parent']):'');
+
 	if(isset($_GET['edit'])){
 		$edit_id = (int)$_GET['edit'];
 		$productResults = $db -> query("SELECT * FROM products WHERE id =$edit_id");
 		$product = mysqli_fetch_assoc($productResults) ;
 		$title = ((isset($_POST['title']) && !empty($_POST['title']))?sanitize($_POST['title']):$product['title']);
 		$brand = ((isset($_POST['brand']) && !empty($_POST['brand']))?sanitize($_POST['brand']):$product['brand']);
+		$parent = ((isset($_POST['parent']) && !empty($_POST['parent']))?sanitize($_POST['parent']):$product['parent']); 
 	}
 	if ($_POST) {
 		$categories = sanitize($_POST['child']);
@@ -96,7 +99,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 				<select class="form-control" id="brand" name="brand">
 					<option value="" <?=(($brand == '')?' selected':'');?>></option>
 					<?php while($bresult = mysqli_fetch_assoc($brandQuery)): ?>
-						<option value="<?=$brand['id'];?>" <?=(($brand == $bresult['id'])?' selected':'');?>>
+						<option value="<?=$bresult['id'];?>" <?=(($brand == $bresult['id'])?' selected':'');?> >
 							<?=$bresult['brand'];?>
 						</option>
 					<?php endwhile; ?>
@@ -105,9 +108,11 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 			<div class="form-group col-md-3">
 				<label for="parent">Parent Category*:</label>
 				<select name="parent" id="parent" class="form-control">
-					<option value="" <?=((isset($_POST['parent']) && $_POST['parent'] == '')?' selected':'');?>></option>
-					<?php while($parent = mysqli_fetch_assoc($parentQuery)): ?>
-						<option value="<?=$parent['id'];?>" <?=((isset($_POST['parent']) && $_POST['parent'] == $parent['id'])?' select':'');?>><?=$parent['category'];?></option>
+					<option value="" <?=(($parent == '')?' selected':'');?>></option>
+					<?php while($pResult = mysqli_fetch_assoc($parentQuery)): ?>
+						<option value="<?=$pResult['id'];?>" <?=(($parent == $pResult['id'])?' selected':'');?>>
+							<?=$pResult['category'];?>
+						</option>
 					<?php endwhile; ?>
 				</select>
 			</div>

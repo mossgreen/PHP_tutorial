@@ -2,7 +2,7 @@
 
 	<br><br>
 
-	<script type="text/javascript">
+	<script>
 		function updateSizes(){
 			var sizeString = '';
 			for(var i =1; i <= 12; i++){

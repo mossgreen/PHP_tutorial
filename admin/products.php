@@ -2,6 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/tutorial/core/init.php';;
 include 'includes/head.php';
 include 'includes/navigation.php';
+$dbpath = '';
 if (isset($_GET['add']) || isset($_GET['edit'])) {
 	$brandQuery = $db -> query("SELECT * FROM brand ORDER BY brand");
 	$parentQuery = $db -> query("SELECT * FROM categories WHERE parent = 0 ORDER BY category");
@@ -102,6 +103,10 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 				//upload file and insert into database
 				move_uploaded_file($tmpLoc, $uploadPath);
 				$insertSql = "INSERT INTO products (title,price,list_price,brand,categories,sizes,image,description) VALUES('$title',$price,$list_price, $brand,'$categories', '$sizes','$dbpath', '$description')";
+
+				if(isset($_POST['edit'])){
+					$insertSql = "UPDATE products SET title = '$title', price = '$price' list_price = '$list_price',brand = '$brand', categories = 'categories',sizes = '$sizes', image = '$dbpath', description = '$description'";
+				}
 				$db -> query($insertSql);
 
 				header('Location: products.php');
@@ -129,7 +134,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 			<div class="form-group col-md-3">
 				<label for="parent">Parent Category*:</label>
 				<select name="parent" id="parent" class="form-control">
-					<option value="" <?=(($parent == '')?' selected':'');?>></option>
+					<!-- <option value="" <?=(($parent == '')?' selected':'');?>></option> -->
 					<?php while($p = mysqli_fetch_assoc($parentQuery)): ?>
 						<option value="<?=$p['id'];?>" <?=(($parent == $p['id'])?' selected':'');?>>
 							<?=$p['category'];?>

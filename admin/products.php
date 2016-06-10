@@ -257,5 +257,11 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 
 		<?php }
 		include 'includes/footer.php';
-
 		?>
+
+		<script>
+
+			jQuery('document').ready(function(){
+				get_child_options('<?=$category;?>')
+			});
+		</script>

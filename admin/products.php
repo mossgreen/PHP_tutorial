@@ -98,7 +98,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 				<select class="form-control" id="brand" name="brand">
 					<option value="" <?=(($brand == '')?' selected':'');?>></option>
 					<?php while($bresult = mysqli_fetch_assoc($brandQuery)): ?>
-						<option value="<?=$brand['id'];?>" <?=($brand == $bresult['id'])?' selected':'');?>>
+						<option value="<?=$brand['id'];?>" <?=(($brand == $bresult['id'])?' selected':'');?>>
 							<?=$brand['bresult'];?>
 						</option>
 					<?php endwhile; ?>

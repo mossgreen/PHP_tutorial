@@ -15,7 +15,7 @@
 
 
 		function get_child_options(selected){
-			if(typeof selected  === 'undefined'){
+			if(typeof selected   == 'undfined'){
 				var selected = '';
 			}
 			var parentID = jQuery('#parent').val();

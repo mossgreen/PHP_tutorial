@@ -9,28 +9,28 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 	$title = ((isset($_POST['title']) && $_POST['title'] != '')?sanitize($_POST['title']):'');
 	$brand = ((isset($_POST['brand']) && !empty($_POST['brand']))?sanitize($_POST['brand']):'');
 	$parent = ((isset($_POST['parent']) && !empty($_POST['parent']))?sanitize($_POST['parent']):'');
-	$categories = ((isset($_POST['child']) && !empty($_POST['child']))?sanitize($_POST['child']):'');
+	$category = ((isset($_POST['child']) && !empty($_POST['child']))?sanitize($_POST['child']):'');
 	$price = ((isset($_POST['price']) && $_POST['price'] != '')?sanitize($_POST['price']):'');
 	$list_price = ((isset($_POST['list_price']) && $_POST['list_price'] != '')?sanitize($_POST['list_price']):'');
 	$description = ((isset($_POST['$description']) && $_POST['$description'] != '')?sanitize($_POST['$description']):'');
 	$sizes = ((isset($_POST['sizes']) && $_POST['sizes'] != '')?sanitize($_POST['sizes']):'');
 	$sizes = rtrim($sizes, ',');
 	$saved_image = '';
+
 	if(isset($_GET['edit'])){
 		$edit_id = (int)$_GET['edit'];
 		$productResults = $db -> query("SELECT * FROM products WHERE id ='$edit_id'");
 		$product = mysqli_fetch_assoc($productResults);
 		if(isset($_GET['delete_image'])){
-			$image_url = $_SERVER['DOCUMENT_ROOT'].$product['image'];
-			echo $image_url;
-			unset($image_url);   
+			$image_url = $_SERVER['DOCUMENT_ROOT'].$product['image']; echo $image_url;
+			unlink($image_url);   
 			$db -> query("UPDATE products SET image = '' WHERE id= '$edit_id' ");
 			header('Location: products.php?edit='.$edit_id);
 		}
-		$categories = ((isset($_POST['child']) && $_POST['child'] != '')?sanitize($_POST['child']):$product['categories']);
+		$category = ((isset($_POST['child']) && $_POST['child'] != '')?sanitize($_POST['child']):$product['categories']);
 		$title = ((isset($_POST['title']) && !empty($_POST['title']))?sanitize($_POST['title']):$product['title']);
 		$brand = ((isset($_POST['brand']) && !empty($_POST['brand']))?sanitize($_POST['brand']):$product['brand']);
-		$parentQ = $db -> query("SELECT * FROM categories WHERE id ='$categories'");
+		$parentQ = $db -> query("SELECT * FROM categories WHERE id ='$category'");
 		$parentResult = mysqli_fetch_assoc($parentQ);
 		$parent = ((isset($_POST['parent']) && !empty($_POST['parent']))?sanitize($_POST['parent']):$parentResult['parent']); 
 		$price = ((isset($_POST['price']) && $_POST['price'] != '')?sanitize($_POST['price']):$product['price']);
@@ -102,10 +102,10 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 			}else{
 				//upload file and insert into database
 				move_uploaded_file($tmpLoc, $uploadPath);
-				$insertSql = "INSERT INTO products (title,price,list_price,brand,categories,sizes,image,description) VALUES('$title','$price','$list_price', '$brand','$categories', '$sizes','$dbpath', '$description')";
+				$insertSql = "INSERT INTO products (title,price,list_price,brand,categories,sizes,image,description) VALUES('$title','$price','$list_price', '$brand','$category', '$sizes','$dbpath', '$description')";
 
 				if(isset($_POST['edit'])){
-					$insertSql = "UPDATE products SET title = '$title', price = '$price' list_price = '$list_price',brand = '$brand', categories = '$categories',sizes = '$sizes', image = '$dbpath', description = '$description' WHERE id='$edit_id'";
+					$insertSql = "UPDATE products SET title = '$title', price = '$price' list_price = '$list_price',brand = '$brand', categories = '$category',sizes = '$sizes', image = '$dbpath', description = '$description' WHERE id='$edit_id'";
 				}
 				$db -> query($insertSql);
 
@@ -181,7 +181,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 			</div>
 			<div class="form-group col-md-6">
 				<label for="description">Description:</label>
-				<textarea type="text" name="description" id="description"   rows="6" class="form-control" placeholder="Describe  here..."><?=$description;?></textarea>
+				<textarea name="description" id="description"   rows="6" class="form-control" placeholder="Describe  here..."><?=$description;?></textarea>
 			</div>
 			<div class="form-group  pull-right">
 				<a href="products.php" class="btn btn-default">Cancel</a>
@@ -293,6 +293,6 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		<script>
 
 			jQuery('document').ready(function(){
-				get_child_options('<?=$categories;?>')
+				get_child_options('<?=$category;?>')
 			});
 		</script>

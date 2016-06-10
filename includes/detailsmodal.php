@@ -9,9 +9,9 @@ $brand_id = $product['brand'];
 $sql = "SELECT brand FROM brand WHERE id='$brand_id'";
 $brand_query = $db -> query($sql);
 $brand = mysqli_fetch_assoc($brand_query);
-var_dump($product);
+//var_dump($product);
 $sizestring = $product['sizes'];
-$sizestring = rtrim($sizeString,',');
+$sizestring = rtrim($sizestring,',');
 $size_array = explode(',',$sizestring);
 ?>
 

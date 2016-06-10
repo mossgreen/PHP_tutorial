@@ -75,6 +75,10 @@ img.details{
 	margin-top: -35px;
 }
 
+.saved-image img{
+	max-width:200px;
+	height:auto;
+}
 
 
 

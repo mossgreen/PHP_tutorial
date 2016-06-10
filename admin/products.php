@@ -1,4 +1,5 @@
 <?php 
+print_r($_REQUEST);
 require_once $_SERVER['DOCUMENT_ROOT'].'/tutorial/core/init.php';;
 include 'includes/head.php';
 include 'includes/navigation.php';
@@ -12,7 +13,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 	$category = ((isset($_POST['child']) && !empty($_POST['child']))?sanitize($_POST['child']):'');
 	$price = ((isset($_POST['price']) && $_POST['price'] != '')?sanitize($_POST['price']):'');
 	$list_price = ((isset($_POST['list_price']) && $_POST['list_price'] != '')?sanitize($_POST['list_price']):'');
-	$description = ((isset($_POST['$description']) && $_POST['$description'] != '')?sanitize($_POST['$description']):'');
+	$description = ((isset($_POST['description']) && $_POST['description'] != '')?sanitize($_POST['description']):'');
 	$sizes = ((isset($_POST['sizes']) && $_POST['sizes'] != '')?sanitize($_POST['sizes']):'');
 	$sizes = rtrim($sizes, ',');
 	$saved_image = '';
@@ -54,11 +55,8 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		}else{ $sizesArray = array(); }
 
 		if ($_POST) {
-
 			$dbpath = '';
 			$errors = array();
-
-
 			$required = array('title', 'brand','price','parent','child','sizes');
 			foreach($required as $field){
 				if($_POST[$field] == ''){

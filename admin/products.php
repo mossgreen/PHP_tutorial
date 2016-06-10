@@ -13,7 +13,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 	$list_price = ((isset($_POST['list_price']) && $_POST['list_price'] != '')?sanitize($_POST['list_price']):'');
 	$description = ((isset($_POST['$description']) && $_POST['$description'] != '')?sanitize($_POST['$description']):'');
 	$sizes = ((isset($_POST['sizes']) && $_POST['sizes'] != '')?sanitize($_POST['sizes']):'');
-
+	$sizes = rtrim($sizes, ',');
 	if(isset($_GET['edit'])){
 		$edit_id = (int)$_GET['edit'];
 		$productResults = $db -> query("SELECT * FROM products WHERE id =$edit_id");
@@ -28,27 +28,25 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		$list_price = ((isset($_POST['list_price']) && $_POST['list_price'] != '')?sanitize($_POST['list_price']):$product['list_price']);
 		$description = ((isset($_POST['description']) && $_POST['description'] != '')?sanitize($_POST['description']):$product['description']);
 		$sizes = ((isset($_POST['sizes']) && $_POST['sizes'] != '')?sanitize($_POST['sizes']):$product['sizes']);
-
+		$sizes = rtrim($sizes, ',');
 	}
-	if ($_POST) {
-		$categories = sanitize($_POST['child']);
-		$price = sanitize($_POST['price']);
-		$list_price = sanitize(($_POST['list_price']));
-		$sizes = sanitize(($_POST['sizes']));
-		$description = sanitize($_POST['description']);
-		$dbpath = '';
-		$errors = array();
-		if (!empty($_POST['sizes'])) {
-			$sizeString = sanitize($_POST['sizes']);
-			$sizeString = rtrim($sizeString,','); 
-			$sizesArray = explode(',',$sizeString);
-			$sArray = array();
-			$qArray = array();
-			foreach ($sizesArray as $ss ) {
-				$s = explode(':', $ss);
-				$sArray[] = $s[0];
-				$qArray[] = $s[1];		}
-			}else{ $sizesArray = array(); }
+	if (!empty($sizes)) {
+		$sizeString = sanitize($sizes);
+		$sizeString = rtrim($sizeString,','); 
+		$sizesArray = explode(',',$sizeString);
+		$sArray = array();
+		$qArray = array();
+		foreach ($sizesArray as $ss ) {
+			$s = explode(':', $ss);
+			$sArray[] = $s[0];
+			$qArray[] = $s[1];		}
+		}else{ $sizesArray = array(); }
+
+		if ($_POST) {
+
+			$dbpath = '';
+			$errors = array();
+
 
 			$required = array('title', 'brand','price','parent','child','sizes');
 			foreach($required as $field){

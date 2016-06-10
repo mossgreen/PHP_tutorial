@@ -6,15 +6,16 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 	$brandQuery = $db -> query("SELECT * FROM brand ORDER BY brand");
 	$parentQuery = $db -> query("SELECT * FROM categories WHERE parent = 0 ORDER BY category");
 	$title = ((isset($_POST['title']) && $_POST['title'] != '')?sanitize($_POST['title']):'');
-	$sizesArray = array();
+	$brand = ((isset($_POST['brand']) && !empty($_POST['brand']))?sanitize($_POST['brand']):'');
 	if(isset($_GET['edit'])){
 		$edit_id = (int)$_GET['edit'];
 		$productResults = $db -> query("SELECT * FROM products WHERE id =$edit_id");
 		$product = mysqli_fetch_assoc($productResults) ;
-		$title = $product['title'];
+		$title = ((isset($_POST['title']) && !empty($_POST['title']))?sanitize($_POST['title']):$product['title']);
+		$brand = ((isset($_POST['brand']) && !empty($_POST['brand']))?sanitize($_POST['brand']):$product['brand']);
 	}
 	if ($_POST) {
-		$title = sanitize($_POST['title']);
+		
 		$brand = sanitize($_POST['brand']);
 		$categories = sanitize($_POST['child']);
 		$price = sanitize($_POST['price']);
@@ -81,7 +82,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 				$insertSql = "INSERT INTO products (title,price,list_price,brand,categories,sizes,image,description) VALUES('$title',$price,$list_price, $brand,'$categories', '$sizes','$dbpath', '$description')";
 				$db -> query($insertSql);
 
-				 header('Location: products.php');
+				header('Location: products.php');
 			}
 		}
 		?>
@@ -95,9 +96,11 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 			<div class="form-group col-md-3">
 				<label for="brand">brand*:</label>
 				<select class="form-control" id="brand" name="brand">
-					<option value="" <?=((isset($_POST['brand']) && $_POST['brand'] == '')?' selected':'');?>></option>
-					<?php while($brand = mysqli_fetch_assoc($brandQuery)): ?>
-						<option value="<?=$brand['id'];?>" <?=((isset($_POST['brand']) && $_POST['brand'] == $brand['id'])?' selected':'');?>><?=$brand['brand'];?></option>
+					<option value="" <?=(($brand == '')?' selected':'');?>></option>
+					<?php while($bresult = mysqli_fetch_assoc($brandQuery)): ?>
+						<option value="<?=$brand['id'];?>" <?=($brand == $bresult['id'])?' selected':'');?>>
+							<?=$brand['bresult'];?>
+						</option>
 					<?php endwhile; ?>
 				</select>
 			</div>
@@ -144,7 +147,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 				</textarea>
 			</div>
 			<div class="form-group  pull-right">
-			<a href="products.php" class="btn btn-default">Cancel</a>
+				<a href="products.php" class="btn btn-default">Cancel</a>
 				<input type="submit" value="<?=((isset($_GET['edit']))?'Edit':'Add');?> Product" class=" btn btn-success  ">
 			</div>
 			<div class="clearfix"></div>

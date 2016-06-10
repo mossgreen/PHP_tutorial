@@ -24,7 +24,8 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		$product = mysqli_fetch_assoc($productResults);
 		if(isset($_GET['delete_image'])){
 			$image_url = $_SERVER['DOCUMENT_ROOT'].$product['image']; echo $image_url;
-			unlink($image_url);   
+			echo $image_url;
+			//unlink($image_url);   
 			$db -> query("UPDATE products SET image = '' WHERE id= '$edit_id' ");
 			header('Location: products.php?edit='.$edit_id);
 		}
@@ -102,11 +103,10 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 				move_uploaded_file($tmpLoc, $uploadPath);
 				$insertSql = "INSERT INTO products (title,price,list_price,brand,categories,sizes,image,description) VALUES('$title','$price','$list_price', '$brand','$category', '$sizes','$dbpath', '$description')";
 
-				if(isset($_POST['edit'])){
+				if(isset($_GET['edit'])){
 					$insertSql = "UPDATE products SET title = '$title', price = '$price' list_price = '$list_price',brand = '$brand', categories = '$category',sizes = '$sizes', image = '$dbpath', description = '$description' WHERE id='$edit_id'";
 				}
 				$db -> query($insertSql);
-
 				header('Location: products.php');
 			}
 		}

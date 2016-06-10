@@ -38,8 +38,7 @@ $size_array = explode(',',$sizestring);
 						</div>
 						<div class="col-sm-6">
 							<h4>Details</h4>
-							<p><?= nl2br(product['description']); ?></p>
-
+							<p><?= nl2br($product['description']); ?></p>
 							<hr>
 							<p>Price: $<?php echo $product['price']; ?></p>
 							<p>Brand: <?php echo $brand['brand']; ?> </p>

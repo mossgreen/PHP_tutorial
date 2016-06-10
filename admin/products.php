@@ -15,8 +15,6 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		$brand = ((isset($_POST['brand']) && !empty($_POST['brand']))?sanitize($_POST['brand']):$product['brand']);
 	}
 	if ($_POST) {
-		
-		$brand = sanitize($_POST['brand']);
 		$categories = sanitize($_POST['child']);
 		$price = sanitize($_POST['price']);
 		$list_price = sanitize(($_POST['list_price']));
@@ -99,7 +97,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 					<option value="" <?=(($brand == '')?' selected':'');?>></option>
 					<?php while($bresult = mysqli_fetch_assoc($brandQuery)): ?>
 						<option value="<?=$brand['id'];?>" <?=(($brand == $bresult['id'])?' selected':'');?>>
-							<?=$brand['bresult'];?>
+							<?=$bresult['brand'];?>
 						</option>
 					<?php endwhile; ?>
 				</select>

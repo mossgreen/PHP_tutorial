@@ -10,6 +10,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 	$parent = ((isset($_POST['parent']) && !empty($_POST['parent']))?sanitize($_POST['parent']):'');
 	$category = ((isset($_POST['child']) && !empty($_POST['child']))?sanitize($_POST['child']):'');
 	$price = ((isset($_POST['price']) && $_POST['price'] != '')?sanitize($_POST['price']):'');
+	$list_price = ((isset($_POST['list_price']) && $_POST['list_price'] != '')?sanitize($_POST['list_price']):'');
 
 	if(isset($_GET['edit'])){
 		$edit_id = (int)$_GET['edit'];
@@ -22,6 +23,8 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		$parentResult = mysqli_fetch_assoc($parentQ);
 		$parent = ((isset($_POST['parent']) && !empty($_POST['parent']))?sanitize($_POST['parent']):$parentResult['parent']); 
 		$price = ((isset($_POST['price']) && $_POST['price'] != '')?sanitize($_POST['price']):$product['price']);
+		$list_price = ((isset($_POST['list_price']) && $_POST['list_price'] != '')?sanitize($_POST['list_price']):$product['list_price']);
+
 
 	}
 	if ($_POST) {
@@ -135,7 +138,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 			</div>
 			<div class="form-group col-md-3">
 				<label for="list_price">List Price:</label>
-				<input type="text" id="list_price" name="list_price" class="form-control" value="<?=((isset($_POST['list_price']))?sanitize($_POST['list_price']):'');?>">
+				<input type="text" id="list_price" name="list_price" class="form-control" value="<?=$list_price;?>">
 			</div>
 			<div class="form-group col-md-3">
 				<label>Quantity & Sizes*:</label>

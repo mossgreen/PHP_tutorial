@@ -21,7 +21,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		$productResults = $db -> query("SELECT * FROM products WHERE id ='$edit_id'");
 		$product = mysqli_fetch_assoc($productResults);
 		if(isset($_GET['delete_image'])){
-			$image_url = $_SERVER['DOCUMENT_ROOT'].'/'.$product['image'];
+			$image_url = $_SERVER['DOCUMENT_ROOT'].$product['image'];
 			echo $image_url;
 			unset($image_url);   
 			$db -> query("UPDATE product SET image = '' WHERE id= $edit_id ");

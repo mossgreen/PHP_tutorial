@@ -16,7 +16,6 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 	$sizes = ((isset($_POST['sizes']) && $_POST['sizes'] != '')?sanitize($_POST['sizes']):'');
 	$sizes = rtrim($sizes, ',');
 	$saved_image = '';
-
 	if(isset($_GET['edit'])){
 		$edit_id = (int)$_GET['edit'];
 		$productResults = $db -> query("SELECT * FROM products WHERE id ='$edit_id'");
@@ -31,7 +30,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		$categories = ((isset($_POST['child']) && $_POST['child'] != '')?sanitize($_POST['child']):$product['categories']);
 		$title = ((isset($_POST['title']) && !empty($_POST['title']))?sanitize($_POST['title']):$product['title']);
 		$brand = ((isset($_POST['brand']) && !empty($_POST['brand']))?sanitize($_POST['brand']):$product['brand']);
-		$parentQ = $db -> query("SELECT * FROM categories WHERE id ='$category'");
+		$parentQ = $db -> query("SELECT * FROM categories WHERE id ='$categories'");
 		$parentResult = mysqli_fetch_assoc($parentQ);
 		$parent = ((isset($_POST['parent']) && !empty($_POST['parent']))?sanitize($_POST['parent']):$parentResult['parent']); 
 		$price = ((isset($_POST['price']) && $_POST['price'] != '')?sanitize($_POST['price']):$product['price']);
@@ -40,6 +39,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		$sizes = ((isset($_POST['sizes']) && $_POST['sizes'] != '')?sanitize($_POST['sizes']):$product['sizes']);
 		$sizes = rtrim($sizes, ',');
 		$saved_image = (($product['image'] != '')?$product['image']:'');
+		$dbpath = $saved_image;
 	}
 	if (!empty($sizes)) {
 		$sizeString = sanitize($sizes);
@@ -105,7 +105,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 				$insertSql = "INSERT INTO products (title,price,list_price,brand,categories,sizes,image,description) VALUES('$title','$price','$list_price', '$brand','$categories', '$sizes','$dbpath', '$description')";
 
 				if(isset($_POST['edit'])){
-					$insertSql = "UPDATE products SET title = '$title', price = '$price' list_price = '$list_price',brand = '$brand', categories = '$categories',sizes = '$sizes', image = '$dbpath', description = '$description'";
+					$insertSql = "UPDATE products SET title = '$title', price = '$price' list_price = '$list_price',brand = '$brand', categories = '$categories',sizes = '$sizes', image = '$dbpath', description = '$description' WHERE id='$edit_id'";
 				}
 				$db -> query($insertSql);
 
@@ -293,6 +293,6 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		<script>
 
 			jQuery('document').ready(function(){
-				get_child_options('<?=$category;?>')
+				get_child_options('<?=$categories;?>')
 			});
 		</script>

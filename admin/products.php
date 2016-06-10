@@ -14,6 +14,8 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 	$description = ((isset($_POST['$description']) && $_POST['$description'] != '')?sanitize($_POST['$description']):'');
 	$sizes = ((isset($_POST['sizes']) && $_POST['sizes'] != '')?sanitize($_POST['sizes']):'');
 	$sizes = rtrim($sizes, ',');
+	$saved_image = '';
+
 	if(isset($_GET['edit'])){
 		$edit_id = (int)$_GET['edit'];
 		$productResults = $db -> query("SELECT * FROM products WHERE id =$edit_id");
@@ -29,6 +31,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		$description = ((isset($_POST['description']) && $_POST['description'] != '')?sanitize($_POST['description']):$product['description']);
 		$sizes = ((isset($_POST['sizes']) && $_POST['sizes'] != '')?sanitize($_POST['sizes']):$product['sizes']);
 		$sizes = rtrim($sizes, ',');
+		$saved_image = (($product['image'] != '')?$product['image']:'');
 	}
 	if (!empty($sizes)) {
 		$sizeString = sanitize($sizes);
@@ -151,6 +154,12 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 			</div>
 
 			<div class="form-group col-md-6">
+
+				<?php if($saved_image != ''): ?>
+					<div class="saved_image">
+					<img src="<?=$saved_image;?>" alt="saved image" />
+					</div>
+				<?php endif; ?>
 				<label for="photo">Product Photo:</label>
 				<input type="file" class="form-control" name="photo" id="photo">
 			</div>

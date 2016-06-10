@@ -5,9 +5,13 @@ include 'includes/navigation.php';
 if (isset($_GET['add']) || isset($_GET['edit'])) {
 	$brandQuery = $db -> query("SELECT * FROM brand ORDER BY brand");
 	$parentQuery = $db -> query("SELECT * FROM categories WHERE parent = 0 ORDER BY category");
+	$title = ((isset($_POST['title']) && $_POST['title'] != '')?sanitize($_POST['title']):'');
 	$sizesArray = array();
 	if(isset($_GET['edit'])){
 		$edit_id = (int)$_GET['edit'];
+		$productResults = $db -> query("SELECT * FROM products WHERE id =$edit_id");
+		$product = mysqli_fetch_assoc($productResults) ;
+		$title = $product['title'];
 	}
 	if ($_POST) {
 		$title = sanitize($_POST['title']);
@@ -86,7 +90,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		<form action="products.php?<?=((isset($_GET['edit']))?'edit='.$edit_id:'add=1');?>" method="POST" enctype="multipart/form-data">
 			<div class="form-group col-md-3">
 				<label for="title">Title*:</label>
-				<input class="form-control" type="text" name="title" id="title" value="<?=((isset($_POST['title']))?sanitize($_POST['title']):'');?>">
+				<input class="form-control" type="text" name="title" id="title" value="<?=$title;?>">
 			</div>
 			<div class="form-group col-md-3">
 				<label for="brand">brand*:</label>

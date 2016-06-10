@@ -157,11 +157,13 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 
 				<?php if($saved_image != ''): ?>
 					<div class="saved_image">
-					<img src="<?=$saved_image;?>" alt="saved image" />
+						<img src="<?=$saved_image;?>" alt="saved image" />
 					</div>
+				<?php else: ?>
+					<label for="photo">Product Photo</label>
+					<input type="file" class="form-control" name="photo" id="photo">
 				<?php endif; ?>
-				<label for="photo">Product Photo:</label>
-				<input type="file" class="form-control" name="photo" id="photo">
+	
 			</div>
 			<div class="form-group col-md-6">
 				<label for="description">Description:</label>

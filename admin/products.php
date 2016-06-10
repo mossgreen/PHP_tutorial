@@ -11,6 +11,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 	$category = ((isset($_POST['child']) && !empty($_POST['child']))?sanitize($_POST['child']):'');
 	$price = ((isset($_POST['price']) && $_POST['price'] != '')?sanitize($_POST['price']):'');
 	$list_price = ((isset($_POST['list_price']) && $_POST['list_price'] != '')?sanitize($_POST['list_price']):'');
+	$description = ((isset($_POST['$description']) && $_POST['$description'] != '')?sanitize($_POST['$description']):'');
 
 	if(isset($_GET['edit'])){
 		$edit_id = (int)$_GET['edit'];
@@ -24,6 +25,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		$parent = ((isset($_POST['parent']) && !empty($_POST['parent']))?sanitize($_POST['parent']):$parentResult['parent']); 
 		$price = ((isset($_POST['price']) && $_POST['price'] != '')?sanitize($_POST['price']):$product['price']);
 		$list_price = ((isset($_POST['list_price']) && $_POST['list_price'] != '')?sanitize($_POST['list_price']):$product['list_price']);
+		$description = ((isset($_POST['description']) && $_POST['description'] != '')?sanitize($_POST['description']):$product['description']);
 
 
 	}
@@ -155,8 +157,8 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 			</div>
 			<div class="form-group col-md-6">
 				<label for="description">Description:</label>
-				<textarea name="description" id="description"   rows="6" class="form-control">
-					<?=((isset($_POST['description']))?sanitize($_POST['description']):'');?>
+				<textarea name="description" id="description"   rows="6" class="form-control" placeholder="Describe  here...">
+					<?=$description;?>
 				</textarea>
 			</div>
 			<div class="form-group  pull-right">

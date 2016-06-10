@@ -24,8 +24,8 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 			$image_url = $_SERVER['DOCUMENT_ROOT'].$product['image'];
 			echo $image_url;
 			unset($image_url);   
-			$db -> query("UPDATE product SET image = '' WHERE id= $edit_id ");
-			// header('Location: products.php?edit='.$edit_id);
+			$db -> query("UPDATE products SET image = '' WHERE id= '$edit_id' ");
+			header('Location: products.php?edit='.$edit_id);
 		}
 		$category = ((isset($_POST['child']) && $_POST['child'] != '')?sanitize($_POST['child']):$product['categories']);
 		$title = ((isset($_POST['title']) && !empty($_POST['title']))?sanitize($_POST['title']):$product['title']);
@@ -130,9 +130,9 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 				<label for="parent">Parent Category*:</label>
 				<select name="parent" id="parent" class="form-control">
 					<option value="" <?=(($parent == '')?' selected':'');?>></option>
-					<?php while($pResult = mysqli_fetch_assoc($parentQuery)): ?>
-						<option value="<?=$pResult['id'];?>" <?=(($parent == $pResult['id'])?' selected':'');?>>
-							<?=$pResult['category'];?>
+					<?php while($p = mysqli_fetch_assoc($parentQuery)): ?>
+						<option value="<?=$p['id'];?>" <?=(($parent == $p['id'])?' selected':'');?>>
+							<?=$p['category'];?>
 						</option>
 					<?php endwhile; ?>
 				</select>

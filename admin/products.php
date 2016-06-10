@@ -8,14 +8,17 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 	$title = ((isset($_POST['title']) && $_POST['title'] != '')?sanitize($_POST['title']):'');
 	$brand = ((isset($_POST['brand']) && !empty($_POST['brand']))?sanitize($_POST['brand']):'');
 	$parent = ((isset($_POST['parent']) && !empty($_POST['parent']))?sanitize($_POST['parent']):'');
-
+	$category == ((isset($_POST['child']) && !empty($_POST['child']))?sanitize($_POST['child']):'');
 	if(isset($_GET['edit'])){
 		$edit_id = (int)$_GET['edit'];
 		$productResults = $db -> query("SELECT * FROM products WHERE id =$edit_id");
-		$product = mysqli_fetch_assoc($productResults) ;
+		$product = mysqli_fetch_assoc($productResults);
+		$category = ((isset($_POST['child']) && $_POST['child'] != '')?sanitize($_POST['child']):$product['categories']);
 		$title = ((isset($_POST['title']) && !empty($_POST['title']))?sanitize($_POST['title']):$product['title']);
 		$brand = ((isset($_POST['brand']) && !empty($_POST['brand']))?sanitize($_POST['brand']):$product['brand']);
-		$parent = ((isset($_POST['parent']) && !empty($_POST['parent']))?sanitize($_POST['parent']):$product['parent']); 
+		$parentQ = $db -> query("SELECT * FROM categories WHERE id = $category");
+		$parentResult = mysqli_fetch_assoc($parentQ);
+		$parent = ((isset($_POST['parent']) && !empty($_POST['parent']))?sanitize($_POST['parent']):$parentResult['parent']); 
 	}
 	if ($_POST) {
 		$categories = sanitize($_POST['child']);

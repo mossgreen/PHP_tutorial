@@ -21,7 +21,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		$parentQ = $db -> query("SELECT * FROM categories WHERE id = $category");
 		$parentResult = mysqli_fetch_assoc($parentQ);
 		$parent = ((isset($_POST['parent']) && !empty($_POST['parent']))?sanitize($_POST['parent']):$parentResult['parent']); 
-		$price = ((isset($_POST['$price']) && $_POST['$price'] != '')?sanitize($_POST['$price']):$product['$price']);
+		$price = ((isset($_POST['price']) && $_POST['price'] != '')?sanitize($_POST['price']):$product['price']);
 
 	}
 	if ($_POST) {

@@ -18,18 +18,19 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 
 	if(isset($_GET['edit'])){
 		$edit_id = (int)$_GET['edit'];
-		$productResults = $db -> query("SELECT * FROM products WHERE id =$edit_id");
+		$productResults = $db -> query("SELECT * FROM products WHERE id ='$edit_id'");
 		$product = mysqli_fetch_assoc($productResults);
 		if(isset($_GET['delete_image'])){
-			$image_url = $_SERVER['DOCUMENT_ROOT'].$product['image'];
-			unset($image_url);
+			$image_url = $_SERVER['DOCUMENT_ROOT'].'/'.$product['image'];
+			echo $image_url;
+			unset($image_url);   
 			$db -> query("UPDATE product SET image = '' WHERE id= $edit_id ");
-			header('Location: products.php?edit='.$edit_id);
+			// header('Location: products.php?edit='.$edit_id);
 		}
 		$category = ((isset($_POST['child']) && $_POST['child'] != '')?sanitize($_POST['child']):$product['categories']);
 		$title = ((isset($_POST['title']) && !empty($_POST['title']))?sanitize($_POST['title']):$product['title']);
 		$brand = ((isset($_POST['brand']) && !empty($_POST['brand']))?sanitize($_POST['brand']):$product['brand']);
-		$parentQ = $db -> query("SELECT * FROM categories WHERE id = $category");
+		$parentQ = $db -> query("SELECT * FROM categories WHERE id ='$category'");
 		$parentResult = mysqli_fetch_assoc($parentQ);
 		$parent = ((isset($_POST['parent']) && !empty($_POST['parent']))?sanitize($_POST['parent']):$parentResult['parent']); 
 		$price = ((isset($_POST['price']) && $_POST['price'] != '')?sanitize($_POST['price']):$product['price']);
@@ -79,8 +80,8 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 				$fileSize = $photo['size'];
 				$allowed = array('png','jpg','jpeg','gif','PNG');
 				$uploadName = md5(microtime()).'.'.$fileExt;
-				$uploadPath = BASEURL.'images/products'.$uploadName;
-				$dbpath = 'tutorial/images/products'.$uploadName;
+				$uploadPath = BASEURL.'/images/products/'.$uploadName;
+				$dbpath = '/tutorial/images/products/'.$uploadName;
 				if($mimeType != 'image'){
 					$errors[] = 'The file must be an image.';
 				}

@@ -249,7 +249,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 				<tbody>
 					<?php while($product = mysqli_fetch_assoc($presults)): 
 					$childID = $product['categories'];
-					$catSql = "SELECT * FROM categories WHERE id=$childID";
+					$catSql = "SELECT * FROM categories WHERE id='$childID' ";
 					$result = $db -> query($catSql);
 					$child = mysqli_fetch_assoc($result);
 					$parentID = $child['parent'];

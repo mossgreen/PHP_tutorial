@@ -12,6 +12,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 	$price = ((isset($_POST['price']) && $_POST['price'] != '')?sanitize($_POST['price']):'');
 	$list_price = ((isset($_POST['list_price']) && $_POST['list_price'] != '')?sanitize($_POST['list_price']):'');
 	$description = ((isset($_POST['$description']) && $_POST['$description'] != '')?sanitize($_POST['$description']):'');
+	$sizes = ((isset($_POST['sizes']) && $_POST['sizes'] != '')?sanitize($_POST['sizes']):'');
 
 	if(isset($_GET['edit'])){
 		$edit_id = (int)$_GET['edit'];
@@ -26,7 +27,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		$price = ((isset($_POST['price']) && $_POST['price'] != '')?sanitize($_POST['price']):$product['price']);
 		$list_price = ((isset($_POST['list_price']) && $_POST['list_price'] != '')?sanitize($_POST['list_price']):$product['list_price']);
 		$description = ((isset($_POST['description']) && $_POST['description'] != '')?sanitize($_POST['description']):$product['description']);
-
+		$sizes = ((isset($_POST['sizes']) && $_POST['sizes'] != '')?sanitize($_POST['sizes']):$product['sizes']);
 
 	}
 	if ($_POST) {
@@ -148,7 +149,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 			</div>
 			<div class="form-group col-md-3">
 				<label for="sizes">Sizes & Qty preview</label>
-				<input type="text" name="sizes" id="sizes" class="form-control" value="<?=((isset($_POST['sizes']))?$_POST['sizes']:'');?>" readonly>
+				<input type="text" name="sizes" id="sizes" class="form-control" value="<?=$sizes;?>" readonly>
 			</div>
 
 			<div class="form-group col-md-6">

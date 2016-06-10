@@ -80,7 +80,6 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		}
 
 		if(!empty($_FILES)){
-			var_dump($_FILES);
 			$photo = $_FILES['photo'];
 			$name = $photo['name'];
 			$nameArray = explode('.',$name);
@@ -121,7 +120,6 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 
 				
 			}
-			var_dump($insertSql);
 			$db -> query($insertSql);
 			header('Location: products.php');
 		}

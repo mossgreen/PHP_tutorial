@@ -9,7 +9,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 	$title = ((isset($_POST['title']) && $_POST['title'] != '')?sanitize($_POST['title']):'');
 	$brand = ((isset($_POST['brand']) && !empty($_POST['brand']))?sanitize($_POST['brand']):'');
 	$parent = ((isset($_POST['parent']) && !empty($_POST['parent']))?sanitize($_POST['parent']):'');
-	$category = ((isset($_POST['child']) && !empty($_POST['child']))?sanitize($_POST['child']):'');
+	$categories = ((isset($_POST['child']) && !empty($_POST['child']))?sanitize($_POST['child']):'');
 	$price = ((isset($_POST['price']) && $_POST['price'] != '')?sanitize($_POST['price']):'');
 	$list_price = ((isset($_POST['list_price']) && $_POST['list_price'] != '')?sanitize($_POST['list_price']):'');
 	$description = ((isset($_POST['$description']) && $_POST['$description'] != '')?sanitize($_POST['$description']):'');
@@ -28,7 +28,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 			$db -> query("UPDATE products SET image = '' WHERE id= '$edit_id' ");
 			header('Location: products.php?edit='.$edit_id);
 		}
-		$category = ((isset($_POST['child']) && $_POST['child'] != '')?sanitize($_POST['child']):$product['categories']);
+		$categories = ((isset($_POST['child']) && $_POST['child'] != '')?sanitize($_POST['child']):$product['categories']);
 		$title = ((isset($_POST['title']) && !empty($_POST['title']))?sanitize($_POST['title']):$product['title']);
 		$brand = ((isset($_POST['brand']) && !empty($_POST['brand']))?sanitize($_POST['brand']):$product['brand']);
 		$parentQ = $db -> query("SELECT * FROM categories WHERE id ='$category'");
@@ -102,10 +102,10 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 			}else{
 				//upload file and insert into database
 				move_uploaded_file($tmpLoc, $uploadPath);
-				$insertSql = "INSERT INTO products (title,price,list_price,brand,categories,sizes,image,description) VALUES('$title',$price,$list_price, $brand,'$categories', '$sizes','$dbpath', '$description')";
+				$insertSql = "INSERT INTO products (title,price,list_price,brand,categories,sizes,image,description) VALUES('$title','$price','$list_price', '$brand','$categories', '$sizes','$dbpath', '$description')";
 
 				if(isset($_POST['edit'])){
-					$insertSql = "UPDATE products SET title = '$title', price = '$price' list_price = '$list_price',brand = '$brand', categories = 'categories',sizes = '$sizes', image = '$dbpath', description = '$description'";
+					$insertSql = "UPDATE products SET title = '$title', price = '$price' list_price = '$list_price',brand = '$brand', categories = '$categories',sizes = '$sizes', image = '$dbpath', description = '$description'";
 				}
 				$db -> query($insertSql);
 
@@ -134,7 +134,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 			<div class="form-group col-md-3">
 				<label for="parent">Parent Category*:</label>
 				<select name="parent" id="parent" class="form-control">
-					<!-- <option value="" <?=(($parent == '')?' selected':'');?>></option> -->
+					<option value="" <?=(($parent == '')?' selected':'');?>></option>
 					<?php while($p = mysqli_fetch_assoc($parentQuery)): ?>
 						<option value="<?=$p['id'];?>" <?=(($parent == $p['id'])?' selected':'');?>>
 							<?=$p['category'];?>
@@ -181,7 +181,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 			</div>
 			<div class="form-group col-md-6">
 				<label for="description">Description:</label>
-				<textarea name="description" id="description"   rows="6" class="form-control" placeholder="Describe  here..."><?=$description;?></textarea>
+				<textarea type="text" name="description" id="description"   rows="6" class="form-control" placeholder="Describe  here..."><?=$description;?></textarea>
 			</div>
 			<div class="form-group  pull-right">
 				<a href="products.php" class="btn btn-default">Cancel</a>

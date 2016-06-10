@@ -20,6 +20,12 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		$edit_id = (int)$_GET['edit'];
 		$productResults = $db -> query("SELECT * FROM products WHERE id =$edit_id");
 		$product = mysqli_fetch_assoc($productResults);
+		if(isset($_GET['delete_image'])){
+			$image_url = $_SERVER['DOCUMENT_ROOT'].$product['image'];
+			unset($image_url);
+			$db -> query("UPDATE product SET image = '' WHERE id= $edit_id ");
+			header('Location: products.php?edit='.$edit_id);
+		}
 		$category = ((isset($_POST['child']) && $_POST['child'] != '')?sanitize($_POST['child']):$product['categories']);
 		$title = ((isset($_POST['title']) && !empty($_POST['title']))?sanitize($_POST['title']):$product['title']);
 		$brand = ((isset($_POST['brand']) && !empty($_POST['brand']))?sanitize($_POST['brand']):$product['brand']);
@@ -158,12 +164,14 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 				<?php if($saved_image != ''): ?>
 					<div class="saved_image">
 						<img src="<?=$saved_image;?>" alt="saved image" />
+						<br>
+						<a href="products.php?delete_image=1&edit=<?=$edit_id;?>" class="text-danger">Delete Image</a>
 					</div>
 				<?php else: ?>
 					<label for="photo">Product Photo</label>
 					<input type="file" class="form-control" name="photo" id="photo">
 				<?php endif; ?>
-	
+
 			</div>
 			<div class="form-group col-md-6">
 				<label for="description">Description:</label>

@@ -8,7 +8,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 	$title = ((isset($_POST['title']) && $_POST['title'] != '')?sanitize($_POST['title']):'');
 	$brand = ((isset($_POST['brand']) && !empty($_POST['brand']))?sanitize($_POST['brand']):'');
 	$parent = ((isset($_POST['parent']) && !empty($_POST['parent']))?sanitize($_POST['parent']):'');
-	$category == ((isset($_POST['child']) && !empty($_POST['child']))?sanitize($_POST['child']):'');
+	$category = ((isset($_POST['child']) && !empty($_POST['child']))?sanitize($_POST['child']):'');
 	if(isset($_GET['edit'])){
 		$edit_id = (int)$_GET['edit'];
 		$productResults = $db -> query("SELECT * FROM products WHERE id =$edit_id");

@@ -28,11 +28,11 @@
 
 		function detailsmodal(id){
 
-			var data2 = {"id":id};
+			var data = {"id":id};
 			jQuery.ajax({
-				url: "/tutorial/includes/detailsmodal.php", 
+				url: '/tutorial/includes/detailsmodal.php', 
 				method: "POST",
-				data: data2,
+				data: data,
 				success: function(data){
 					
 					jQuery('body').append(data);

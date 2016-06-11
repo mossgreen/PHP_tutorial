@@ -21,7 +21,7 @@ $errors = array();
 		if($_POST){
 				//form validation
 			if(empty($_POST['email']) || empty($_POST['password'])){
-				$errors[] = 'You mush provide email and password.';
+				$errors[] = 'You must provide email and password.';
 			}
 
 				//validate email

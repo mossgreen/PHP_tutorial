@@ -7,9 +7,6 @@ if(!is_logged_in()){
 include 'includes/head.php';
 include 'includes/navigation.php';
  // session_destroy();
-$password = 'password';
-$hashed = password_hash($password, PASSWORD_DEFAULT);
-echo $hashed;
 
 ?>
 Administrator Home

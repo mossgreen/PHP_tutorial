@@ -29,9 +29,8 @@ function login($user_id){
 function is_logged_in(){
 	if(isset($_SESSION['SBUser']) && $_SESSION['SBUser'] > 0){
 		return true;
-	}else{
-		return false;
 	}
+	return false;
 }
 
 function login_error_redirect($url = 'login.php'){
@@ -50,9 +49,8 @@ function has_permission($permission = 'admin'){
 	$permissions = explode(',', $user_data['permissions'] );
 	if(in_array($permission, $permissions, true)){
 		return true;
-	}else{
-		return false;
 	}
+	return false;
 }
 
 // session_destroy();

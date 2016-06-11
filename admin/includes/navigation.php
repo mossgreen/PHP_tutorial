@@ -5,27 +5,38 @@
 		<a href="/tutorial/admin/index.php " class="navbar-brand">moss's shop Admin</a>
 		<ul class="nav navbar-nav">
 
-	 
 
 
-				<!-- menu items -->
+
+			<!-- menu items -->
+			<li>
+				<a href="brands.php">Brands</a>
+			</li>
+			<li>
+				<a href="categories.php">Categories</a>
+			</li>
+			<li>
+				<a href="products.php">Products</a>
+			</li>
+			<li>
+				<a href="archived.php">Archived</a>
+			</li>
+			<?php if(has_permission('admin')): ?>
 				<li>
-					<a href="brands.php">Brands</a>
+					<a href="users.php">Users</a>
 				</li>
-				<li>
-					<a href="categories.php">Categories</a>
-				</li>
-				<li>
-					<a href="products.php">Products</a>
-				</li>
+			<?php endif; ?>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Hello <?=$user_data['first'];?> ! <span class="caret"></span></a>
+			</li>
 			<!-- 	<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $parent['category']; ?><span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
  						<li><a href="#"><?php echo $child['category']; ?></a></li>
  					</ul>
-				</li> -->
-				
+ 				</li> -->
 
- 		</ul>
-	</div>
-</nav>
+
+ 			</ul>
+ 		</div>
+ 	</nav>

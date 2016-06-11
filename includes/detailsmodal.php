@@ -109,6 +109,13 @@ $size_array = explode(',',$sizestring);
 		},500);
 	}
 
+	jQuery('#details-modal').on('hidden.bs.modal', function () {
+		setTimeout(function(){
+			jQuery('#details-modal').remove();
+			jQuery('.modal-backdrop').remove();
+		},500);
+	})
+
 	
 </script>
 <?php echo ob_get_clean();?>

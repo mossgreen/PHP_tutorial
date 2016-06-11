@@ -12,17 +12,15 @@
 		jQuery(window).scroll(function(){
 			var vscroll = jQuery(this).scrollTop();
 			jQuery('#logotext').css({
-				"tansform" : "translate(0px,"+vscroll/2+"px)"
+				"transform" : "translate(0px, "+vscroll/2+"px)"
 			});
 
-			var vscroll = jQuery(this).scrollTop();
 			jQuery('#back-flower').css({
-				"tansform" : "translate("+vscroll/5+"px, -"+vscroll/12+"px)"
+				"transform" : "translate("+0+vscroll/5+"px, -"+vscroll/12+"px)"
 			});
 
-			var vscroll = jQuery(this).scrollTop();
 			jQuery('#fore-flower').css({
-				"tansform" : "translate(0px, -"+vscroll/2+"px)"
+				"transform" : "translate(0px, -"+vscroll/2+"px)"
 			});
 		});
 

@@ -27,6 +27,7 @@ $size_array = explode(',',$sizestring);
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<h4 class="modal-title text-center"><?=$product['title']; ?></h4>
+				<?php var_dump($product );?>
 			</div>
 
 			<div class="modal-body">
@@ -104,10 +105,13 @@ $size_array = explode(',',$sizestring);
 		jQuery('#details-modal').modal('hide');
 		setTimeout(function(){
 			jQuery('#details-modal').remove();
-			jQuery('modal-backdrop').remove();
+			jQuery('.modal-backdrop').remove();
 		},500);
 	}
-</script>
 
-<?php  echo ob_get_clean();?>
+	
+</script>
+<?php echo ob_get_clean();?>
+
+
 

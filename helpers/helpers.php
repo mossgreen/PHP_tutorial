@@ -39,5 +39,21 @@ function login_error_redirect($url = 'login.php'){
 	header('Location: '.$url);
 }
 
+function permission_error_redirect($url = 'login.php'){
+	$_SESSION['error_flash'] = 'You donnot have permission to access that page';
+	header('Location: '.$url);
+}
+
+
+function has_permission($permission = 'admin'){
+	global $user_data;
+	$permissions = explode(',', $user_data['permissions'] );
+	if(in_array($permission, $permissions, true)){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 // session_destroy();
 ?>

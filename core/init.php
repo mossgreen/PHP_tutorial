@@ -13,7 +13,10 @@ if(isset($_SESSION['SBUser'])){
 	$user_id = $_SESSION['SBUser'];
 	$query = $db -> query("SELECT * FROM users WHERE id= '$user_id '");
 	$user_data = mysqli_fetch_assoc($query);
+	var_dump($user_data);
 	$fn = explode('', $user_data['full_name']);
+
+
 	$user_data['first'] = $fn[0];
 	$user_data['last'] = $fn[1];
 }

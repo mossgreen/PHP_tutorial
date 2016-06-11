@@ -12,7 +12,7 @@
 		jQuery(window).scroll(function(){
 			var vscroll = jQuery(this).scrollTop();
 			jQuery('#logotext').css({
-				"tansform" : "translate(0px, "+vscroll/2+"px)"
+				"tansform" : "translate(0px,"+vscroll/2+"px)"
 			});
 
 			var vscroll = jQuery(this).scrollTop();
@@ -27,13 +27,13 @@
 		});
 
 		function detailsmodal(id){
+
 			var data = {"id":id};
 			jQuery.ajax({
-				url: '/tutorial/includes/detailsmodal.php', 
-				method:"post",
+				url:"/tutorial/includes/detailsmodal.php", 
+				method:"POST",
 				data:data,
 				success:function(data){
-					
 					jQuery('body').append(data);
 					jQuery('#details-modal').modal('toggle');
 				},

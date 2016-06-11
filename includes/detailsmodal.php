@@ -1,7 +1,7 @@
 <?php 
 require_once '../core/init.php';
 $id = $_POST['id'];
-$id = (int)$id;
+// $id = (int)$id;
 $sql = "SELECT * FROM products WHERE id='$id' ";
 $result = $db -> query($sql);
 $product = mysqli_fetch_assoc($result);
@@ -9,7 +9,6 @@ $brand_id = $product['brand'];
 $sql = "SELECT brand FROM brand WHERE id='$brand_id'";
 $brand_query = $db -> query($sql);
 $brand = mysqli_fetch_assoc($brand_query);
-//var_dump($product);
 $sizestring = $product['sizes'];
 $sizestring = rtrim($sizestring,',');
 $size_array = explode(',',$sizestring);
@@ -18,6 +17,7 @@ $size_array = explode(',',$sizestring);
 <!-- Details Modal -->
 <?php ob_start(); ?>
 
+
 <div class="modal fade details-1" id="details-modal" tabindex="-1" role="dialog" arial-labelledby="details-1" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -25,8 +25,7 @@ $size_array = explode(',',$sizestring);
 				<button class="close" type="button"  onclick="closeModal()" aria-label="close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title text-center"><?php echo $product['title']; ?></h4>
-				
+				<h4 class="modal-title text-center"><?=$product['title']; ?></h4>
 			</div>
 
 			<div class="modal-body">
@@ -98,8 +97,8 @@ $size_array = explode(',',$sizestring);
 	</div>
 </div>
 
+
 <script>
-	
 	function closeModal(){
 		jQuery('#details-modal').modal('hide');
 		setTimeout(function(){
@@ -109,3 +108,4 @@ $size_array = explode(',',$sizestring);
 	}
 </script>
 <?php echo ob_get_clean(); ?>
+

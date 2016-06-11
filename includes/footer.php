@@ -34,7 +34,7 @@
 				method: "POST",
 				data: data2,
 				success: function(data){
-					alert(data);
+					
 					jQuery('body').append(data);
 					jQuery('#details-modal').modal('toggle');
 				},

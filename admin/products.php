@@ -72,7 +72,6 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 	}else{ $sizesArray = array(); }
 
 	if ($_POST) {
-		// $dbpath = '';
 		$errors = array();
 		$required = array('title', 'brand','price','parent','child','sizes');
 		foreach($required as $field){
@@ -113,8 +112,11 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		if(!empty($errors)){
 			echo display_errors($errors);
 		}else{
+			if(!empty($_FILES)){
 				//upload file and insert into database
-			move_uploaded_file($tmpLoc, $uploadPath);
+				move_uploaded_file($tmpLoc, $uploadPath);
+			}
+			
 			$insertSql = "INSERT INTO products (title,price,list_price,brand,categories,sizes,image,description) VALUES('$title','$price','$list_price', '$brand','$category', '$sizes','$dbpath', '$description')";
 
 			if(isset($_GET['edit'])){

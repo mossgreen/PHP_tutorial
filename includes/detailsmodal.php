@@ -53,7 +53,7 @@ $size_array = explode(',',$sizestring);
 										</div>
 
 										<div class="col-xs-4">
-											<input type="text" name="quantity" class="form-control" id="quantity">
+											<input type="number" name="quantity" class="form-control" id="quantity" min="0">
 										</div>
 										<div class="col-xs-4">
 											<p> </p>	

@@ -29,7 +29,7 @@ $errors = array();
 			}
 
 				//password id more than 6 characters
-			if(strlen($password) < 5){
+			if(strlen($password) < 6){
 				$errors[] = 'Password must be at least 6 characters.';
 			}
 
@@ -41,12 +41,17 @@ $errors = array();
 				$errors[] = 'That email doesn\'t exist in our database';
 			}
 
+			if(!password_verify($password, $user['password'] )){
+				$errors[] = 'The password does not match our records. Please try again.';
+			}
+
 
 				//check for errors
 			if(!empty($errors)){
 				echo display_errors($errors);
 			}else{
 					//log user in
+				echo 'log user in';
 			}
 		}
 

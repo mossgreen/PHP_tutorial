@@ -1,5 +1,5 @@
 <?php 
-require_once $_SERVER['DOCUMENT_ROOT'].'/tutorial/core/init.php';;
+require_once $_SERVER['DOCUMENT_ROOT'].'/tutorial/core/init.php';
 include 'includes/head.php';
 
 $email = ((isset($_POST['email']))?sanitize($_POST['email']):'');

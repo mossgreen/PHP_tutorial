@@ -71,9 +71,9 @@ img.details{
 	margin:0 auto;
 }
 
-#add-product-btn{
-	margin-top: -35px;
-}
+/*#add-product-btn{
+	margin-top: -45px;
+}*/
 
 .saved_image img{
 	width:200px;
@@ -82,7 +82,7 @@ img.details{
 
 #login-form{
 	width:50%;
-	height:60%;
+	height:70%;
 	border: 2px solid #000;
 	border-radius: 15px;
 	box-shadow: 7px 7px 15px rgba(0,0,0,0.6);

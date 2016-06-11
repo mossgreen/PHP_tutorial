@@ -74,6 +74,7 @@ $errors = array();
 			<a href="index.php" class="btn btn-default">Cancel</a>
 			<input type="submit" value="Change Password" class="btn btn-primary">
 		</div>
+		<br>
 
 	</form>
 	<p class="text-right"><a href="/tutorial/index.php" alt="home">Visite Site</a></p>

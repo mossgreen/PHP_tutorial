@@ -16,6 +16,7 @@ $errors = array();
 	}
 </style>
 <div id="login-form">
+
 	<div>
 		<?php 
 		if($_POST){

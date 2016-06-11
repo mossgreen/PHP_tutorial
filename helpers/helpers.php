@@ -53,5 +53,8 @@ function has_permission($permission = 'admin'){
 	return false;
 }
 
+function pretty_date($date){
+	return date("d M, Y h:i A", strtotime($date));
+}
 // session_destroy();
 ?>

@@ -26,5 +26,18 @@ function login($user_id){
 	header('Location: index.php');
 }
 
-session_destroy();
+function is_logged_in(){
+	if(isset($_SESSION['SBUser']) && $_SESSION['SBUser'] > 0){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function login_error_redirect($url = 'login.php'){
+	$_SESSION['error_flash'] = 'You must be logged in to access that page';
+	header('Location: '.$url);
+}
+
+// session_destroy();
 ?>

@@ -1,8 +1,6 @@
 <?php 
 $sql = "SELECT * FROM categories WHERE  parent = 0";
 $pquery = $db -> query($sql);
-
-
 ?>
 
 
@@ -10,15 +8,12 @@ $pquery = $db -> query($sql);
 	<div class="contianer">
 		<a href="index.php" class="navbar-brand">moss's shop</a>
 		<ul class="nav navbar-nav">
-
 			<?php while($parent = mysqli_fetch_assoc($pquery)): ?>
 				<?php 
 				$parent_id = $parent['id']; 
 				$sql2 = "SELECT * FROM categories WHERE parent = '$parent_id'";
 				$cquery = $db -> query($sql2);
 				?>
-
-
 
 				<!-- menu items -->
 				<li class="dropdown">
@@ -32,6 +27,7 @@ $pquery = $db -> query($sql);
 				
 
 			<?php endwhile; ?>
+			<li><a href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 		</ul>
 	</div>
 </nav>

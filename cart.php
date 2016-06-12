@@ -106,14 +106,54 @@ if($cart_id != ''){
 
 			<!-- Modal -->
 			<div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel">
-				<div class="modal-dialog" role="document">
+				<div class="modal-dialog modal-lg" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							<h4 class="modal-title" id="checkoutModalLabel">Shopping Address</h4>
 						</div>
 						<div class="modal-body">
-							...
+							<div class="row">
+								<form action="thankyou.php" method="post" id="payment-form">
+									<div id="step1" style="display:block;">
+										<div class="form-group col-md-6">
+											<label for="full_name">Full Name:</label>
+											<input class="form-control" id="full_name" name="full_name" type="text"></input>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="email">Email:</label>
+											<input class="form-control" id="email" name="email" type="email"></input>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="street">Street Address:</label>
+											<input class="form-control" id="street" name="street" type="text"></input>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="street2">Street Address 2:</label>
+											<input class="form-control" id="street2" name="street2" type="text"></input>
+										</div>
+
+										<div class="form-group col-md-6">
+											<label for="city">city:</label>
+											<input class="form-control" id="city" name="city" type="text"></input>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="state">State:</label>
+											<input class="form-control" id="state" name="state" type="text"></input>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="zip_code">Zip Code:</label>
+											<input class="form-control" id="zip_code" name="zip_code" type="text"></input>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="country">Country:</label>
+											<input class="form-control" id="country" name="country" type="text"></input>
+										</div>
+
+									</div>
+									<div id="step2" style="display:none;"></div>
+								</form>
+							</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

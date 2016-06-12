@@ -9,16 +9,6 @@ $items = json_decode($result['items'],true);
 $updated_items = array();
 $domain = ($_SERVER['HTTP_HOST'] != 'localhost')?'.'.$_SERVER['HTTP_HOST']:false;
 
-if($mode == 'removeone'){
-	foreach ($items as $item) {
-		if($item['id'] == $edit_id && $item['size'] == $edit_size){
-			$item['quantity'] == (int)$item['quantity'] -1;
-		}
-		if($item['quantity'] > 0){
-			$updated_items[] = $item;
-		}
-	}
-}
 
 if($mode == 'addone'){
 	foreach ($items as $item) {
@@ -28,19 +18,44 @@ if($mode == 'addone'){
 		$updated_items[] = $item;
 	}
 }
-
-$length = strlen($edit_size);
+$count = count($updated_items);
 
 if(!empty($updated_items)){
-	$json_updated = json_encode($updated_items);
-	$db -> query("UPDATE cart SET  paid = '$length' WHERE id = '{$cart_id}'");
-	$_SESSION['success_flash']= 'Your shopping cart has been updated.';
+	$count = json_encode($updated_items);
+	$db -> query("UPDATE cart SET items='$count' WHERE id='18'");
+
+	// $db -> query("UPDATE cart SET  paid = '1' WHERE id = '{$cart_id}'");
+	// $_SESSION['success_flash']= 'Your shopping cart has been updated.';
 }
 
-if(empty($updated_items)){
-	// $db -> query("DELETE FROM cart WHERE id ='{$cart_id}'");
-	// setcookie(CART_COOKIE, '' ,1,"/",$domain, false);
-}
+// $hi = $item['quantity'];
+// $db -> query("UPDATE cart SET items='$count' WHERE id='18'");
+
+
+
+// if($mode == 'removeone'){
+// 	foreach ($items as $item) {
+// 		if($item['id'] == $edit_id && $item['size'] == $edit_size){
+// 			$item['quantity'] == (int)$item['quantity'] -1;
+// 		}
+// 		if($item['quantity'] > 0){
+// 			$updated_items[] = $item;
+// 		}
+// 	}
+// }
+
+
+
+
+
+// $length = 1;
+
+
+
+// if(empty($updated_items)){
+// 	// $db -> query("DELETE FROM cart WHERE id ='{$cart_id}'");
+// 	// setcookie(CART_COOKIE, '' ,1,"/",$domain, false);
+// }
 
 
 ?>

@@ -27,12 +27,12 @@ $size_array = explode(',',$sizestring);
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<h4 class="modal-title text-center"><?=$product['title']; ?></h4>
-				<?php var_dump($product );?>
 			</div>
 
 			<div class="modal-body">
 				<div class="container-fluid">
 					<div class="row">
+						<span id="modal_errors" class="bg-danger"></span>
 						<div class="col-sm-6">
 							<div class="center-block">
 								<img src="<?php echo $product['image']; ?>" alt="<?php echo $product['title']; ?>" class="details img-responsive ">
@@ -44,7 +44,9 @@ $size_array = explode(',',$sizestring);
 							<hr>
 							<p>Price: $<?php echo $product['price']; ?></p>
 							<p>Brand: <?php echo $brand['brand']; ?> </p>
-							<form action="add_cart.php" method="post">
+							<form action="add_cart.php" method="post" id="add_product_form">
+								<input type="hidden" name="product_id" value="<?=$id;?>">
+								<input type="hidden" name="available" id="available" value="">
 								<div class="form-group">
 									<div class="row">
 										<div class="col-xs-4">
@@ -75,10 +77,10 @@ $size_array = explode(',',$sizestring);
 												<?php foreach ($size_array as $string) {
 													$string_array = explode(':', $string);
 													$size = $string_array[0];
-													$quantity = $string_array[1];
+													$available = $string_array[1];
 
 
-													echo '<option value="'.$size.'">'.$size.' ('.$quantity.'Available)</option>';
+													echo '<option value="'.$size.'" data-available="'.$available.'">'.$size.' ('.$available.'Available)</option>';
 												} ?>
 												
 											</select>
@@ -93,7 +95,7 @@ $size_array = explode(',',$sizestring);
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-default" onclick="closeModal()"> close </button>
-				<button class="btn btn-warning" type="submit" ><span class="glyphicon  glyphicon-shopping-cart"></span>	Add To Cart</button>
+				<button class="btn btn-warning" onclick="add_to_cart(); return false;" ><span class="glyphicon  glyphicon-shopping-cart"></span>	Add To Cart</button>
 			</div>
 		</div>
 	</div>
@@ -101,6 +103,12 @@ $size_array = explode(',',$sizestring);
 
 
 <script>
+
+	jQuery('#size').change((function(){
+		var available= jQuery('#size option: selected').data("available");
+		jQuery('#available').val(available);
+	}));
+
 	function closeModal(){
 		jQuery('#details-modal').modal('hide');
 		setTimeout(function(){

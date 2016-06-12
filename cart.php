@@ -116,7 +116,7 @@ if($cart_id != ''){
 							<div class="row">
 								<form action="thankyou.php" method="post" id="payment-form">
 									<span class="bg-danger" id="payment-errors"></span>
-									<div id="step1" style="display:none;">
+									<div id="step1" style="display:block;">
 										<div class="form-group col-md-6">
 											<label for="full_name">Full Name:</label>
 											<input class="form-control" id="full_name" name="full_name" type="text"></input>
@@ -152,7 +152,7 @@ if($cart_id != ''){
 										</div>
 
 									</div>
-									<div id="step2" style="display:block;">
+									<div id="step2" style="display:none;">
 										<div class="form-group col-md-3">
 											<label for="name">Name on Card:</label>
 											<input type="text" id="name" class="form-control">
@@ -193,7 +193,9 @@ if($cart_id != ''){
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary" onclick="check_address();">Next >></button>
+							<button type="button" class="btn btn-primary" id="back_button" style="display: none;" onclick="back_address();"><< Back</button>
+							<button type="button" class="btn btn-primary" id="next_button" onclick="check_address();">Next >></button>
+							<button type="submit" class="btn btn-primary" id="check_out_button"  style="display: none;">Check Out >></button>
 						</div>
 					</div>
 				</div>

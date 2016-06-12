@@ -21,8 +21,8 @@ $required = array(
 
 //check if all required fileds are filled out
 foreach ($required as $filed => $display) {
-	if(empty($_POST[$filed]) || $_POST[$display] == ''){
-		$errors = $d.' is required.';
+	if(empty($_POST[$filed]) || $_POST[$filed] == ''){
+		$errors[] = $display.' is required.';
 	}
 }
 

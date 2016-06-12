@@ -173,7 +173,8 @@ if($cart_id != ''){
 		var data = {
 			'full_name' : 	jQuery('#full_name').val(),
 			'email' : 		jQuery('#email').val(),
-			'street' : 		jQuery('#street2').val(),
+			'street' : 		jQuery('#street').val(),
+			'street2' : 		jQuery('#street2').val(),
 			'city' : 		jQuery('#city').val(),
 			'state' : 		jQuery('#state').val(),
 			'zip_code' : 	jQuery('#zip_code').val(),

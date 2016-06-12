@@ -99,7 +99,7 @@ $size_array = explode(',',$sizestring);
 <script>
 
 	jQuery('#size').change((function(){
-		var available= jQuery('#size option: selected').data("available");
+		var available= jQuery('#size option:selected').data("available");
 		jQuery('#available').val(available);
 	}));
 

@@ -9,7 +9,6 @@ $sql = "SELECT * FROM products WHERE featured = 1";
 $featured = $db -> query($sql);
 ?>
 
-
 <!-- main content -->
 <div class="col-md-8">
 	<div class="row">

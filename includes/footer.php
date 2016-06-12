@@ -50,8 +50,8 @@
 			var available = jQuery('#available').val();
 			var error = '';
 			var data=jQuery('#add_product_form').serialize();
+			
 
-			alert (quantity);
 			if(size == '' || quantity == '' || quantity == 0){
 				error += '<p class="text-danger text-center">You must choose a size and quantity.</p>';
 				jQuery('#modal_errors').html(error);
@@ -59,7 +59,20 @@
 			}else if(quantity > available){
 				error +='<p class="text-danger text-center">There are only '+available+' available.</p>';
 				jQuery('#modal_errors').html(error);
-
+				return;
+			}else{
+				jQuery.ajax({
+					url : '/tutorial/admin/parsers/add_cart.php',
+					method : 'post',
+					data: data,
+					success: function(){
+						alert(data);
+						location.reload();
+					},
+					error: function(){
+						alert("something in add to cart ajax went wrong");
+					}
+				});
 			}
 		};
 

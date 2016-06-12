@@ -9,6 +9,12 @@ session_start();
 require_once $_SERVER['DOCUMENT_ROOT'].'/tutorial/config.php';
 require_once BASEURL."helpers/helpers.php";
 
+$cart_id='';
+if(isset($_COOKIE[CART_COOKIE])){
+	$cart_id = sanitize($_COOKIE[CART_COOKIE]);
+}
+
+
 if(isset($_SESSION['SBUser'])){
 	$user_id = $_SESSION['SBUser'];
 	$query = $db -> query("SELECT * FROM users WHERE id= '$user_id '");

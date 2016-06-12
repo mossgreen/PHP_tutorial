@@ -16,7 +16,7 @@ $required = array(
 		'city'		=> 'City',
 		'state'		=> 'State',
 		'zip_code'	=> 'Zip Code',
-		'contry'	=> 'Country',
+		'country'	=> 'Country',
 	);
 
 //check if all required fileds are filled out
@@ -24,6 +24,10 @@ foreach ($required as $filed => $display) {
 	if(empty($_POST[$filed]) || $_POST[$filed] == ''){
 		$errors[] = $display.' is required.';
 	}
+}
+//check if valid email address
+if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+	$errors[] = 'Please enter a valid email.';
 }
 
 if(!empty($errors)){

@@ -115,8 +115,8 @@ if($cart_id != ''){
 						<div class="modal-body">
 							<div class="row">
 								<form action="thankyou.php" method="post" id="payment-form">
-								<span class="bg-danger" id="payment-errors"></span>
-									<div id="step1" style="display:block;">
+									<span class="bg-danger" id="payment-errors"></span>
+									<div id="step1" style="display:none;">
 										<div class="form-group col-md-6">
 											<label for="full_name">Full Name:</label>
 											<input class="form-control" id="full_name" name="full_name" type="text"></input>
@@ -152,7 +152,42 @@ if($cart_id != ''){
 										</div>
 
 									</div>
-									<div id="step2" style="display:none;"></div>
+									<div id="step2" style="display:block;">
+										<div class="form-group col-md-3">
+											<label for="name">Name on Card:</label>
+											<input type="text" id="name" class="form-control">
+										</div>
+										<div class="form-group col-md-3">
+											<label for="number">Card Number:</label>
+											<input type="text" id="number" class="form-control">
+										</div>
+										<div class="form-group col-md-2">
+											<label for="cvc">CVC:</label>
+											<input type="text" id="name" class="form-control">
+										</div>
+										<div class="form-group col-md-2">
+											<label for="name">Expire Month:</label>
+											<select   id="exp-month" class="form-control">
+												<option value="">
+													<?php  for($i=1; $i<13; $i++): ?>
+														<option value="<?=$i;?>"><?=$i;?></option>
+													<?php endfor; ?>
+												</option>
+											</select>
+										</div>
+										
+										<div class="form-group col-md-2">
+											<label for="exp-year">Expire Year:</label>
+											<select id="exp-year" class="form-control" >
+												<option value=""></option>
+												<?php $yr = date("Y"); ?>
+												<?php for($i = 0; $i<11;$i++): ?>
+													<option value="<?=$yr+$i;?>"><?=$yr+$i;?></option>
+												<?php endfor; ?>
+											</select>
+										</div>
+
+									</div>
 								</form>
 							</div>
 						</div>
@@ -174,7 +209,7 @@ if($cart_id != ''){
 			'full_name' : 	jQuery('#full_name').val(),
 			'email' : 		jQuery('#email').val(),
 			'street' : 		jQuery('#street').val(),
-			'street2' : 		jQuery('#street2').val(),
+			'street2' : 	jQuery('#street2').val(),
 			'city' : 		jQuery('#city').val(),
 			'state' : 		jQuery('#state').val(),
 			'zip_code' : 	jQuery('#zip_code').val(),
@@ -189,10 +224,11 @@ if($cart_id != ''){
 					jQuery('#payment-errors').html(data);
 				}
 				if(data == 'passed'){
-					alert('Passed from check-address ajax.');
+					
+					jQuery('#payment-errors').html("");
 				}
 			},
-			errors: 	function(){alert('something wrong with check_address ajax.');},
+			errors: function(){alert('something wrong with check_address ajax.');},
 
 		});
 	}

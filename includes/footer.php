@@ -37,10 +37,25 @@
 					jQuery('#details-modal').modal('toggle');
 				},
 				error: function(){
-					alert("error message.");
+					alert("error message from detailsmodal ajax.");
 				}
 			});
 		};
+
+		function update_cart(mode,edit_id, edit_size){
+			var data = {"mode":mode, "edit_id":edit_id, "edit_size":edit_size};
+			jQuery.ajax({
+				url: '/tutorial/admin/parsers/update_cart.php',
+				method: 'post',
+				data: data,
+				success: function(){
+					 location.reload();
+				},
+				error: function(){
+					alert("somtthing wrong iwth updata cart ajax");
+				}
+			});
+		}
 
 		function add_to_cart(){
 			
@@ -66,7 +81,7 @@
 					method : 'post',
 					data: data,
 					success: function(){
-						alert(data);
+						
 						location.reload();
 					},
 					error: function(){

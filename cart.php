@@ -7,7 +7,7 @@ include 'includes/headerpartial.php';
 if($cart_id != ''){
 	$cartQ = $db -> query("SELECT * FROM cart WHERE id = '$cart_id'");
 	$result = mysqli_fetch_assoc($cartQ);
-	$items = json_decode($result['items'], true); var_dump($items);
+	$items = json_decode($result['items'], true);  
 	$i = 1;
 	$sub_total = 0;
 	$item_count = 0;
@@ -70,6 +70,23 @@ if($cart_id != ''){
 
 					?> 
 
+				</tbody>
+			</table>
+			<table class="table table-bordered table-condensed text-right">
+			<legend>Totals</legend>
+				<thead class="totals-table-header">
+					<th>Total Items</th>
+					<th>Sub Total</th>
+					<th>Tax</th>
+					<th>Grand Total</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td><?=$item_count;?></td>
+						<td><?=money($sub_total);?></td>
+						<td><?=money($tax);?></td>
+						<td class="bg-success"><?=money($grand_total);?></td>
+					</tr>
 				</tbody>
 			</table>
 

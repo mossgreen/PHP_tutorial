@@ -43,17 +43,23 @@
 		};
 
 		function add_to_cart(){
-			alert("it wroks...");
+			
 			jQuery('#modal_errors').html("");
 			var size = jQuery('#size').val();
 			var quantity = jQuery('#quantity').val();
 			var available = jQuery('#available').val();
 			var error = '';
 			var data=jQuery('#add_product_form').serialize();
+
+			alert (quantity);
 			if(size == '' || quantity == '' || quantity == 0){
-				error += '<p class="text-danger text-center">You must choose a size and quyantity.</p>';
+				error += '<p class="text-danger text-center">You must choose a size and quantity.</p>';
 				jQuery('#modal_errors').html(error);
 				return ;
+			}else if(quantity > available){
+				error +='<p class="text-danger text-center">There are only '+available+' available.</p>';
+				jQuery('#modal_errors').html(error);
+
 			}
 		};
 

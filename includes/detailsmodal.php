@@ -49,18 +49,12 @@ $size_array = explode(',',$sizestring);
 								<input type="hidden" name="available" id="available" value="">
 								<div class="form-group">
 									<div class="row">
-										<div class="col-xs-4">
-											<label for="quantity">
-												Quantity:
-											</label>
-										</div>
+										<div class="col-xs-4"><label for="quantity">Quantity:</label></div>
 
 										<div class="col-xs-4">
 											<input type="number" name="quantity" class="form-control" id="quantity" min="0">
 										</div>
-										<div class="col-xs-4">
-											<p> </p>	
-										</div>
+										<div class="col-xs-4"> <p> </p>	</div>
 									</div>
 
 								</div>

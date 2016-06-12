@@ -115,6 +115,7 @@ if($cart_id != ''){
 						<div class="modal-body">
 							<div class="row">
 								<form action="thankyou.php" method="post" id="payment-form">
+								<span class="bg-danger" id="payment-errors"></span>
 									<div id="step1" style="display:block;">
 										<div class="form-group col-md-6">
 											<label for="full_name">Full Name:</label>
@@ -157,7 +158,7 @@ if($cart_id != ''){
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save changes</button>
+							<button type="button" class="btn btn-primary" onclick="check_address();">Next >></button>
 						</div>
 					</div>
 				</div>
@@ -167,6 +168,33 @@ if($cart_id != ''){
 	</div>
 </div>
 
+<script type="text/javascript">
+	function check_address(){
+		var data = {
+			'full_name' : 	jQuery('#full_name').val(),
+			'email' : 		jQuery('#email').val(),
+			'street' : 		jQuery('#street2').val(),
+			'city' : 		jQuery('#city').val(),
+			'state' : 		jQuery('#state').val(),
+			'zip_code' : 	jQuery('#zip_code').val(),
+			'country' : 	jQuery('#country').val(),
+		};
+		jQuery.ajax({
+			url: 		'/tutorial/admin/parsers/check_address.php',
+			method : 	'POST',
+			data: 		data,
+			success: 	function(data){
+				if(data != 'passed'){
+					jQuery('#payment-errors').html(data);
+				}
+				if(data == 'passed'){
+					alert('Passed from check-address ajax.');
+				}
+			},
+			errors: 	function(){alert('something wrong with check_address ajax.');},
 
+		});
+	}
+</script>
 
 <?php include 'includes/footer.php'; ?>

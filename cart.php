@@ -73,7 +73,7 @@ if($cart_id != ''){
 				</tbody>
 			</table>
 			<table class="table table-bordered table-condensed text-right">
-			<legend>Totals</legend>
+				<legend>Totals</legend>
 				<thead class="totals-table-header">
 					<th>Total Items</th>
 					<th>Sub Total</th>
@@ -89,6 +89,30 @@ if($cart_id != ''){
 					</tr>
 				</tbody>
 			</table>
+
+			<!-- Check Out Button -->
+			<button type="button" class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#checkoutModal">
+			<span class="glyphicon glyphicon-shopping-cart"></span>	Check Out >>
+			</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="checkoutModalLabel">Shopping Address</h4>
+						</div>
+						<div class="modal-body">
+							...
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save changes</button>
+						</div>
+					</div>
+				</div>
+			</div>
 
 		<?php endif; ?>
 	</div>

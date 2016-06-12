@@ -195,7 +195,7 @@ if($cart_id != ''){
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 							<button type="button" class="btn btn-primary" id="back_button" style="display: none;" onclick="back_address();"><< Back</button>
 							<button type="button" class="btn btn-primary" id="next_button" onclick="check_address();">Next >></button>
-							<button type="submit" class="btn btn-primary" id="check_out_button"  style="display: none;">Check Out >></button>
+							<button type="submit" class="btn btn-primary" id="checkout_button"  style="display: none;">Check Out >></button>
 						</div>
 					</div>
 				</div>
@@ -206,6 +206,18 @@ if($cart_id != ''){
 </div>
 
 <script type="text/javascript">
+
+	function back_address(){
+		jQuery('#payment-errors').html("");
+		jQuery('#step1').css("display","block");
+		jQuery('#step2').css("display","none");
+		jQuery('#next_button').css("display","inline-block");
+		jQuery('#back_button').css("display","none");
+		jQuery('#checkout_button').css("display","none");
+		jQuery('#checkoutModalLabel').html("Shipping Address");
+	}
+
+
 	function check_address(){
 		var data = {
 			'full_name' : 	jQuery('#full_name').val(),
@@ -228,9 +240,15 @@ if($cart_id != ''){
 				if(data == 'passed'){
 					
 					jQuery('#payment-errors').html("");
+					jQuery('#step1').css("display","none");
+					jQuery('#step2').css("display","block");
+					jQuery('#next_button').css("display","none");
+					jQuery('#back_button').css("display","inline-block");
+					jQuery('#checkout_button').css("display","inline-block");
+					jQuery('#checkoutModalLabel').html("Enter Your Card Details");
 				}
 			},
-			errors: function(){alert('something wrong with check_address ajax.');},
+			error: function(){alert('something wrong with check_address ajax.');},
 
 		});
 	}

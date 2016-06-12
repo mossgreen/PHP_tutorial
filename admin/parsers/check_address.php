@@ -33,7 +33,7 @@ if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 if(!empty($errors)){
 	echo display_errors($errors);
 }else{
-	echo 'passed.';
+	echo 'passed';
 }
 
 ?>

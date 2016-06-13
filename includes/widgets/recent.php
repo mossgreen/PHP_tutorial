@@ -1,7 +1,7 @@
 <h3 class="text-center">Popular Items</h3>
 
 <?php 
-$transQ = $db -> query("SELECT * FROM cart WHERE paid=0 ORDER BY id DESC LIMIT 5");
+$transQ = $db -> query("SELECT * FROM cart WHERE paid=1 ORDER BY id DESC LIMIT 5");
 $results = array();
 
 while($row = mysqli_fetch_assoc($transQ)){

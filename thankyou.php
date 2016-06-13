@@ -41,6 +41,35 @@ try {
 		    "metadata" 		=> $metadata)
 	);
 
+	//adjust inventory
+	$itemQ = $db -> query("SELECT * FROM cart WHERE id='{$cart_id}'");
+	$iresults = mysqli_fetch_assoc($itemQ);
+	$items = json_decode($iresults['items'], true);
+
+	foreach($items as $item){
+		$newSizes = array();
+		$items_id = $item['id'];
+		$productQ = $db -> query("SELECT sizes FROM products WHERE id = '{$item_id}'");
+		$product = mysqli_fetch_assoc($productQ);
+		$sizes = sizesToAray($product['sizes']);
+
+		foreach ($sizes as $size) {
+			if($size['size'] == $item['size']){
+				$q = $size['quantity'] - $item['quantity'];
+				$newSizes[] = array('size' => $size['size'], 'quantity' => $q);
+			}else{
+				$newSizes[] = array('size' => $size['size'], 'quantity' => $size['quantity']);
+			}
+		}
+		$sizeString = sizesToString($newSizes);
+		$db -> query("UPDATE products SET sizes ='{$sizeString}' WHERE id='{$item_id}'");
+	}
+
+
+
+
+
+	//update cart
 	$db -> query("UPDATE cart SET paid =1 WHERE id = '{$cart_id}'");
 	$db -> query(" INSERT INTO transactions
 		(charge_id, cart_id, full_name, email, street, street2, city, state, zip_code, country, sub_total, tax, grand_total, description, txn_type) VALUES

@@ -1,4 +1,5 @@
 <?php 
+$cat_id = ((isset($_REQUEST['cat']))?sanitize($_REQUEST['cat']):'');
 $price_sort = ((isset($_REQUEST['price_sort']))?sanitize($_REQUEST['price_sort']):'');
 $min_price = ((isset($_REQUEST['min_price']))?sanitize($_REQUEST['min_price']):'');
 $max_price = ((isset($_REQUEST['max_price']))?sanitize($_REQUEST['max_price']):'');
@@ -11,6 +12,8 @@ $brandQ = $db -> query("SELECT * FROM brand ORDER BY brand");
 <h3 class="text-center">Search By: </h3>
 <h4 class="text-center">Price</h4>
 <form action="search.php" method="post">
+	<input type="hidden" name="cat" value="<?=$cart_id;?>">
+	<input type="hidden" name="price_sort" value="0">
 	<input type="radio" name="price_sort" vaue="low" <?=(($price_sort == 'low')?' checked':'');?>>Low to Hight <br>
 	<input type="radio" name="price_sort" vaue="high" <?=(($price_sort == 'high')?' checked':'');?>>High to Low <br><br>
 	<input type="text" name="min_price" class="price-range" placeholder="Min $" value="<?=$min_price;?>">To

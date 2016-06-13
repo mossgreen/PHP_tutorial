@@ -8,6 +8,7 @@ session_start();
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/tutorial/config.php';
 require_once BASEURL."helpers/helpers.php";
+require BASEURL.'vendor/autoload.php';
 
 $cart_id='';
 if(isset($_COOKIE[CART_COOKIE])){

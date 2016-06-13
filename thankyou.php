@@ -48,10 +48,10 @@ try {
 
 	foreach($items as $item){
 		$newSizes = array();
-		$items_id = $item['id'];
+		$item_id = $item['id'];
 		$productQ = $db -> query("SELECT sizes FROM products WHERE id = '{$item_id}'");
 		$product = mysqli_fetch_assoc($productQ);
-		$sizes = sizesToAray($product['sizes']);
+		$sizes = sizesToArray($product['sizes']);
 
 		foreach ($sizes as $size) {
 			if($size['size'] == $item['size']){

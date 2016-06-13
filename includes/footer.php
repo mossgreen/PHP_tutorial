@@ -67,7 +67,7 @@
 			var data=jQuery('#add_product_form').serialize();
 			
 
-			if(size == '' || quantity == '' || quantity == 0){
+			if(size == '' || quantity == '' || quantity <= 0){
 				error += '<p class="text-danger text-center">You must choose a size and quantity.</p>';
 				jQuery('#modal_errors').html(error);
 				return ;

@@ -33,18 +33,18 @@ $metadata = array(
 // Create the charge on Stripe's servers - this will charge the user's card
 try {
 	$charge = \Stripe\Charge::create(array(
-    "amount" 		=> $charge_amount, // amount in cents, again
-    "currency" 		=> CURRENCY,
-    "source" 		=> $token,
-    "description" 	=> $description,
-    "receipt_email" => $email,
-    "metadata" 		=> $metadata)
+		    "amount" 		=> $charge_amount, // amount in cents, again
+		    "currency" 		=> CURRENCY,
+		    "source" 		=> $token,
+		    "description" 	=> $description,
+		    "receipt_email" => $email,
+		    "metadata" 		=> $metadata)
 	);
 
 	$db -> query("UPDATE cart SET paid =1 WHERE id = '{$cart_id}'");
-	$db -> query("INSERT INTO transactions
+	$db -> query(" INSERT INTO transactions
 		(charge_id, cart_id, full_name, email, street, street2, city, state, zip_code, country, sub_total, tax, grand_total, description, txn_type) VALUES
-		('$charge -> id', '$cart_id', '$full_name','$email','$street','$street2', '$city', '$state', '$zip_code', '$country','$sub_total','$tax','$grand_total','$description','$charge->object')
+		('$charge->id', '$cart_id', '$full_name','$email','$street','$street2', '$city', '$state', '$zip_code', '$country','$sub_total','$tax','$grand_total','$description','$charge->object')
 		");
 
 	$domain = ($_SERVER['HTTP_HOST'] != 'localhost')?'.'.$_SERVER['HTTP_HOST']:false;

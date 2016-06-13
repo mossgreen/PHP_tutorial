@@ -149,7 +149,9 @@ img.details{
 	font-size: 12px;
 }
 
-
+input.price-range{
+	width:65px;
+}
 
 
 

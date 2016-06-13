@@ -188,14 +188,15 @@ if($cart_id != ''){
 										</div>
 
 									</div>
-								</form>
+									
+								</div>
 							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary" id="back_button" style="display: none;" onclick="back_address();"><< Back</button>
-							<button type="button" class="btn btn-primary" id="next_button" onclick="check_address();">Next >></button>
-							<button type="submit" class="btn btn-primary" id="checkout_button"  style="display: none;">Check Out >></button>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary" id="back_button" style="display: none;" onclick="back_address();"><< Back</button>
+								<button type="button" class="btn btn-primary" id="next_button" onclick="check_address();">Next >></button>
+								<button type="submit" class="btn btn-primary" id="checkout_button"  style="display: none;">Check Out >></button>
+							</form>
 						</div>
 					</div>
 				</div>

@@ -83,7 +83,17 @@ while($p = mysqli_fetch_assoc($productQ)){
 			</tbody>
 		</table>
 	</div>
-	<div class="col-md-6"></div>
+	<div class="col-md-6">
+		<h3 class="text-center">Shipping Address</h3>
+		<address class="text-center">
+			<?=$txn['full_name'];?><br>
+			<?=$txn['street'];?><br>
+			<?=($txn['street2'] != '')?$txn['street2'].'<br>':'';?>
+			<?=$txn['city'].', '.$txn['state'].' '.$txn['zip_code'];?><br>
+			<?=$txn['country'];?><br>
+
+		</address>
+	</div>
 </div>
 
 

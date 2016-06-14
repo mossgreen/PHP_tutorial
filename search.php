@@ -9,9 +9,6 @@ include 'includes/leftbar.php';
 $sql = "SELECT * FROM products";
 $cat_id = (($_POST['cat'] != '')?sanitize($_POST['cat']):'');
 
-
-var_dump($cat_id);
-
 if($cat_id == ''){
 	$sql .= " WHERE deleted =0";
 }else{
@@ -19,6 +16,7 @@ if($cat_id == ''){
 }
 
 $price_sort =(($_POST['price_sort'] != '')?sanitize($_POST['price_sort']):'');
+var_dump($price_sort);
 $min_price =(($_POST['min_price'] != '')?sanitize($_POST['min_price']):'');
 $max_price =(($_POST['max_price'] != '')?sanitize($_POST['max_price']):'');
 $brand =(($_POST['brand'] != '')?sanitize($_POST['brand']):'');
@@ -40,7 +38,7 @@ if($price_sort == 'low'){
 if($price_sort == 'high'){
 	$sql .= " ORDER BY price DESC";
 }
-
+var_dump($price_sort);
 var_dump($sql);
 
 $productQ = $db -> query($sql);

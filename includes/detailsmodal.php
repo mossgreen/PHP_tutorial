@@ -34,68 +34,71 @@ $size_array = explode(',',$sizestring);
 					<div class="row">
 						<span id="modal_errors" class="bg-danger"></span>
 						<div class="col-sm-6">
+							<?php $photos = explode(',',$product['image']);
+							foreach($photos as $photo): ?>
 							<div class="center-block">
-								<img src="<?php echo $product['image']; ?>" alt="<?php echo $product['title']; ?>" class="details img-responsive ">
+								<img src="<?=$photo;?>" alt="<?php echo $product['title']; ?>" class="details img-responsive ">
 							</div>
-						</div>
-						<div class="col-sm-6">
-							<h4>Details</h4>
-							<p><?= nl2br($product['description']); ?></p>
-							<hr>
-							<p>Price: $<?php echo $product['price']; ?></p>
-							<p>Brand: <?php echo $brand['brand']; ?> </p>
-							<form action="add_cart.php" method="post" id="add_product_form">
-								<input type="hidden" name="product_id" value="<?=$id;?>">
-								<input type="hidden" name="available" id="available" value="">
-								<div class="form-group">
-									<div class="row">
-										<div class="col-xs-4"><label for="quantity">Quantity:</label></div>
+						<?php endforeach; ?>
+					</div>
+					<div class="col-sm-6">
+						<h4>Details</h4>
+						<p><?= nl2br($product['description']); ?></p>
+						<hr>
+						<p>Price: $<?php echo $product['price']; ?></p>
+						<p>Brand: <?php echo $brand['brand']; ?> </p>
+						<form action="add_cart.php" method="post" id="add_product_form">
+							<input type="hidden" name="product_id" value="<?=$id;?>">
+							<input type="hidden" name="available" id="available" value="">
+							<div class="form-group">
+								<div class="row">
+									<div class="col-xs-4"><label for="quantity">Quantity:</label></div>
 
-										<div class="col-xs-4">
-											<input type="number" name="quantity" class="form-control" id="quantity" min="0">
-										</div>
-										<div class="col-xs-4"> <p> </p>	</div>
+									<div class="col-xs-4">
+										<input type="number" name="quantity" class="form-control" id="quantity" min="0">
 									</div>
-
+									<div class="col-xs-4"> <p> </p>	</div>
 								</div>
-								<br> <br>
-								<div class="form-group">
-									<div class="row">
-										<div class="col-xs-4">
-											<label for="size">Size: </label>
 
-										</div>
-										<div class="col-xs-4">
-											<select name="size" id="size" class="form-control">
-												<option value=""></option>
-												<?php foreach ($size_array as $string) {
-													$string_array = explode(':', $string);
-													$size = $string_array[0];
-													$available = $string_array[1];
+							</div>
+							<br> <br>
+							<div class="form-group">
+								<div class="row">
+									<div class="col-xs-4">
+										<label for="size">Size: </label>
 
-													if($available > 0){
-														echo '<option value="'.$size.'" data-available="'.$available.'">'.$size.' ('.$available.'Available)</option>';
-													}
-
-													
-												} ?>
-												
-											</select>
-										</div>
-										<div class="col-xs-4"></div>
 									</div>
+									<div class="col-xs-4">
+										<select name="size" id="size" class="form-control">
+											<option value=""></option>
+											<?php foreach ($size_array as $string) {
+												$string_array = explode(':', $string);
+												$size = $string_array[0];
+												$available = $string_array[1];
+
+												if($available > 0){
+													echo '<option value="'.$size.'" data-available="'.$available.'">'.$size.' ('.$available.'Available)</option>';
+												}
+
+
+											} ?>
+
+										</select>
+									</div>
+									<div class="col-xs-4"></div>
 								</div>
-							</form>
-						</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
-			<div class="modal-footer">
-				<button class="btn btn-default" onclick="closeModal()"> close </button>
-				<button class="btn btn-warning" onclick="add_to_cart(); return false;" ><span class="glyphicon  glyphicon-shopping-cart"></span>	Add To Cart</button>
-			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-default" onclick="closeModal()"> close </button>
+			<button class="btn btn-warning" onclick="add_to_cart(); return false;" ><span class="glyphicon  glyphicon-shopping-cart"></span>	Add To Cart</button>
 		</div>
 	</div>
+</div>
 </div>
 
 

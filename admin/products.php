@@ -74,6 +74,9 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 	if ($_POST) {
 		$errors = array();
 		$required = array('title', 'brand','price','parent','child','sizes');
+		$allowed = array('png','jpg','jpeg','gif','PNG');
+		$uploadPath = array();
+		$tmpLoc = array();
 		foreach($required as $field){
 			if($_POST[$field] == ''){
 				$errors[] = 'All Fields With and Astrisk are required.';
@@ -81,40 +84,51 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 			}
 		}
 
-		if($_FILES['photo']['name'] != ''){
-			$photo = $_FILES['photo'];
-			$name = $photo['name'];
-			$nameArray = explode('.',$name);
-			$fileName = $nameArray[0];
-			$fileExt = $nameArray[1];
-			$mime = explode('/',$photo['type']);
-			$mimeType = $mime[0];
-			$mimeExt = $mime[1];
-			$tmpLoc = $photo['tmp_name'];
-			$fileSize = $photo['size'];
-			$allowed = array('png','jpg','jpeg','gif','PNG');
-			$uploadName = md5(microtime()).'.'.$fileExt;
-			$uploadPath = BASEURL.'/images/products/'.$uploadName;
-			$dbpath = '/tutorial/images/products/'.$uploadName;
-			if($mimeType != 'image'){
-				$errors[] = 'The file must be an image.';
-			}
-			if(!in_array($fileExt, $allowed)){
-				$errors[] = 'The file extension must be a png, jpg, jpeg, or gif.';
-			}
-			if($fileSize > 25000000){
-				$errors[] = 'The files size must be under 25 MB.';
-			}
-			if($fileExt != $mimeExt && ($mimeExt == 'jpeg' && $fileExt != 'jgp')){
-				$errors[] = 'File extension does not match the file.';
+
+		var_dump($_FILES['photo']);
+		$photoCount = count($_FILES['photo']['name']);
+		if($photoCount > 0){
+			for($i = 0; $i < $photoCount; $i++){
+				$name = $_FILES['photo']['name'][$i]; 
+				$nameArray = explode('.',$name);
+				$fileName = $nameArray[0];
+				$fileExt = $nameArray[1];
+				$mime = explode('/',$_FILES['photo']['type'][$i]);
+				$mimeType = $mime[0];
+				$mimeExt = $mime[1];
+				$tmpLoc[] = $_FILES['photo']['tmp_name'][$i];
+				$fileSize = $_FILES['photo']['size'][$i];
+				$uploadName = md5(microtime()).'.'.$fileExt;
+				$uploadPath[] = BASEURL.'/images/products/'.$uploadName;
+				if($i != 0){
+					$dbpath .=',';
+				}
+				$dbpath .= '/tutorial/images/products/'.$uploadName;
+				if($mimeType != 'image'){
+					$errors[] = 'The file must be an image.';
+				}
+
+				// if(!in_array(strtolower($fileExt), $allowed)){
+				// 	$errors[] = 'The file extension must be a png, jpg, jpeg, or gif.';
+				// }
+				if($fileSize > 25000000){
+					$errors[] = 'The files size must be under 25 MB.';
+				}
+				if($fileExt != $mimeExt && ($mimeExt == 'jpeg' && $fileExt != 'jgp')){
+					$errors[] = 'File extension does not match the file.';
+				}
 			}
 		}
 		if(!empty($errors)){
 			echo display_errors($errors);
 		}else{
-			if(!empty($_FILES)){
-				//upload file and insert into database
-				move_uploaded_file($tmpLoc, $uploadPath);
+			if($photoCount > 0){
+
+				for($i=0; $i <$photoCount; $i++){
+			 	//upload file and insert into database
+					move_uploaded_file($tmpLoc[$i], $uploadPath[$i]);
+				}
+
 			}
 			
 			$insertSql = "INSERT INTO products (title,price,list_price,brand,categories,sizes,image,description) VALUES('$title','$price','$list_price', '$brand','$category', '$sizes','$dbpath', '$description')";
@@ -191,7 +205,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 				</div>
 			<?php else: ?>
 				<label for="photo">Product Photo</label>
-				<input type="file" class="form-control" name="photo" id="photo" multiple>
+				<input type="file" class="form-control" name="photo[]" id="photo" multiple>
 			<?php endif; ?>
 		</div>
 		<div class="form-group col-md-6">

@@ -191,7 +191,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 				</div>
 			<?php else: ?>
 				<label for="photo">Product Photo</label>
-				<input type="file" class="form-control" name="photo" id="photo">
+				<input type="file" class="form-control" name="photo" id="photo" multiple>
 			<?php endif; ?>
 		</div>
 		<div class="form-group col-md-6">

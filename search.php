@@ -9,10 +9,13 @@ include 'includes/leftbar.php';
 $sql = "SELECT * FROM products";
 $cat_id = (($_POST['cat'] != '')?sanitize($_POST['cat']):'');
 
+
+var_dump($cat_id);
+
 if($cat_id == ''){
 	$sql .= " WHERE deleted =0";
 }else{
-	$sql .= " WHERE categories = '6' AND deleted = 0";
+	$sql .= " WHERE categories = '{$cat_id}' AND deleted = 0";
 }
 
 $price_sort =(($_POST['price_sort'] != '')?sanitize($_POST['price_sort']):'');
@@ -38,7 +41,6 @@ if($price_sort == 'high'){
 	$sql .= " ORDER BY price DESC";
 }
 
-$sql = "SELECT * FROM products ORDER BY price";
 var_dump($sql);
 
 $productQ = $db -> query($sql);

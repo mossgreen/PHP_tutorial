@@ -111,8 +111,8 @@ body{
 	margin-top: 50px;
 }
 
-img.details{
-	width: 50%;
+fotorama__wrap {
+	width: 80%;
 	margin: 15px auto;
 }
 

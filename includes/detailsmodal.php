@@ -36,9 +36,9 @@ $size_array = explode(',',$sizestring);
 						<div class="col-sm-6 fotorama">
 							<?php $photos = explode(',',$product['image']);
 							foreach($photos as $photo): ?>
-							<div class="center-block">
+							 
 								<img src="<?=$photo;?>" alt="<?php echo $product['title']; ?>" class="details img-responsive ">
-							</div>
+						 
 						<?php endforeach; ?>
 					</div>
 					<div class="col-sm-6">

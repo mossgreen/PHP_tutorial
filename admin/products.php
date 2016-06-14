@@ -99,7 +99,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 				$mimeExt = $mime[1];
 				$tmpLoc[] = $_FILES['photo']['tmp_name'][$i];
 				$fileSize = $_FILES['photo']['size'][$i];
-				$uploadName = md5(microtime()).'.'.$fileExt;
+				$uploadName = md5(microtime().$i).'.'.$fileExt;
 				$uploadPath[] = BASEURL.'/images/products/'.$uploadName;
 				if($i != 0){
 					$dbpath .=',';

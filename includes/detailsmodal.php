@@ -33,7 +33,7 @@ $size_array = explode(',',$sizestring);
 				<div class="container-fluid">
 					<div class="row">
 						<span id="modal_errors" class="bg-danger"></span>
-						<div class="col-sm-6">
+						<div class="col-sm-6 fotorama">
 							<?php $photos = explode(',',$product['image']);
 							foreach($photos as $photo): ?>
 							<div class="center-block">
@@ -109,20 +109,24 @@ $size_array = explode(',',$sizestring);
 		jQuery('#available').val(available);
 	}));
 
+	$(function () {
+		$('.fotorama').fotorama({'loop':true,'autoplay':true});
+	});
+
 	function closeModal(){
 		jQuery('#details-modal').modal('hide');
 		setTimeout(function(){
 			jQuery('#details-modal').remove();
 			jQuery('.modal-backdrop').remove();
 		},500);
-	}
+	};
 
 	jQuery('#details-modal').on('hidden.bs.modal', function () {
 		setTimeout(function(){
 			jQuery('#details-modal').remove();
 			jQuery('.modal-backdrop').remove();
 		},500);
-	})
+	});
 
 	
 </script>

@@ -57,7 +57,9 @@ $category = get_category($cat_id);
 	<?php while($product = mysqli_fetch_assoc($productQ)) : ?>
 		<div class="col-md-3">
 			<h4><?php echo $product['title']; ?></h4>
-			<img src="<?php echo $product['image']; ?>" alt="<?php echo $product['title']; ?>" class="img-thumb" />
+
+			<?php $photos = explode(',',$product['image']) ?>
+			<img src="<?=$photos[0]; ?>" alt="<?php echo $product['title']; ?>" class="img-thumb" />
 			<p class="list-price text-danger">List Price: <s>$<?php echo $product['list_price']; ?></s></p>
 			<p class="price">Our Price:$<?php echo $product['price']; ?></p>
 			<button class="btn btn-sm btn-success" type="button"  onclick="detailsmodal(<?php echo $product['id']; ?>)" > Details</button>

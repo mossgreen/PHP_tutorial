@@ -35,7 +35,7 @@ while($p = mysqli_fetch_assoc($productQ)){
 			continue;
 		}
 	}
-	$products[] = array_merge($x, $p); var_dump($products);
+	$products[] = array_merge($x, $p); 
 }
 ?>
 
@@ -59,7 +59,32 @@ while($p = mysqli_fetch_assoc($productQ)){
 	</tbody>
 
 </table>
-
+<div class="row">
+	<div class="col-md-6">
+		<h3 class="text-center">Order details</h3>
+		<table class="table table-condensed table-bordered table-striped">
+			<tbody>
+				<tr>
+					<td>Sub Total</td>
+					<td><?=money($txn['sub_total']);?></td>
+				</tr>
+				<tr>
+					<td>Tax</td>
+					<td><?=money($txn['tax']);?></td>
+				</tr>
+				<tr>
+					<td>Grand Total</td>
+					<td><?=money($txn['grand_total']);?></td>
+				</tr>
+				<tr>
+					<td>Order Date</td>
+					<td><?=pretty_date($txn['txn_date']);?></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-md-6"></div>
+</div>
 
 
 

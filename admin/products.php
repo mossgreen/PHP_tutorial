@@ -33,13 +33,15 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		$edit_id = (int)$_GET['edit'];
 		$productResults = $db -> query("SELECT * FROM products WHERE id ='$edit_id'");
 		$product = mysqli_fetch_assoc($productResults);
-
 		//delete image action
 		if(isset($_GET['delete_image'])){
-			$image_url = $_SERVER['DOCUMENT_ROOT'].$product['image']; echo $image_url;
-			echo $image_url;
+			$imagei = (int)$_GET['imagei'] - 1;
+			$images = explode(',',$product['image']);
+			$image_url = $_SERVER['DOCUMENT_ROOT'].$images[$imagei]; 
 			unlink($image_url);   
-			$db -> query("UPDATE products SET image = '' WHERE id= '$edit_id' ");
+			unset($images[$imagei]);
+			$imageString = implode(',',$images);
+			$db -> query("UPDATE products SET image = '{$imageString}' WHERE id= '$edit_id' ");
 			header('Location: products.php?edit='.$edit_id);
 		}
 		$category = ((isset($_POST['child']) && $_POST['child'] != '')?sanitize($_POST['child']):$product['categories']);
@@ -85,7 +87,6 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 		}
 
 
-		var_dump($_FILES['photo']);
 		$photoCount = count($_FILES['photo']['name']);
 		if($photoCount > 0){
 			for($i = 0; $i < $photoCount; $i++){
@@ -198,130 +199,139 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 
 		<div class="form-group col-md-6">
 			<?php if($saved_image != ''): ?>
-				<div class="saved_image">
-					<img src="<?=$saved_image;?>" alt="saved image" />
-					<br>
-					<a href="products.php?delete_image=1&edit=<?=$edit_id;?>" class="text-danger">Delete Image</a>
-				</div>
-			<?php else: ?>
-				<label for="photo">Product Photo</label>
-				<input type="file" class="form-control" name="photo[]" id="photo" multiple>
-			<?php endif; ?>
-		</div>
-		<div class="form-group col-md-6">
-			<label for="description">Description:</label>
-			<textarea name="description" id="description"   rows="6" class="form-control" placeholder="Describe  here..."><?=$description;?></textarea>
-		</div>
-		<div class="form-group  pull-right">
-			<a href="products.php" class="btn btn-default">Cancel</a>
-			<input type="submit" value="<?=((isset($_GET['edit']))?'Edit':'Add');?> Product" class=" btn btn-success  ">
-		</div>
-		<div class="clearfix"></div>
-
-	</form>
-
-	<!-- Modal -->
-	<div class="modal fade" id="sizesModal" tabindex="-1" role="dialog" aria-labelledby="sizesModalLabel">
-		<div class="modal-dialog modal-lg"  >
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="sizesModalLabel">Size & Quantity </h4>
-				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<?php for($i =1; $i <= 12;$i++):?>
-							<div class="form-group col-md-4">
-								<lable for="size<?=$i;?>">Size:</lable>
-								<input type="text" name="size<?=$i;?>" id="size<?=$i;?>" value="<?=((!empty($sArray[$i-1]))?$sArray[$i-1]:'');?>" class="form-control">
-							</div>
-							<div class="form-group col-md-2">
-								<lable for="qty<?=$i;?>">Quantify:</lable>
-								<input type="number" name="qty<?=$i;?>" id="qty<?=$i;?>" value="<?=((!empty($qArray[$i-1]))?$qArray[$i-1]:'');?>" min="0" class="form-control">
-							</div>
-
-						<?php endfor; ?>
+				<?php
+				$imagei = 1;
+				$images = explode(',',$saved_image);
+				?>
+				<?php foreach($images as $image): ?>
+					<div class="saved_image">
+						<img src="<?=$image;?>"  alt="saved image" />
+						<br>
+						<a href="products.php?delete_image=1&edit=<?=$edit_id;?>&imagei=<?=$imagei;?>" class="text-danger">Delete Image</a>
 					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" onclick="updateSizes();jQuery('#sizesModal').modal('toggle');return false;">Save changes</button>
+
+					<?php 
+					$imagei ++;
+					endforeach; ?>
+				<?php else: ?>
+					<label for="photo">Product Photo</label>
+					<input type="file" class="form-control" name="photo[]" id="photo" multiple>
+				<?php endif; ?>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="description">Description:</label>
+				<textarea name="description" id="description"   rows="6" class="form-control" placeholder="Describe  here..."><?=$description;?></textarea>
+			</div>
+			<div class="form-group  pull-right">
+				<a href="products.php" class="btn btn-default">Cancel</a>
+				<input type="submit" value="<?=((isset($_GET['edit']))?'Edit':'Add');?> Product" class=" btn btn-success  ">
+			</div>
+			<div class="clearfix"></div>
+
+		</form>
+
+		<!-- Modal -->
+		<div class="modal fade" id="sizesModal" tabindex="-1" role="dialog" aria-labelledby="sizesModalLabel">
+			<div class="modal-dialog modal-lg"  >
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="sizesModalLabel">Size & Quantity </h4>
+					</div>
+					<div class="modal-body">
+						<div class="container-fluid">
+							<?php for($i =1; $i <= 12;$i++):?>
+								<div class="form-group col-md-4">
+									<lable for="size<?=$i;?>">Size:</lable>
+									<input type="text" name="size<?=$i;?>" id="size<?=$i;?>" value="<?=((!empty($sArray[$i-1]))?$sArray[$i-1]:'');?>" class="form-control">
+								</div>
+								<div class="form-group col-md-2">
+									<lable for="qty<?=$i;?>">Quantify:</lable>
+									<input type="number" name="qty<?=$i;?>" id="qty<?=$i;?>" value="<?=((!empty($qArray[$i-1]))?$qArray[$i-1]:'');?>" min="0" class="form-control">
+								</div>
+
+							<?php endfor; ?>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" onclick="updateSizes();jQuery('#sizesModal').modal('toggle');return false;">Save changes</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<?php }else{
+		<?php }else{
 
 
-		$sql = "SELECT * FROM products WHERE deleted = 0";
-		$presults = $db -> query($sql);
-		if(isset($_GET['featured'])) {
-			$id = (int)$_GET['id'];
-			$featured = (int)$_GET['featured'];
-			$featuredSql = "UPDATE products SET featured = $featured WHERE id=$id ";
-			$db -> query($featuredSql);
-			header('Location: products.php');
-		}
+			$sql = "SELECT * FROM products WHERE deleted = 0";
+			$presults = $db -> query($sql);
+			if(isset($_GET['featured'])) {
+				$id = (int)$_GET['id'];
+				$featured = (int)$_GET['featured'];
+				$featuredSql = "UPDATE products SET featured = $featured WHERE id=$id ";
+				$db -> query($featuredSql);
+				header('Location: products.php');
+			}
+			?>
+
+			<h2 class="text-center">Products</h2>
+			<a href="products.php?add=1" class="btn btn-success pull-right" id="add-product-btn">
+				Add Product
+			</a>
+			<div class="clearfix"></div>
+			<hr>
+			<table class="table table-bordered table-condensed table-striped">
+				<thead>
+					<th></th>
+					<th>Product</th>
+					<th>Price</th>
+					<th>Categories</th>
+					<th>Featured</th>
+					<th>Sold</th>
+				</thead>
+				<tbody>
+					<?php while($product = mysqli_fetch_assoc($presults)): 
+					$childID = $product['categories'];
+					$catSql = "SELECT * FROM categories WHERE id='$childID' ";
+					$result = $db -> query($catSql);
+					$child = mysqli_fetch_assoc($result);
+					$parentID = $child['parent'];
+					$pSql = "SELECT * FROM categories WHERE id= '$parentID' ";
+					$presult = $db -> query($pSql);
+					$parent = mysqli_fetch_assoc($presult);
+					$category = $parent['category'].'~'.$child['category'];
+					?>
+					<tr>
+						<td>
+							<a href="products.php?edit=<?=$product['id']?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+							<a href="products.php?delete=<?=$product['id']?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove"></span></a>
+						</td>
+						<td><?=$product['title'];?></td>
+						<td><?=money($product['price']);?></td>
+						<td><?=$category;?></td>
+						<td>
+							<a href="products.php?featured=<?=(($product['featured'] == 0)?'1':'0');?>&id=<?=$product['id'];?>" class="btn btn-xs btn-default ">
+								<span class="glyphicon glyphicon-<?=(($product['featured'] == 1)?'minus':'plus');?>">
+								</span>
+							</a>
+							&nbsp <?=(($product['featured'] == 1)?'Featured product':'');?>
+						</td>
+						<td></td>
+					</tr>
+				<?php endwhile; ?>
+			</tbody>
+		</table>
+
+
+
+		<?php }
+		include 'includes/footer.php';
 		?>
 
-		<h2 class="text-center">Products</h2>
-		<a href="products.php?add=1" class="btn btn-success pull-right" id="add-product-btn">
-			Add Product
-		</a>
-		<div class="clearfix"></div>
-		<hr>
-		<table class="table table-bordered table-condensed table-striped">
-			<thead>
-				<th></th>
-				<th>Product</th>
-				<th>Price</th>
-				<th>Categories</th>
-				<th>Featured</th>
-				<th>Sold</th>
-			</thead>
-			<tbody>
-				<?php while($product = mysqli_fetch_assoc($presults)): 
-				$childID = $product['categories'];
-				$catSql = "SELECT * FROM categories WHERE id='$childID' ";
-				$result = $db -> query($catSql);
-				$child = mysqli_fetch_assoc($result);
-				$parentID = $child['parent'];
-				$pSql = "SELECT * FROM categories WHERE id= '$parentID' ";
-				$presult = $db -> query($pSql);
-				$parent = mysqli_fetch_assoc($presult);
-				$category = $parent['category'].'~'.$child['category'];
-				?>
-				<tr>
-					<td>
-						<a href="products.php?edit=<?=$product['id']?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-						<a href="products.php?delete=<?=$product['id']?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove"></span></a>
-					</td>
-					<td><?=$product['title'];?></td>
-					<td><?=money($product['price']);?></td>
-					<td><?=$category;?></td>
-					<td>
-						<a href="products.php?featured=<?=(($product['featured'] == 0)?'1':'0');?>&id=<?=$product['id'];?>" class="btn btn-xs btn-default ">
-							<span class="glyphicon glyphicon-<?=(($product['featured'] == 1)?'minus':'plus');?>">
-							</span>
-						</a>
-						&nbsp <?=(($product['featured'] == 1)?'Featured product':'');?>
-					</td>
-					<td></td>
-				</tr>
-			<?php endwhile; ?>
-		</tbody>
-	</table>
+		<script>
 
-
-
-	<?php }
-	include 'includes/footer.php';
-	?>
-
-	<script>
-
-		jQuery('document').ready(function(){
-			get_child_options('<?=$category;?>')
-		});
-	</script>
+			jQuery('document').ready(function(){
+				get_child_options('<?=$category;?>')
+			});
+		</script>

@@ -125,9 +125,13 @@ img.details{
 	margin-top: -45px;
 }*/
 
+.saved_image {
+	text-align: center;
+}
+
 .saved_image img{
-	width:200px;
-	height:auto;
+	max-width:200px;
+	max-height:200px;
 }
 
 #login-form{

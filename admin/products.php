@@ -204,7 +204,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 				$images = explode(',',$saved_image);
 				?>
 				<?php foreach($images as $image): ?>
-					<div class="saved_image">
+					<div class="saved_image col-md-4">
 						<img src="<?=$image;?>"  alt="saved image" />
 						<br>
 						<a href="products.php?delete_image=1&edit=<?=$edit_id;?>&imagei=<?=$imagei;?>" class="text-danger">Delete Image</a>

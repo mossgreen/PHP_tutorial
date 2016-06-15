@@ -6,6 +6,14 @@ if(!is_logged_in()){
 include 'includes/head.php';
 include 'includes/navigation.php';
 
+//complete order
+if (isset($_GET['complete']) && $_GET['complete'] ==1) {
+		$cart_id = sanitize((int)$_GET['cart_id']);
+		$db -> query("UPDATE cart SET shipped = 1 WHERE id='{$cart_id}'");
+		$SESSION['success_flash'] = "The order has been completed.";
+		header('Location: index.php');
+}
+
 $txn_id = sanitize((int)$_GET['txn_id']);
 $txnQuery = $db -> query("SELECT * FROM transactions WHERE id ='{$txn_id}'");
 $txn = mysqli_fetch_assoc($txnQuery);
@@ -96,6 +104,10 @@ while($p = mysqli_fetch_assoc($productQ)){
 	</div>
 </div>
 
+<div class="pull-right">
+	<a href="index.php" class="btn btn-large btn-default">Cancel</a>
+	<a href="orders.php?complete=1&cart_id=<?=$cart_id;?>" class="btn btn-primary btn-large">Complete Order</a>
+</div>
 
 
 <?php  include 'includes/footer.php'; ?>

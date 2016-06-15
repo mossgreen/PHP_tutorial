@@ -102,6 +102,19 @@ body{
 
 }
 
+#mylogo{
+	
+	margin-top: -14px;
+	margin-left: -14px;
+	height: 250%;
+	width: 150px
+	margin-bottom: 0;
+
+	
+}
+
+
+
 .img-thumb{
 	width: auto;
 	height: 200px;
@@ -123,39 +136,39 @@ fotorama__wrap {
 
 /*#add-product-btn{
 	margin-top: -45px;
-}*/
+	}*/
 
-.saved_image {
-	text-align: center;
-}
+	.saved_image {
+		text-align: center;
+	}
 
-.saved_image img{
-	max-width:200px;
-	max-height:200px;
-}
+	.saved_image img{
+		max-width:200px;
+		max-height:200px;
+	}
 
-#login-form{
-	width:50%;
-	height:70%;
-	border: 2px solid #000;
-	border-radius: 15px;
-	box-shadow: 7px 7px 15px rgba(0,0,0,0.6);
-	margin:7% auto;
-	padding:15px;
-	background-color: #fff;
-}
+	#login-form{
+		width:50%;
+		height:70%;
+		border: 2px solid #000;
+		border-radius: 15px;
+		box-shadow: 7px 7px 15px rgba(0,0,0,0.6);
+		margin:7% auto;
+		padding:15px;
+		background-color: #fff;
+	}
 
-.totals-table-header th{
-	text-align:center;
-}
+	.totals-table-header th{
+		text-align:center;
+	}
 
-#cart_widget td, #recent_widget{
-	font-size: 12px;
-}
+	#cart_widget td, #recent_widget{
+		font-size: 12px;
+	}
 
-input.price-range{
-	width:65px;
-}
+	input.price-range{
+		width:65px;
+	}
 
 
 

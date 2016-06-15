@@ -10,6 +10,9 @@
 
 			<!-- menu items -->
 			<li>
+				<a href="index.php">My Dashboard</a>
+			</li>
+			<<li>
 				<a href="brands.php">Brands</a>
 			</li>
 			<li>

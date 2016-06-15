@@ -79,18 +79,70 @@ $txnResults = $db -> query($txnQuery);
 					<?php for($i = 1; $i <= 12 ;$i++): 
 					$dt = DateTime::createFromFormat('!m',$i);
 					?>
-					<tr>
-						<th><?=$dt->format("F");?></th>
-						<th><?=(array_key_exists($i, $last))?money($last[$i]):money(0);?></th>
-						<th><?=(array_key_exists($i, $current))?money($current[$i]):money(0);?></th>
-					</tr>
-				<?php endfor; ?>
-			</tbody>
-		</table>
-	</div>
+					<tr<?=(date("m") == $i)?' class="info"':'';?>>
+					<th><?=$dt->format("F");?></th>
+					<th><?=(array_key_exists($i, $last))?money($last[$i]):money(0);?></th>
+					<th><?=(array_key_exists($i, $current))?money($current[$i]):money(0);?></th>
+				</tr>
+			<?php endfor; ?>
 
-	<!-- inventory -->
-	<div class="col-md-8"></div>
+			<tr>
+				<td>Total</td>
+				<td><?=money($lastTotal);?></td>
+				<td><?=money($currentTotal);?></td>
+			</tr>
+		</tbody>
+	</table>
+</div> 
+
+<?php 
+$iQuery = $db ->query("SELECT * FROM products WHERE deleted =0 ");
+$lowItems = array();
+while($product = mysqli_fetch_assoc($iQuery)){
+	$item = array();
+	$sizes = sizesToArray($product['sizes']);
+	foreach ($sizes as $size) {
+		if($size['quantity'] <= $size['threshold']){
+			$cat = get_category($product['categories']);
+			$item = array(
+				'title' => $product['title'],
+				'size' => $size['size'],
+				'quantity' => $size['quantity'],
+				'threshold' => $size['threshold'],
+				'category' => $cat['parent'].' ~ '.$cat['child'],
+				);
+			$lowItems[] = $item;
+		}
+	}
+}
+
+?>
+<!-- inventory -->
+<div class="col-md-8">
+	<h3 class="text-center">Low Inventory</h3>
+	<table class="table table-condensed table-bordered table-striped">
+
+		<thead>
+			<th>Product</th>
+			<th>Category</th>
+			<th>Size</th>
+			<th>Quantity</th>
+			<th>Threshold</th>
+
+		</thead>
+		<tbody>
+			<?php foreach($lowItems as $item): ?>
+				<tr <?=($item['quantity'] == 0)?' class="danger"':'';?>>
+					<th><?=$item['title'];?></th>
+					<th><?=$item['category'];?></th>
+					<th><?=$item['size'];?></th>
+					<th><?=$item['quantity'];?></th>
+					<th><?=$item['threshold'];?></th>
+				</tr>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+</div>
 </div>
 
 </div>

@@ -46,7 +46,7 @@ $pquery = $db -> query($sql);
 			<ul class="nav navbar-nav navbar-right">
 				
 				<!-- Trigger the modal in Login link -->
-				<li id="myBtn"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<li id="myBtn"><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 				
 			</ul>
 		</div>

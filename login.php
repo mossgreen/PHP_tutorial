@@ -75,9 +75,11 @@ $errors = array();
 		<div class="form-group">
 			<input type="submit" value="Login" class="btn btn-primary">
 		</div>
+		
 
 	</form>
-	<p class="text-right"><a href="/tutorial/index.php" alt="home">Visite Site</a></p>
+	<!-- <p class="text-right"><a href="/tutorial/index.php" alt="home">Visite Site</a></p> -->
+	<p class="text-right"><a href="/tutorial/register.php" alt="register">Register</a></p>
 </div>
 
 

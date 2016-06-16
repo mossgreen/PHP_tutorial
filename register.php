@@ -5,12 +5,80 @@ include 'includes/navigation.php';
 include 'includes/headerpartial.php';
 
 
+$hashed = $user_data['password'];
+$firstname = ((isset($_POST['firstname']))?sanitize($_POST['firstname']):'');
+$firstname = trim($firstname);
+$lastname = ((isset($_POST['lastname']))?sanitize($_POST['lastname']):'');
+$lastname = trim($firstname);
+$email = ((isset($_POST['email']))?sanitize($_POST['email']):'');
+$email = trim($firstname);
+
+$phonetype = ((isset($_POST['phonetype']))?sanitize($_POST['phonetype']):'');
+$phonetype = trim($firstname);
+$phonenumber = ((isset($_POST['phonenumber']))?sanitize($_POST['phonenumber']):'');
+$phonenumber = trim($firstname);
+
+
+
+$password = ((isset($_POST['password']))?sanitize($_POST['password']):'');
+$password = trim($password);
+$confirm_password = ((isset($_POST['confirm_password']))?sanitize($_POST['confirm_password']):'');
+$confirm_password = trim($confirm_password);
+$new_hashed = password_hash($password, PASSWORD_DEFAULT);
+// $user_id = $user_data['id'];
+$errors = array();
+
+
+?>
+
+<?php 
+if($_POST){
+	
+	//form validation
+	if(empty($_POST['firstname']) || empty($_POST['lastname']) || empty($_POST['email'])|| empty($_POST['password'])|| empty($_POST['confirm_password'])|| empty($_POST['phonetype'])|| empty($_POST['phonenumber'])){
+		$errors[] = 'You must fill out all fields.';
+	}
+
+	//password id more than 6 characters
+	if(strlen($password) < 6){
+		$errors[] = 'Password must be at least 6 characters.';
+	}
+
+
+	// if(!password_verify($password, $confirm_password )){
+	// 	$errors[] = 'Your password is not match ';
+	// }
+
+
+	//check for errors
+	if(!empty($errors)){
+		echo display_errors($errors);
+	}else{
+		$firstname = ((isset($_POST['firstname']))?sanitize($_POST['firstname']):'');
+		$firstname = trim($firstname);
+		$lastname = ((isset($_POST['lastname']))?sanitize($_POST['lastname']):'');
+		$lastname = trim($firstname);
+		$full_name = $firstname." ".$lastname;
+		// $insertSql = "INSERT INTO products (title,price,list_price,brand,categories,sizes,image,description) VALUES('$title','$price','$list_price', '$brand','$category', '$sizes','$dbpath', '$description')";
+
+				//Insert into data base
+		// $db -> query(
+		// 	"INSERT INTO users 
+		// 	(full_name, email, password, phonetype, phonenumber)
+		// 	VALUES
+		// 	('$full_name','$email','$phonetype','$phonenumber')");
+
+		$db -> query("INSERT INTO users (full_name)VALUES('{$full_name}')");
+		$_SESSION['success_flash'] = 'You password has been updated!.';
+		// header('Location: index.php');
+	}
+}
 
 ?>
 
 <div class="panel-body">
 	<div class="form col-md-8">
-		<form class="form-validate form-horizontal" id="register_form" method="post" action=" register.php">
+		<form action=" register.php" method="POST" class="form-validate form-horizontal" id="register_form" >
 			<div class="form-group ">
 				<label for="firstname" class="control-label col-lg-2">First Name<span class="required">*</span></label>
 				<div class="col-lg-10">
@@ -69,16 +137,13 @@ include 'includes/headerpartial.php';
 			</div>
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
-					<button class="btn btn-primary" type="submit">Save</button>
-					<button class="btn btn-default" type="button">Cancel</button>
+					<a href="index.php" class="btn btn-default">Cancel</a>
+					<input type="submit" value="Submit" class="btn btn-primary">
 				</div>
 			</div>
 		</form>
 	</div>
 </div>
 
-<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="js/form-validation-script.js">
-
-
-</script>
+<!-- <script type="text/javascript" src="js/jquery.validate.min.js"></script> -->
+<!-- <script type="text/javascript" src="js/form-validation-script.js"></script> -->

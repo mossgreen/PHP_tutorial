@@ -78,7 +78,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 	if ($_POST) {
 		$errors = array();
 		$required = array('title', 'brand','price','parent','child','sizes');
-		$allowed = array('png','jpg','jpeg','gif','PNG');
+		$allowed = array('png','jpg','jpeg','gif','PNG','JPG');
 		$uploadPath = array();
 		$tmpLoc = array();
 		foreach($required as $field){
@@ -111,13 +111,13 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 					$errors[] = 'The file must be an image.';
 				}
 
-				// if(!in_array(strtolower($fileExt), $allowed)){
-				// 	$errors[] = 'The file extension must be a png, jpg, jpeg, or gif.';
-				// }
+				if(!in_array(strtolower($fileExt), $allowed)){
+					$errors[] = 'The file extension must be a png, jpg, jpeg, or gif.';
+				}
 				if($fileSize > 25000000){
 					$errors[] = 'The files size must be under 25 MB.';
 				}
-				if($fileExt != $mimeExt && ($mimeExt == 'jpeg' && $fileExt != 'jgp')){
+				if($fileExt != $mimeExt && ($mimeExt == 'jpeg' && $fileExt != 'jpg')){
 					$errors[] = 'File extension does not match the file.';
 				}
 			}

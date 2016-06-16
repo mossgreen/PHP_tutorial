@@ -42,7 +42,7 @@ ob_start();
 				
 			</ul>
 
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-right" id="myBtn">
 
 				<li>
 					<a href="cart.php">
@@ -51,7 +51,7 @@ ob_start();
 					</a>
 				</li>
 				<?php if(!isset($_SESSION['SBUser'])): ?>
-					<li id="myBtn"><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					<li ><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
 				<?php else: 
 				$user_id = $_SESSION['SBUser'];
@@ -62,7 +62,7 @@ ob_start();
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="change_password.php">Change Password</a></li>
+						<li><a href="userorders.php">User Orders</a></li>
 						<li><a href="logout.php">Log Out</a></li>
 					</ul>
 				</li>

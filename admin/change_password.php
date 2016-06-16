@@ -4,7 +4,6 @@ if(!is_logged_in()){
 	login_error_redirect();
 }
 include 'includes/head.php';
-var_dump($user_data);
 $hashed = $user_data['password'];
 $old_password = ((isset($_POST['old_password']))?sanitize($_POST['old_password']):'');
 $old_password = trim($old_password);

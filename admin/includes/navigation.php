@@ -8,7 +8,7 @@
 			<li>
 				<a href="index.php">My Dashboard</a>
 			</li>
-			<<li>
+			<li>
 				<a href="brands.php">Brands</a>
 			</li>
 			<li>
@@ -39,3 +39,4 @@
  			</ul>
  		</div>
  	</nav>
+

@@ -38,14 +38,18 @@ ob_start();
 							<?php endwhile; ?>
 						</ul>
 					</li>
-
-
 				<?php endwhile; ?>
-				<li><a href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart</a></li>
+				
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
 
+				<li>
+					<a href="cart.php">
+						<span class="glyphicon glyphicon-shopping-cart"></span> 
+						My Cart
+					</a>
+				</li>
 				<?php if(!isset($_SESSION['SBUser'])): ?>
 					<li id="myBtn"><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
@@ -62,7 +66,7 @@ ob_start();
 						<li><a href="logout.php">Log Out</a></li>
 					</ul>
 				</li>
-				
+
 			<?php endif; ?>
 		</ul>
 	</div>

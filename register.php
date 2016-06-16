@@ -2,30 +2,7 @@
 require_once 'core/init.php';
 include 'includes/head.php';
 include 'includes/navigation.php';
-// include 'includes/headerpartial.php';
 
-
-// $hashed = $user_data['password'];
-// $firstname = ((isset($_POST['firstname']))?sanitize($_POST['firstname']):'');
-// $firstname = trim($firstname);
-// $lastname = ((isset($_POST['lastname']))?sanitize($_POST['lastname']):'');
-// $lastname = trim($firstname);
-// $email = ((isset($_POST['email']))?sanitize($_POST['email']):'');
-// $email = trim($firstname);
-
-// $phonetype = ((isset($_POST['phonetype']))?sanitize($_POST['phonetype']):'');
-// $phonetype = trim($firstname);
-// $phonenumber = ((isset($_POST['phonenumber']))?sanitize($_POST['phonenumber']):'');
-// $phonenumber = trim($firstname);
-
-
-
-// $password = ((isset($_POST['password']))?sanitize($_POST['password']):'');
-// $password = trim($password);
-// $confirm_password = ((isset($_POST['confirm_password']))?sanitize($_POST['confirm_password']):'');
-// $confirm_password = trim($confirm_password);
-// $new_hashed = password_hash($password, PASSWORD_DEFAULT);
-// $user_id = $user_data['id'];
 $firstname = ((isset($_POST['firstname']))?sanitize($_POST['firstname']):'');
 $firstname = trim($firstname);
 $lastname = ((isset($_POST['lastname']))?sanitize($_POST['lastname']):'');
@@ -36,16 +13,15 @@ $email = ((isset($_POST['email']))?sanitize($_POST['email']):'');
 $email = trim($firstname);
 
 $phonetype = ((isset($_POST['phonetype']))?sanitize($_POST['phonetype']):'');
-$phonetype = trim($firstname);
+$phonetype = trim($phonetype);
 $phonenumber = ((isset($_POST['phonenumber']))?sanitize($_POST['phonenumber']):'');
-$phonenumber = trim($firstname);
+$phonenumber = trim($phonenumber);
 $password = ((isset($_POST['password']))?sanitize($_POST['password']):'');
 $password = trim($password);
 $confirm_password = ((isset($_POST['confirm_password']))?sanitize($_POST['confirm_password']):'');
 $confirm_password = trim($confirm_password);
 $new_hashed = password_hash($password, PASSWORD_DEFAULT);
 $errors = array();
-
 
 ?>
 
@@ -65,9 +41,9 @@ if($_POST){
 	}
 
 
-	// if(!password_verify($password, $confirm_password )){
-	// 	$errors[] = 'Your password is not match ';
-	// }
+	if($password != $confirm_password ){
+		$errors[] = 'Your password is not match ';
+	}
 
 
 	//check for errors
@@ -75,9 +51,7 @@ if($_POST){
 		echo display_errors($errors);
 	}else{
 
-		// $db -> query("INSERT INTO users (full_name, email, password, phonetype, phonenumber)VALUES('{$full_name}','{$email}'),'$new_hashed','$phonetype','$phonenumber')");
-
-		$db -> query("INSERT INTO users (full_name,email,password)VALUES('{$full_name}','{$email}','{$new_hashed}')");
+		$db -> query("INSERT INTO users (full_name,email,password,phonetype,phonenumber)VALUES('{$full_name}','{$email}','{$new_hashed}','{$phonetype}','{$phonenumber}')");
 		$_SESSION['success_flash'] = 'You are registed.';
 		header('Location: index.php');
 	}
@@ -138,12 +112,7 @@ if($_POST){
 				</div>
 			</div>
 
-			<div class="form-group ">
-				<label for="agree" class="control-label col-lg-2 col-sm-3">Agree to Our Policy <span class="required">*</span></label>
-				<div class="col-lg-10 col-sm-9">
-					<input  type="checkbox" style="width: 20px" class="checkbox form-control" id="agree" name="agree" />
-				</div>
-			</div>
+
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
 					<a href="index.php" class="btn btn-default">Cancel</a>

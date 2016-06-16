@@ -4,7 +4,7 @@
 	<div class="contianer">
 		<a href="/tutorial/admin/index.php " class="navbar-brand">moss's shop Admin</a>
 		<ul class="nav navbar-nav">
-			<!-- menu items -->
+			
 			<li>
 				<a href="index.php">My Dashboard</a>
 			</li>

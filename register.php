@@ -6,11 +6,10 @@ include 'includes/navigation.php';
 $firstname = ((isset($_POST['firstname']))?sanitize($_POST['firstname']):'');
 $firstname = trim($firstname);
 $lastname = ((isset($_POST['lastname']))?sanitize($_POST['lastname']):'');
-$lastname = trim($firstname);
+$lastname = trim($lastname);
 $full_name = $firstname." ".$lastname;
-$firstname = ((isset($_POST['firstname']))?sanitize($_POST['firstname']):'');
 $email = ((isset($_POST['email']))?sanitize($_POST['email']):'');
-$email = trim($firstname);
+$email = trim($email);
 
 $phonetype = ((isset($_POST['phonetype']))?sanitize($_POST['phonetype']):'');
 $phonetype = trim($phonetype);

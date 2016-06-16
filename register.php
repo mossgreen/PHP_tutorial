@@ -2,14 +2,36 @@
 require_once 'core/init.php';
 include 'includes/head.php';
 include 'includes/navigation.php';
-include 'includes/headerpartial.php';
+// include 'includes/headerpartial.php';
 
 
-$hashed = $user_data['password'];
+// $hashed = $user_data['password'];
+// $firstname = ((isset($_POST['firstname']))?sanitize($_POST['firstname']):'');
+// $firstname = trim($firstname);
+// $lastname = ((isset($_POST['lastname']))?sanitize($_POST['lastname']):'');
+// $lastname = trim($firstname);
+// $email = ((isset($_POST['email']))?sanitize($_POST['email']):'');
+// $email = trim($firstname);
+
+// $phonetype = ((isset($_POST['phonetype']))?sanitize($_POST['phonetype']):'');
+// $phonetype = trim($firstname);
+// $phonenumber = ((isset($_POST['phonenumber']))?sanitize($_POST['phonenumber']):'');
+// $phonenumber = trim($firstname);
+
+
+
+// $password = ((isset($_POST['password']))?sanitize($_POST['password']):'');
+// $password = trim($password);
+// $confirm_password = ((isset($_POST['confirm_password']))?sanitize($_POST['confirm_password']):'');
+// $confirm_password = trim($confirm_password);
+// $new_hashed = password_hash($password, PASSWORD_DEFAULT);
+// $user_id = $user_data['id'];
 $firstname = ((isset($_POST['firstname']))?sanitize($_POST['firstname']):'');
 $firstname = trim($firstname);
 $lastname = ((isset($_POST['lastname']))?sanitize($_POST['lastname']):'');
 $lastname = trim($firstname);
+$full_name = $firstname." ".$lastname;
+$firstname = ((isset($_POST['firstname']))?sanitize($_POST['firstname']):'');
 $email = ((isset($_POST['email']))?sanitize($_POST['email']):'');
 $email = trim($firstname);
 
@@ -17,15 +39,11 @@ $phonetype = ((isset($_POST['phonetype']))?sanitize($_POST['phonetype']):'');
 $phonetype = trim($firstname);
 $phonenumber = ((isset($_POST['phonenumber']))?sanitize($_POST['phonenumber']):'');
 $phonenumber = trim($firstname);
-
-
-
 $password = ((isset($_POST['password']))?sanitize($_POST['password']):'');
 $password = trim($password);
 $confirm_password = ((isset($_POST['confirm_password']))?sanitize($_POST['confirm_password']):'');
 $confirm_password = trim($confirm_password);
 $new_hashed = password_hash($password, PASSWORD_DEFAULT);
-// $user_id = $user_data['id'];
 $errors = array();
 
 
@@ -38,6 +56,8 @@ if($_POST){
 	if(empty($_POST['firstname']) || empty($_POST['lastname']) || empty($_POST['email'])|| empty($_POST['password'])|| empty($_POST['confirm_password'])|| empty($_POST['phonetype'])|| empty($_POST['phonenumber'])){
 		$errors[] = 'You must fill out all fields.';
 	}
+
+
 
 	//password id more than 6 characters
 	if(strlen($password) < 6){
@@ -54,23 +74,12 @@ if($_POST){
 	if(!empty($errors)){
 		echo display_errors($errors);
 	}else{
-		$firstname = ((isset($_POST['firstname']))?sanitize($_POST['firstname']):'');
-		$firstname = trim($firstname);
-		$lastname = ((isset($_POST['lastname']))?sanitize($_POST['lastname']):'');
-		$lastname = trim($firstname);
-		$full_name = $firstname." ".$lastname;
-		// $insertSql = "INSERT INTO products (title,price,list_price,brand,categories,sizes,image,description) VALUES('$title','$price','$list_price', '$brand','$category', '$sizes','$dbpath', '$description')";
 
-				//Insert into data base
-		// $db -> query(
-		// 	"INSERT INTO users 
-		// 	(full_name, email, password, phonetype, phonenumber)
-		// 	VALUES
-		// 	('$full_name','$email','$phonetype','$phonenumber')");
+		// $db -> query("INSERT INTO users (full_name, email, password, phonetype, phonenumber)VALUES('{$full_name}','{$email}'),'$new_hashed','$phonetype','$phonenumber')");
 
-		$db -> query("INSERT INTO users (full_name)VALUES('{$full_name}')");
-		$_SESSION['success_flash'] = 'You password has been updated!.';
-		// header('Location: index.php');
+		$db -> query("INSERT INTO users (full_name,email,password)VALUES('{$full_name}','{$email}','{$new_hashed}')");
+		$_SESSION['success_flash'] = 'You are registed.';
+		header('Location: index.php');
 	}
 }
 

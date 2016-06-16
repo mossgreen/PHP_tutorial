@@ -1,6 +1,7 @@
 <?php 
 $sql = "SELECT * FROM categories WHERE  parent = 0";
 $pquery = $db -> query($sql);
+ob_start();
 ?>
 
 
@@ -52,3 +53,4 @@ $pquery = $db -> query($sql);
 		</div>
 	</div>
 </nav>
+<?php ob_end_flush(); ?>

@@ -62,7 +62,7 @@ ob_start();
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="userorders.php">User Orders</a></li>
+						<li><a href="userorder.php">User Orders</a></li>
 						<li><a href="logout.php">Log Out</a></li>
 					</ul>
 				</li>

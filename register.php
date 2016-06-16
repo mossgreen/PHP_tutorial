@@ -93,50 +93,48 @@ include 'includes/headerpartial.php';
         // validate signup form on keyup and submit
         $("#register_form").validate({
         	rules: {
-        		fullname: {
+        		firstname: {
         			required: true,
-        			minlength: 6
+        			minlength: 1,
         		},
-        		address: {
+        		lastname: {
         			required: true,
-        			minlength: 10
-        		},
-        		username: {
-        			required: true,
-        			minlength: 5
-        		},
-        		password: {
-        			required: true,
-        			minlength: 5
-        		},
-        		confirm_password: {
-        			required: true,
-        			minlength: 5,
-        			equalTo: "#password"
+        			minlength: 1,
         		},
         		email: {
         			required: true,
-        			email: true
+        			minlength: 5,
+        			email: true,
         		},
-        		topic: {
-        			required: "#newsletter:checked",
-        			minlength: 2
+        		password: {
+        			required: true,
+        			minlength: 6,
+        		},
+        		confirm_password: {
+        			required: true,
+        			minlength: 6,
+        			equalTo: "#password",
+        		},
+        		phonetype: {
+        			required: true,
+        			minlength: 1,
+        		},
+        		phonenumber: {
+        			required: true,
+        			minlength: 6,
         		},
         		agree: "required"
         	},
         	messages: {                
-        		fullname: {
-        			required: "Please enter a Full Name.",
-        			minlength: "Your Full Name must consist of at least 6 characters long."
+        		firstname: {
+        			required: "Please enter a First Name.",
+        			minlength: "Your First Name must consist of at least 1 characters long."
         		},
-        		address: {
-        			required: "Please enter a Address.",
-        			minlength: "Your Address must consist of at least 10 characters long."
+        		lastname: {
+        			required: "Please enter a Lst Name.",
+        			minlength: "Your Lst Name must consist of at least 1 characters long."
         		},
-        		username: {
-        			required: "Please enter a Username.",
-        			minlength: "Your username must consist of at least 5 characters long."
-        		},
+        		email: "Please enter a valid email address.",
         		password: {
         			required: "Please provide a password.",
         			minlength: "Your password must be at least 5 characters long."
@@ -146,31 +144,20 @@ include 'includes/headerpartial.php';
         			minlength: "Your password must be at least 5 characters long.",
         			equalTo: "Please enter the same password as above."
         		},
-        		email: "Please enter a valid email address.",
+        		phonetype: {
+        			required: "Please select a Phone Type.",
+        			minlength: "Your Address must consist of at least 1 characters long."
+        		},
+        		phonenumber: {
+        			required: "Please enter a Phone Number.",
+        			minlength: "Your Phone Number must consist of at least 6 characters long."
+        		},
+        		
         		agree: "Please accept our terms & condition."
         	}
         });
 
-        // propose username by combining first- and lastname
-        $("#username").focus(function() {
-        	var firstname = $("#firstname").val();
-        	var lastname = $("#lastname").val();
-        	if(firstname && lastname && !this.value) {
-        		this.value = firstname + "." + lastname;
-        	}
-        });
 
-        //code to hide topic selection, disable for demo
-        var newsletter = $("#newsletter");
-        // newsletter topics are optional, hide at first
-        var inital = newsletter.is(":checked");
-        var topics = $("#newsletter_topics")[inital ? "removeClass" : "addClass"]("gray");
-        var topicInputs = topics.find("input").attr("disabled", !inital);
-        // show when newsletter is checked
-        newsletter.click(function() {
-        	topics[this.checked ? "removeClass" : "addClass"]("gray");
-        	topicInputs.attr("disabled", !this.checked);
-        });
     });
 
 

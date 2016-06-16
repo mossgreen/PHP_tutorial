@@ -5,11 +5,12 @@ include 'includes/navigation.php';
 include 'includes/headerpartial.php';
 
 
+
 ?>
 
 <div class="panel-body">
 	<div class="form col-md-8">
-		<form class="form-validate form-horizontal " id="register_form" method="get" action="">
+		<form class="form-validate form-horizontal" id="register_form" method="post" action=" register.php">
 			<div class="form-group ">
 				<label for="firstname" class="control-label col-lg-2">First Name<span class="required">*</span></label>
 				<div class="col-lg-10">
@@ -77,89 +78,7 @@ include 'includes/headerpartial.php';
 </div>
 
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="js/form-validation-script.js">
 
 
-	var Script = function () {
-
-		$.validator.setDefaults({
-			submitHandler: function() { alert("submitted!"); }
-		});
-
-		$().ready(function() {
-        // validate the comment form when it is submitted
-        $("#feedback_form").validate();
-
-        // validate signup form on keyup and submit
-        $("#register_form").validate({
-        	rules: {
-        		firstname: {
-        			required: true,
-        			minlength: 1,
-        		},
-        		lastname: {
-        			required: true,
-        			minlength: 1,
-        		},
-        		email: {
-        			required: true,
-        			minlength: 5,
-        			email: true,
-        		},
-        		password: {
-        			required: true,
-        			minlength: 6,
-        		},
-        		confirm_password: {
-        			required: true,
-        			minlength: 6,
-        			equalTo: "#password",
-        		},
-        		phonetype: {
-        			required: true,
-        			minlength: 1,
-        		},
-        		phonenumber: {
-        			required: true,
-        			minlength: 6,
-        		},
-        		agree: "required"
-        	},
-        	messages: {                
-        		firstname: {
-        			required: "Please enter a First Name.",
-        			minlength: "Your First Name must consist of at least 1 characters long."
-        		},
-        		lastname: {
-        			required: "Please enter a Lst Name.",
-        			minlength: "Your Lst Name must consist of at least 1 characters long."
-        		},
-        		email: "Please enter a valid email address.",
-        		password: {
-        			required: "Please provide a password.",
-        			minlength: "Your password must be at least 5 characters long."
-        		},
-        		confirm_password: {
-        			required: "Please provide a password.",
-        			minlength: "Your password must be at least 5 characters long.",
-        			equalTo: "Please enter the same password as above."
-        		},
-        		phonetype: {
-        			required: "Please select a Phone Type.",
-        			minlength: "Your Address must consist of at least 1 characters long."
-        		},
-        		phonenumber: {
-        			required: "Please enter a Phone Number.",
-        			minlength: "Your Phone Number must consist of at least 6 characters long."
-        		},
-        		
-        		agree: "Please accept our terms & condition."
-        	}
-        });
-
-
-    });
-
-
-	}();
 </script>

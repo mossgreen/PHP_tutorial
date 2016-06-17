@@ -4,7 +4,10 @@
 
 
 
-	<footer class="text-center" id="footer">&copy; CopyRight 2013-2015 moss'shop</footer>
+	<footer class="text-center" id="footer">
+	&copy; CopyRight 2016 moss'shop -> Quanlity Tees <a href="../tutorial/admin/index.php"> admin</a>
+
+	</footer>
 
 
 	<script>

@@ -300,6 +300,7 @@ if($cart_id != ''){
     	});
 	});
 
+
 </script>
 
 <?php include 'includes/footer.php'; ?>

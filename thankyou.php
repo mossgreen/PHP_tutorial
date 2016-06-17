@@ -56,13 +56,14 @@ try {
 		foreach ($sizes as $size) {
 			if($size['size'] == $item['size']){
 				$q = $size['quantity'] - $item['quantity'];
-				$newSizes[] = array('size' => $size['size'], 'quantity' => $q);
+				$newSizes[] = array('size' => $size['size'], 'quantity' => $q,'threshold' => $size['threshold']);
 			}else{
-				$newSizes[] = array('size' => $size['size'], 'quantity' => $size['quantity']);
+				$newSizes[] = array('size' => $size['size'], 'quantity' => $size['quantity'],'threshold' => $size['threshold']);
 			}
+			$sizeString = sizesToString($newSizes);
+			$db -> query("UPDATE products SET sizes ='{$sizeString}' WHERE id='{$item_id}'");
 		}
-		$sizeString = sizesToString($newSizes);
-		$db -> query("UPDATE products SET sizes ='{$sizeString}' WHERE id='{$item_id}'");
+		
 	}
 
 

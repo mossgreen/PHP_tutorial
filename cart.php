@@ -16,7 +16,7 @@ if($cart_id != ''){
 
 <div class="col-md-12">
 	<div class="row">
-		<h2 class="text-center">My Shopping Cart</h2><?php var_dump($cart_id  ); ?><hr>
+		<h2 class="text-center">My Shopping Cart</h2><hr>
 		<?php if($cart_id == ''): ?>
 			<div class="bg-danger">
 				<p class="text-center text-danger">

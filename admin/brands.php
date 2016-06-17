@@ -92,7 +92,7 @@ if(isset($_POST['add_submit'])){
 			<input type="text" name="brand" id="brand" class="form-control" value="<?php echo $brand_value; ?>">
 
 			<?php if(isset($_GET['edit'])): ?>
-				<a href="brand.php" class="btn btn-default">Cancel</a>
+				<a href="brands.php" class="btn btn-default">Cancel</a>
 
 			<?php endif; ?>
 			<input type="submit" name="add_submit" value=" <?php echo ((isset($_GET['edit']))?'Edit':'Add'); ?> Brand" class="btn   btn-success">

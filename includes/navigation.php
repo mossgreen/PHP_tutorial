@@ -39,6 +39,10 @@ ob_start();
 						</ul>
 					</li>
 				<?php endwhile; ?>
+
+				<li>
+					<a href="contactus.php">Contact Us</a>
+				</li>
 				
 			</ul>
 

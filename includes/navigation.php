@@ -67,6 +67,8 @@ ob_start();
 					</a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="userorder.php">User Orders</a></li>
+						<li><a href="change_password.php">Change Password</a></li>
+
 						<li><a href="logout.php">Log Out</a></li>
 					</ul>
 				</li>

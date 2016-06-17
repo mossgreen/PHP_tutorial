@@ -24,5 +24,5 @@ $brandQ = $db -> query("SELECT * FROM brand ORDER BY brand");
 		<input type="radio" name="brand" value="<?=$brand['id'];?>" <?=(($b == $brand['id'])?' checked':'');?>><?=$brand['brand'];?><br>
 	<?php endwhile; ?>
 	<input type="submit" value="Search" class="btn btn-xs btn-primary">
-	<?php var_dump($cat_id ); ?>
+
 </form>

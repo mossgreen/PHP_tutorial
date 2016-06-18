@@ -1,5 +1,7 @@
 <?php 
-require_once $_SERVER['DOCUMENT_ROOT'].'/tutorial/core/init.php';
+require_once '../../config.php';
+require_once BASEURL.'core/init.php';
+
 $mode = sanitize($_POST['mode']);
 $edit_size = sanitize($_POST['edit_size']);
 $edit_id = sanitize($_POST['edit_id']);

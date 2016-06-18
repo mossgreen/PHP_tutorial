@@ -1,6 +1,7 @@
 <?php 
-
-require_once $_SERVER['DOCUMENT_ROOT'].'/tutorial/core/init.php';
+require_once '../../config.php';
+require_once BASEURL.'core/init.php';
+include '../includes/head.php';
 $product_id = sanitize($_POST['product_id']);
 $size = sanitize($_POST['size']);
 $available = sanitize($_POST['available']);

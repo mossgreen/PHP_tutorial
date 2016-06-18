@@ -1,6 +1,7 @@
 <?php 
 
-require_once 'core/init.php';
+require_once '/config.php';
+require_once BASEURL.'core/init.php';
 include 'includes/head.php'; 
 include 'includes/navigation.php';
 include 'includes/headerpartial.php';
@@ -16,7 +17,7 @@ if($cat_id == ''){
 }
 
 $price_sort =(($_POST['price_sort'] != '')?sanitize($_POST['price_sort']):'');
-var_dump($price_sort);
+
 $min_price =(($_POST['min_price'] != '')?sanitize($_POST['min_price']):'');
 $max_price =(($_POST['max_price'] != '')?sanitize($_POST['max_price']):'');
 $brand =(($_POST['brand'] != '')?sanitize($_POST['brand']):'');
@@ -38,8 +39,6 @@ if($price_sort == 'low'){
 if($price_sort == 'high'){
 	$sql .= " ORDER BY price DESC";
 }
-var_dump($price_sort);
-var_dump($sql);
 
 $productQ = $db -> query($sql);
 $category = get_category($cat_id);
@@ -59,7 +58,7 @@ $category = get_category($cat_id);
 			<h4><?php echo $product['title']; ?></h4>
 
 			<?php $photos = explode(',',$product['image']) ?>
-			<img src="<?=$photos[0]; ?>" alt="<?php echo $product['title']; ?>" class="img-thumb" />
+			<img src="<?='../'.$photos[0]; ?>" alt="<?php echo $product['title']; ?>" class="img-thumb" />
 			<p class="list-price text-danger">List Price: <s>$<?php echo $product['list_price']; ?></s></p>
 			<p class="price">Our Price:$<?php echo $product['price']; ?></p>
 			<button class="btn btn-sm btn-success" type="button"  onclick="detailsmodal(<?php echo $product['id']; ?>)" > Details</button>

@@ -1,6 +1,5 @@
 <?php 
-print_r($_REQUEST);
-require_once $_SERVER['DOCUMENT_ROOT'].'/tutorial/core/init.php';
+require_once '../core/init.php';
 if(!is_logged_in()){
 	login_error_redirect();
 }
@@ -207,7 +206,7 @@ if (isset($_GET['add']) || isset($_GET['edit'])) {
 				?>
 				<?php foreach($images as $image): ?>
 					<div class="saved_image col-md-4">
-						<img src="<?=$image;?>"  alt="saved image" />
+						<img src="<?='../..'.$image;?>"  alt="saved image" />
 						<br>
 						<a href="products.php?delete_image=1&edit=<?=$edit_id;?>&imagei=<?=$imagei;?>" class="text-danger">Delete Image</a>
 					</div>

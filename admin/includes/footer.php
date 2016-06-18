@@ -15,14 +15,14 @@
 
 
 		function get_child_options(selected){
-			if(typeof selected === 'undfined'){
+			if(typeof selected === 'undefined'){
 				var selected = '';
 			}
 			var parentID = jQuery('#parent').val();
 			jQuery.ajax({
-				url: '/tutorial/admin/parsers/child_categories.php',
+				url: '../../tutorial/admin/parsers/child_categories.php',
 				type: 'POST',
-				data:{parentID:parentID, selected: selected},
+				data:{parentID:parentID, selected:selected},
 				success: function(data){
 					jQuery('#child').html(data);
 				},

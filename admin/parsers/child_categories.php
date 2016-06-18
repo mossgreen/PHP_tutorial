@@ -1,7 +1,8 @@
 <?php 
-require_once $_SERVER['DOCUMENT_ROOT'].'/tutorial/core/init.php';
+require_once '../../config.php';
+require_once BASEURL.'core/init.php';
 $parentID = (int)$_POST['parentID'];
-$selected = sanitize($_POST["selected"]);
+$selected = $_POST['selected'];
 $childQuery = $db -> query("SELECT * FROM categories WHERE parent = '$parentID' ORDER BY category");
 ob_start();  
 ?>

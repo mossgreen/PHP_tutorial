@@ -239,7 +239,7 @@ if($cart_id != ''){
 			'country' : 	jQuery('#country').val(),
 		};
 		jQuery.ajax({
-			url: 		'/tutorial/admin/parsers/check_address.php',
+			url: 		'../tutorial/admin/parsers/check_address.php',
 			method : 	'POST',
 			data: 		data,
 			success: 	function(data){

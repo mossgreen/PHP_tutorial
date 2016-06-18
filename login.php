@@ -1,5 +1,6 @@
 <?php 
-require_once $_SERVER['DOCUMENT_ROOT'].'/tutorial/core/init.php';
+require_once '/config.php';
+require_once BASEURL.'core/init.php';
 include 'includes/head.php';
 
 $email = ((isset($_POST['email']))?sanitize($_POST['email']):'');
@@ -10,7 +11,7 @@ $errors = array();
 ?>
 <style>
 	body{
-		background-image: url("/tutorial/images/headerlogo/background.png");
+		background-image: url("../tutorial/images/headerlogo/background.png");
 		background-size: 100vw 100vh;
 		background-attachment: fixed
 	}
@@ -79,7 +80,7 @@ $errors = array();
 
 	</form>
 	<!-- <p class="text-right"><a href="/tutorial/index.php" alt="home">Visite Site</a></p> -->
-	<p class="text-right"><a href="/tutorial/register.php" alt="register">Register</a></p>
+	<p class="text-right"><a href="../tutorial/register.php" alt="register">Register</a></p>
 </div>
 
 

@@ -37,7 +37,7 @@ $size_array = explode(',',$sizestring);
 							<?php $photos = explode(',',$product['image']);
 							foreach($photos as $photo): ?>
 							 
-								<img src="<?=$photo;?>" alt="<?php echo $product['title']; ?>" class="details img-responsive ">
+								<img src="<?='..'.$photo;?>" alt="<?php echo $product['title']; ?>" class="details img-responsive ">
 						 
 						<?php endforeach; ?>
 					</div>

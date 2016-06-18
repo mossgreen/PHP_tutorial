@@ -31,7 +31,7 @@
 
 			var data = {"id":id};
 			jQuery.ajax({
-				url: '/tutorial/includes/detailsmodal.php', 
+				url: '../tutorial/includes/detailsmodal.php', 
 				method: "POST",
 				data: data,
 				success: function(data){
@@ -48,7 +48,7 @@
 		function update_cart(mode,edit_id, edit_size){
 			var data = {"mode":mode, "edit_id":edit_id, "edit_size":edit_size};
 			jQuery.ajax({
-				url: '/tutorial/admin/parsers/update_cart.php',
+				url: '../tutorial/admin/parsers/update_cart.php',
 				method: 'post',
 				data: data,
 				success: function(){
@@ -80,7 +80,7 @@
 				return;
 			}else{
 				jQuery.ajax({
-					url : '/tutorial/admin/parsers/add_cart.php',
+					url : '../tutorial/admin/parsers/add_cart.php',
 					method : 'post',
 					data: data,
 					success: function(){

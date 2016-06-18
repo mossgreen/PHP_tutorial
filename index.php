@@ -18,7 +18,7 @@ $featured = $db -> query($sql);
 			<div class="col-md-3 text-center">
 				<h4><?=$product['title']; ?></h4>
 				<?php $photos=explode(',',$product['image']) ?>
-				<img src="<?=$photos[0]; ?>" alt="<?=$product['title']; ?>" class="img-thumb" />
+				<img src="<?='..'.$photos[0]; ?>" alt="<?=$product['title']; ?>" class="img-thumb" />
 				<p class="list-price text-danger">List Price: <s>$<?=$product['list_price']; ?></s></p>
 				<p class="price">Our Price:$<?=$product['price']; ?></p>
 				

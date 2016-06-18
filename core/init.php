@@ -1,15 +1,22 @@
 <?php 
-$db = mysqli_connect('127.0.0.1','root','','tutorial');
+// $db = mysqli_connect('127.0.0.1','root','','tutorial');
+
+ini_set('display_errors', 1);
+
+// create connection
+$db = new mysqli("localhost", "guf03", "08041985", "guf03mysql2");
+if ($db ->connect_errno) {
+    echo "Failed to connect to MySQL: (" . $db->connect_errno . ") " . $db->connect_error;
+}
+
 if(mysqli_connect_errno()){
 	echo'database conection failed with following errors: '. mysqli_connect_error();
 	die();
 }
 session_start();
-
-require_once $_SERVER['DOCUMENT_ROOT'].'/tutorial/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/guf03/tutorial/config.php';
 require_once BASEURL."helpers/helpers.php";
 require BASEURL.'vendor/autoload.php';
-
 $cart_id='';
 if(isset($_COOKIE[CART_COOKIE])){
 	$cart_id = sanitize($_COOKIE[CART_COOKIE]);

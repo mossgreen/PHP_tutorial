@@ -2,7 +2,7 @@
     var Script = function () {
 
         $.validator.setDefaults({
-            submitHandler: function() { alert("submitted!"); }
+            submitHandler: function() { $("#register_form" ).submit();  }
         });
 
         $().ready(function() {
@@ -72,7 +72,6 @@
                     minlength: "Your Phone Number must consist of at least 6 characters long."
                 },
                 
-                agree: "Please accept our terms & condition."
             }
         });
 

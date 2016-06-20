@@ -1,7 +1,9 @@
 <?php 
+
 require_once 'core/init.php';
 include 'includes/head.php';
 include 'includes/navigation.php';
+
 
 $firstname = ((isset($_POST['firstname']))?sanitize($_POST['firstname']):'');
 $firstname = trim($firstname);
@@ -51,6 +53,8 @@ if($_POST){
 	}else{
 
 		$db -> query("INSERT INTO users (full_name,email,password,phonetype,phonenumber)VALUES('{$full_name}','{$email}','{$new_hashed}','{$phonetype}','{$phonenumber}')");
+
+		var_dump("INSERT INTO users (full_name,email,password,phonetype,phonenumber)VALUES('{$full_name}','{$email}','{$new_hashed}','{$phonetype}','{$phonenumber}')");
 		$_SESSION['success_flash'] = 'You are registed.';
 		header('Location: index.php');
 	}
@@ -60,7 +64,7 @@ if($_POST){
 
 <div class="panel-body">
 	<div class="form col-md-8">
-		<form action=" register.php" method="POST" class="form-validate form-horizontal" id="register_form" >
+		<form action=" register.php" method="POST" class="form-validate form-horizontal" id="register_form" name="register_form">
 			<div class="form-group ">
 				<label for="firstname" class="control-label col-lg-2">First Name<span class="required">*</span></label>
 				<div class="col-lg-10">
@@ -78,7 +82,7 @@ if($_POST){
 			<div class="form-group ">
 				<label for="email" class="control-label col-lg-2">Email <span class="required">*</span></label>
 				<div class="col-lg-10">
-					<input class="form-control " id="email" name="email" type="text" />
+					<input class="form-control " id="email" name="email" type="email" />
 				</div>
 			</div>
 			<div class="form-group ">
@@ -115,12 +119,15 @@ if($_POST){
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
 					<a href="index.php" class="btn btn-default">Cancel</a>
-					<input type="submit" value="Submit" class="btn btn-primary">
+					<input type="submit" value="Submit" class="btn btn-primary"">
 				</div>
 			</div>
 		</form>
 	</div>
 </div>
 
-<!-- <script type="text/javascript" src="js/jquery.validate.min.js"></script> -->
-<!-- <script type="text/javascript" src="js/form-validation-script.js"></script> -->
+
+
+
+<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="js/form-validation-script.js"></script>
